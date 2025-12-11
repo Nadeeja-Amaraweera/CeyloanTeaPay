@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rootTea" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.DailyTeaController">
+   <children>
+      <Pane prefHeight="619.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="55.0" prefWidth="800.0">
+               <children>
+                  <Label layoutX="315.0" layoutY="13.0" text="Daily Tea Plucking">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <HBox layoutY="53.0" prefHeight="216.0" prefWidth="800.0">
+               <children>
+                  <VBox prefHeight="216.0" prefWidth="129.0">
+                     <children>
+                        <Label alignment="CENTER" text="Tea ID">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="Employee">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="Area">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="Date">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="214.0" prefWidth="180.0">
+                     <children>
+                        <TextField fx:id="txtTeaID" prefHeight="26.0" prefWidth="156.0" promptText="Tea ID">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="cmbEmployeeIds" prefHeight="31.0" prefWidth="178.0" promptText="Select Employee">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
+                           </padding></ComboBox>
+                        <ComboBox fx:id="cmbLandIds" prefHeight="31.0" prefWidth="178.0" promptText="Select Area">
+                           <padding>
+                              <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <DatePicker fx:id="txtDate" promptText="Select Date">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding></DatePicker>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="216.0" prefWidth="144.0">
+                     <children>
+                        <Label alignment="CENTER" text="Full Weight">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="Bag Weight">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="Water Weight">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="Quality">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="TOP_LEFT" text="Total Weight">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children></VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="214.0" prefWidth="180.0">
+                     <children>
+                        <TextField fx:id="txtFullWeight" prefHeight="26.0" prefWidth="156.0" promptText="Full Tea Weight">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="txtBagWeight" prefHeight="26.0" prefWidth="156.0" promptText="Bag Weight">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="txtWaterWeight" prefHeight="26.0" prefWidth="156.0" promptText="Water Weight">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="txtQuality" prefHeight="26.0" prefWidth="156.0" promptText="Quality">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="txtTotalWeight" prefHeight="26.0" prefWidth="156.0" promptText="Total Weight">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children></VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="214.0" prefWidth="206.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#addFields" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#updateFields" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="76.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#reset" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#getName" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #006308;" text="Get Name" textFill="WHITE" />
+                     </children></VBox>
+               </children>
+            </HBox>
+            <TableView fx:id="tableView" layoutY="269.0" prefHeight="333.0" prefWidth="800.0">
+              <columns>
+                <TableColumn fx:id="col_TeaID" prefWidth="57.59997636079788" text="Tea ID" />
+                <TableColumn fx:id="col_EmployeeID" prefWidth="95.19997787475586" text="Employee ID" />
+                  <TableColumn fx:id="col_EmployeeName" prefWidth="154.40000915527344" text="Employee Name" />
+                  <TableColumn fx:id="col_AreaID" prefWidth="58.4000244140625" text="Area" />
+                  <TableColumn fx:id="col_AreaName" prefWidth="115.20001220703125" text="Area Name" />
+                  <TableColumn fx:id="col_Date" prefWidth="138.4000244140625" text="Date" />
+                  <TableColumn fx:id="col_FullWeight" prefWidth="115.20001220703125" text="Full Weight" />
+                  <TableColumn fx:id="col_BagWeight" prefWidth="117.60003662109375" text="Bag Weight" />
+                  <TableColumn fx:id="col_WaterWeight" prefWidth="123.199951171875" text="Water weight" />
+                  <TableColumn fx:id="col_Quality" prefWidth="100.0" text="Quality" />
+                  <TableColumn fx:id="col_TotalWeight" prefWidth="75.0" text="Total Weight" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
