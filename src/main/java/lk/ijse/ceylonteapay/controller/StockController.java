@@ -17,6 +17,8 @@ import lk.ijse.ceylonteapay.dto.FactoryDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 import lk.ijse.ceylonteapay.model.StockModel;
 
+import javax.swing.*;
+
 
 public class StockController implements Initializable {
 
@@ -126,17 +128,68 @@ public class StockController implements Initializable {
 
     @FXML
     private void update(){
+        try {
 
+            LocalDate date = txtDate.getValue();
+            String quality = txtQuality.getText();
+            int qty = Integer.parseInt(txtQuantity.getText());
+            int avaQty = Integer.parseInt(txtAvailableQuantity.getText());
+
+            StockDTO selected = tableView.getSelectionModel().getSelectedItem();
+            int id = selected.getId();
+
+            System.out.println(id);
+
+            StockDTO stockDTO = new StockDTO(id,date,quality,qty,avaQty);
+            boolean result = stockModel.updateStock(stockDTO);
+
+            if (result){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Stock Updated Successfully.");
+                alert.show();
+                refreshTable();
+                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Stock Updated Not Successfully.");
+                alert.show();
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void delete(){
-
+        StockDTO selected = tableView.getSelectionModel().getSelectedItem();
+        int id = selected.getId();
+        try {
+            boolean result = stockModel.deleteStock(id);
+            if (result){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Stock Deleted Successfully.");
+                alert.show();
+                refreshTable();
+                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Stock Deleted Not Successfully.");
+                alert.show();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        }
     }
 
     @FXML
     private void reset(){
-
+        clearFields();
     }
 
     private ObservableList<StockDTO> loadStock(){

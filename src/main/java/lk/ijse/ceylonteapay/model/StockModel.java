@@ -53,4 +53,34 @@ public class StockModel {
             }
             return list;
         }
+
+        public boolean updateStock(StockDTO stockDTO)throws Exception{
+            DBConnection dbc = DBConnection.getInstance();
+            Connection conn = dbc.getConnection();
+
+            String sql = "UPDATE Stock SET date = ?, quality = ? ,quantity = ?, availableQuantity = ? WHERE id = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setDate(1, Date.valueOf(stockDTO.getDate()));
+            pstm.setString(2,stockDTO.getQuality());
+            pstm.setInt(3,stockDTO.getQuantity());
+            pstm.setInt(4,stockDTO.getAvailableQuantity());
+            pstm.setInt(5,stockDTO.getId());
+
+            int result = pstm.executeUpdate();
+
+            return result>0;
+        }
+
+        public boolean deleteStock(int id)throws Exception{
+            DBConnection dbc = DBConnection.getInstance();
+            Connection conn = dbc.getConnection();
+
+            String sql = "DELETE FROM Stock WHERE id = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1,id);
+
+            int result = pstm.executeUpdate();
+
+            return result>0;
+        }
 }
