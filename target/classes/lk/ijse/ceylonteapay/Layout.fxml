@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.LayoutController">
    <children>
@@ -15,57 +14,53 @@
          <left>
             <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: D7FCDE;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="201.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="137.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/logo.png" />
                      </image>
                      <VBox.margin>
-                        <Insets bottom="30.0" top="30.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#clickTeaPlucking" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #00750C;" text="Tea Plucking" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickTeaPlucking" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #00750C;" text="Tea Plucking" textFill="WHITE">
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickOtherWork" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #00750C;" text="Other Works" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickOtherWork" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #00750C;" text="Other Works" textFill="WHITE">
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #00750C;" text="Employee Manage" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #00750C;" text="Employee Manage" textFill="WHITE">
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickAreas" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #00750C;" text="Areas Manage" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickAreas" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #00750C;" text="Areas Manage" textFill="WHITE">
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#clickFactories" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #00750C;" text="Factory Manage" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
                   </Button>
                </children>
             </VBox>

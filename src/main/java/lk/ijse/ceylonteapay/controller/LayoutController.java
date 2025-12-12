@@ -18,7 +18,7 @@ public class LayoutController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
 
     @FXML
@@ -42,6 +42,12 @@ public class LayoutController implements Initializable {
     @FXML
     private void clickAreas()throws IOException{
         Parent teaFXML = App.loadFXML("Land");
+        mainContent.getChildren().setAll(teaFXML);
+    }
+
+    @FXML
+    private void clickFactories()throws IOException{
+        Parent teaFXML = App.loadFXML("Factory");
         mainContent.getChildren().setAll(teaFXML);
     }
 
