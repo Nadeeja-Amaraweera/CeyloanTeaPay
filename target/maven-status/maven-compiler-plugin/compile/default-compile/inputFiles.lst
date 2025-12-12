@@ -2,6 +2,7 @@
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/OtherWorkController.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/OtherWorkDTO.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/IcomeController.java
+/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/StockController.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/App.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/DailyTeaDTO.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/PaymentModel.java
@@ -17,6 +18,7 @@
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/EmployeeModel.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/PaymentDTO.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/EmployeeDTO.java
+/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/StockDTO.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/OtherWorkModel.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/LayoutController.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/DeliveryTeaController.java
@@ -27,3 +29,4 @@
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/LoginController.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/DeliveryTeaDTO.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/LandController.java
+/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/StockModel.java
