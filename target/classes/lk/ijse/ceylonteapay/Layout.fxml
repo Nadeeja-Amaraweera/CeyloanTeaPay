@@ -70,6 +70,14 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#clickDelivery" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #00750C;" text="Tea Delivery" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </left>

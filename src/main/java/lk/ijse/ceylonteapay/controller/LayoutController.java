@@ -57,5 +57,11 @@ public class LayoutController implements Initializable {
         mainContent.getChildren().setAll(teaFXML);
     }
 
+    @FXML
+    private void clickDelivery()throws IOException{
+        Parent teaFXML = App.loadFXML("DeliveryTea");
+        mainContent.getChildren().setAll(teaFXML);
+    }
+
     
 }
