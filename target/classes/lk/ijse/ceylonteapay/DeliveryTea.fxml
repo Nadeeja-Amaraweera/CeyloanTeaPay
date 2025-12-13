@@ -47,7 +47,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField>
+                        <TextField fx:id="txtDeliveryId">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -55,7 +55,7 @@
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
                         </TextField>
-                        <ComboBox prefWidth="180.0">
+                        <ComboBox fx:id="cmdFactoryName" prefWidth="180.0">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -97,17 +97,17 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ComboBox prefHeight="26.0" prefWidth="180.0">
+                        <ComboBox fx:id="cmdStockNo" prefHeight="26.0" prefWidth="180.0">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <DatePicker>
+                        <DatePicker fx:id="txtDate">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                         </DatePicker>
-                        <TextField>
+                        <TextField fx:id="txtQuantity">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -154,14 +154,14 @@
             </HBox>
             <HBox prefHeight="365.0" prefWidth="800.0">
                <children>
-                  <TableView prefHeight="356.0" prefWidth="346.0">
+                  <TableView fx:id="tblStock" prefHeight="356.0" prefWidth="346.0">
                     <columns>
                       <TableColumn prefWidth="62.0" text="Stock id" />
                       <TableColumn prefWidth="109.0" text="Available Stock" />
                         <TableColumn prefWidth="100.0" text="Quality" />
                     </columns>
                   </TableView>
-                  <TableView prefHeight="356.0" prefWidth="582.0">
+                  <TableView fx:id="tblDelivery" prefHeight="356.0" prefWidth="582.0">
                     <columns>
                       <TableColumn prefWidth="54.0" text="ID" />
                       <TableColumn prefWidth="84.0" text="Factory Id" />

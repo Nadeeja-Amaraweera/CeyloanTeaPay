@@ -8,6 +8,11 @@ public class FactoryDTO {
     public FactoryDTO() {
     }
 
+    public FactoryDTO(int factoryId, String factoryName) {
+        this.factoryId = factoryId;
+        this.factoryName = factoryName;
+    }
+
     public FactoryDTO(String factoryName, String factoryAddress) {
         this.factoryName = factoryName;
         this.factoryAddress = factoryAddress;
