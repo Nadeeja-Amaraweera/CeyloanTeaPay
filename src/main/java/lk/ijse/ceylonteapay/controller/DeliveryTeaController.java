@@ -13,6 +13,8 @@ import lk.ijse.ceylonteapay.dto.FactoryDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 import lk.ijse.ceylonteapay.model.DeliveryTeaModel;
 
+import javax.swing.*;
+
 
 public class DeliveryTeaController implements Initializable {
 
@@ -34,10 +36,28 @@ public class DeliveryTeaController implements Initializable {
 
     private static DeliveryTeaModel deliveryTeaModel = new DeliveryTeaModel();
 
+    private int selectedFactoryId = -1;
+    private int selectedStockId = -1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadFactory();
+        loadStock();
+
+        cmdFactoryName.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal!=null){
+                selectedFactoryId = newVal.getFactoryId();
+                System.out.println(newVal.getFactoryName());
+            }
+        });
+
+        cmdStockNo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal!=null){
+                selectedStockId = newVal.getId();
+                System.out.println(newVal.getDate());
+            }
+        });
     }
 
     private void loadFactory(){
@@ -72,6 +92,42 @@ public class DeliveryTeaController implements Initializable {
             });
         }catch (Exception e){
 
+        }
+    }
+
+    private void loadStock(){
+        try {
+
+            ObservableList<StockDTO> list = deliveryTeaModel.getComboStock();
+            cmdStockNo.setItems(list);
+
+            cmdStockNo.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(StockDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
+                    }
+                }
+            });
+
+            // Also show selected value correctly
+            cmdStockNo.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(StockDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
+                    }
+                }
+            });
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,e);
         }
     }
     

@@ -12,6 +12,13 @@ public class StockDTO {
     public StockDTO() {
     }
 
+
+    public StockDTO(int id, LocalDate date, String quality) {
+        this.id = id;
+        this.date = date;
+        this.quality = quality;
+    }
+
     public StockDTO(LocalDate date, String quality, int quantity, int availableQuantity) {
         this.date = date;
         this.quality = quality;
