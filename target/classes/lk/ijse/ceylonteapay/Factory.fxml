@@ -13,16 +13,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="lk.ijse.ceylonteapay.controller.FactoryController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.FactoryController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="800.0">
+      <Pane prefHeight="800.0" prefWidth="1250.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="1.0" prefHeight="600.0" prefWidth="800.0">
+            <VBox alignment="TOP_CENTER" layoutX="1.0" prefHeight="800.0" prefWidth="1250.0">
                <children>
                   <Label text="Factory Manage">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="50.0" top="20.0" />
@@ -89,9 +88,9 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1000.0">
+                  <HBox alignment="CENTER" prefHeight="101.0" prefWidth="1250.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="59.0" text="Add">
+                        <Button mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -99,7 +98,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#update" text="Update">
+                        <Button mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -107,7 +106,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#delete" text="Delete">
+                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -115,7 +114,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#reset" text="Reset">
+                        <Button mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -125,11 +124,11 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableView" prefHeight="328.0" prefWidth="1000.0">
+                  <TableView fx:id="tableView" prefHeight="533.0" prefWidth="1250.0">
                     <columns>
-                      <TableColumn fx:id="col_id" prefWidth="124.266681432724" text="Factory ID" />
-                      <TableColumn fx:id="col_Name" prefWidth="238.9333267211914" text="Factory Name" />
-                        <TableColumn fx:id="col_Address" prefWidth="635.1999816894531" text="Factory Address" />
+                      <TableColumn fx:id="col_id" prefWidth="164.0" text="Factory ID" />
+                      <TableColumn fx:id="col_Name" prefWidth="256.0" text="Factory Name" />
+                        <TableColumn fx:id="col_Address" prefWidth="829.0" text="Factory Address" />
                     </columns>
                   </TableView>
                </children>

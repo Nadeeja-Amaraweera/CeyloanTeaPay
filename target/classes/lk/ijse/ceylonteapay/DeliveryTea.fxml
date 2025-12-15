@@ -13,19 +13,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.DeliveryTeaController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.DeliveryTeaController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0">
+      <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1250.0">
          <children>
             <Label text="Delivery Tea">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" top="20.0" />
+                  <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="119.0" prefWidth="800.0">
+            <HBox alignment="TOP_CENTER" prefHeight="161.0" prefWidth="1250.0">
                <children>
                   <VBox prefHeight="130.0" prefWidth="200.0">
                      <children>
@@ -35,14 +35,20 @@
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
-                           </padding></Label>
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                         <Label text="Delivery Factory Name">
                            <VBox.margin>
                               <Insets bottom="5.0" left="20.0" top="5.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
-                           </padding></Label>
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="200.0">
@@ -54,6 +60,9 @@
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
                         <ComboBox fx:id="cmdFactoryName" prefWidth="180.0">
                            <VBox.margin>
@@ -76,6 +85,9 @@
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label text="Delivery Date">
                            <VBox.margin>
@@ -84,6 +96,9 @@
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label text="Quantity">
                            <VBox.margin>
@@ -92,6 +107,9 @@
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </VBox>
@@ -114,6 +132,9 @@
                            <padding>
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
                      </children>
                      <padding>
@@ -122,24 +143,24 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="800.0">
+            <HBox alignment="CENTER" prefHeight="174.0" prefWidth="1250.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Add">
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Update">
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Delete">
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Reset">
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -152,16 +173,16 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="365.0" prefWidth="800.0">
+            <HBox prefHeight="564.0" prefWidth="1250.0">
                <children>
-                  <TableView fx:id="tblStock" prefHeight="356.0" prefWidth="346.0">
+                  <TableView fx:id="tblStock" prefHeight="564.0" prefWidth="457.0">
                     <columns>
                       <TableColumn prefWidth="62.0" text="Stock id" />
                       <TableColumn prefWidth="109.0" text="Available Stock" />
                         <TableColumn prefWidth="100.0" text="Quality" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblDelivery" prefHeight="356.0" prefWidth="582.0">
+                  <TableView fx:id="tblDelivery" prefHeight="564.0" prefWidth="884.0">
                     <columns>
                       <TableColumn prefWidth="54.0" text="ID" />
                       <TableColumn prefWidth="84.0" text="Factory Id" />

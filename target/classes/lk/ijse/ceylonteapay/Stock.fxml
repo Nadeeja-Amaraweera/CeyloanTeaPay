@@ -12,20 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="lk.ijse.ceylonteapay.controller.StockController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.StockController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0">
+      <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1250.0">
          <children>
             <Label text="Stock Manage">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" top="20.0" />
+                  <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="126.0" prefWidth="800.0">
+            <HBox alignment="TOP_CENTER" prefHeight="186.0" prefWidth="1250.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -36,6 +35,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label text="Date">
                            <padding>
@@ -44,6 +46,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label text="Quality">
                            <padding>
@@ -52,6 +57,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <padding>
@@ -67,6 +75,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
                         <DatePicker fx:id="txtDate">
                            <VBox.margin>
@@ -83,6 +94,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
                      </children>
                      <padding>
@@ -98,6 +112,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label text="Available Quantity">
                            <padding>
@@ -106,6 +123,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <padding>
@@ -121,6 +141,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
                         <TextField fx:id="txtAvailableQuantity">
                            <padding>
@@ -129,6 +152,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
                      </children>
                      <padding>
@@ -137,37 +163,37 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="800.0">
+            <HBox alignment="CENTER" prefHeight="97.0" prefWidth="1250.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="52.0" text="Add">
+                  <Button mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#update" text="Update">
+                  <Button mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#delete" text="Delete">
+                  <Button mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#reset" text="Reset">
+                  <Button mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tableView" prefHeight="347.0" prefWidth="800.0">
+            <TableView fx:id="tableView" prefHeight="428.0" prefWidth="1250.0">
               <columns>
-                <TableColumn fx:id="col_id" prefWidth="108.0" text="Stock ID" />
-                <TableColumn fx:id="col_date" prefWidth="183.0" text="Date" />
-                  <TableColumn fx:id="col_quality" prefWidth="217.0" text="Tea Quality" />
-                  <TableColumn fx:id="col_qty" prefWidth="124.0" text="Qty" />
-                  <TableColumn fx:id="col_ava_qty" prefWidth="167.0" text="Available Qty" />
+                <TableColumn fx:id="col_id" prefWidth="133.0" text="Stock ID" />
+                <TableColumn fx:id="col_date" prefWidth="236.0" text="Date" />
+                  <TableColumn fx:id="col_quality" prefWidth="481.0" text="Tea Quality" />
+                  <TableColumn fx:id="col_qty" prefWidth="191.0" text="Qty" />
+                  <TableColumn fx:id="col_ava_qty" prefWidth="208.0" text="Available Qty" />
               </columns>
             </TableView>
          </children>
