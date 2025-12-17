@@ -145,7 +145,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="174.0" prefWidth="1250.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#addToCart" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -178,17 +178,17 @@
                   <TableView fx:id="tblStock" prefHeight="564.0" prefWidth="457.0">
                     <columns>
                       <TableColumn prefWidth="62.0" text="Stock id" />
-                      <TableColumn prefWidth="109.0" text="Available Stock" />
-                        <TableColumn prefWidth="100.0" text="Quality" />
+                      <TableColumn prefWidth="173.0" text="Available Stock" />
+                        <TableColumn prefWidth="165.0" text="Quality" />
                     </columns>
                   </TableView>
                   <TableView fx:id="tblDelivery" prefHeight="564.0" prefWidth="884.0">
                     <columns>
                       <TableColumn prefWidth="54.0" text="ID" />
-                      <TableColumn prefWidth="84.0" text="Factory Id" />
-                        <TableColumn prefWidth="161.0" text="Factory Name" />
-                        <TableColumn prefWidth="98.0" text="Date" />
-                        <TableColumn prefWidth="110.0" text="Amount" />
+                      <TableColumn prefWidth="131.0" text="Factory Id" />
+                        <TableColumn prefWidth="230.0" text="Factory Name" />
+                        <TableColumn prefWidth="181.0" text="Date" />
+                        <TableColumn prefWidth="232.0" text="Amount" />
                     </columns>
                      <HBox.margin>
                         <Insets left="20.0" />

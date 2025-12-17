@@ -16,6 +16,7 @@ lk/ijse/ceylonteapay/controller/OtherWorkController$1.class
 lk/ijse/ceylonteapay/model/StockModel.class
 lk/ijse/ceylonteapay/controller/DeliveryTeaController.class
 lk/ijse/ceylonteapay/controller/DeliveryTeaController$3.class
+lk/ijse/ceylonteapay/dto/DeliveryCartTM.class
 lk/ijse/ceylonteapay/controller/IcomeController.class
 lk/ijse/ceylonteapay/model/LandModel.class
 lk/ijse/ceylonteapay/controller/OtherWorkController$4.class

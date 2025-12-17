@@ -60,6 +60,16 @@ public class DeliveryTeaController implements Initializable {
         });
     }
 
+    @FXML
+    private void addToCart(){
+//        int stockId, int factoryId, String factoryName, int qty, LocalDate date
+
+//        StockDTO stockid = cmdStockNo.getSelectionModel().getSelectedItem();
+//        FactoryDTO factoryid = cmdFactoryName.getSelectionModel().getSelectedItem();
+
+        System.out.println(selectedStockId+" - "+selectedFactoryId);
+    }
+
     private void loadFactory(){
         try {
             ObservableList<FactoryDTO> list = deliveryTeaModel.getComboFactory();
@@ -73,7 +83,9 @@ public class DeliveryTeaController implements Initializable {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        setText(item.getFactoryId() + " - " + item.getFactoryName());
+//                        setText(item.getFactoryId() + " - " + item.getFactoryName());
+                        setText(item.getFactoryName());
+
                     }
                 }
             });
@@ -86,7 +98,8 @@ public class DeliveryTeaController implements Initializable {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        setText(item.getFactoryId() + " - " + item.getFactoryName());
+//                        setText(item.getFactoryId() + " - " + item.getFactoryName());
+                        setText(item.getFactoryName());
                     }
                 }
             });
@@ -108,7 +121,8 @@ public class DeliveryTeaController implements Initializable {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
+//                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
+                        setText(item.getDate()+ " - "+item.getQuality());
                     }
                 }
             });
@@ -121,7 +135,9 @@ public class DeliveryTeaController implements Initializable {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
+//                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
+                        setText(item.getDate()+ " - "+item.getQuality());
+
                     }
                 }
             });
