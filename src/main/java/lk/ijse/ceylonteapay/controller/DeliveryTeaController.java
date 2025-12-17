@@ -10,22 +10,31 @@ import lk.ijse.ceylonteapay.dto.DeliveryCartTM;
 import lk.ijse.ceylonteapay.dto.FactoryDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 import lk.ijse.ceylonteapay.model.DeliveryTeaModel;
+import lk.ijse.ceylonteapay.model.StockModel;
 
 import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+//import static lk.ijse.ceylonteapay.controller.StockController.stockModel;
+
 
 public class DeliveryTeaController implements Initializable {
 
     @FXML
     private TableView<StockDTO> tblStock;
+
+    @FXML
+    private TableColumn<StockDTO,Integer>col_stockTableId;
+    @FXML
+    private TableColumn<StockDTO,Integer> col_stockTableStock;
+    @FXML
+    private TableColumn<StockDTO,String> col_stockTableQuality;
+
     @FXML
     private TableView<DeliveryCartTM> tblDelivery;
 
-    @FXML
-    private TextField txtDeliveryId;
     @FXML
     private ComboBox<FactoryDTO> cmdFactoryName;
     @FXML
@@ -46,9 +55,17 @@ public class DeliveryTeaController implements Initializable {
     @FXML
     private TableColumn<DeliveryCartTM,LocalDate> colDate;
 
+
     ObservableList<DeliveryCartTM> cartList = FXCollections.observableArrayList();
 
     private static DeliveryTeaModel deliveryTeaModel = new DeliveryTeaModel();
+
+    ObservableList<StockDTO> stockDTOObservableList = FXCollections.observableArrayList();
+
+
+
+    private static StockModel stockModel = new StockModel();
+
 
     private int selectedFactoryId = -1;
     private String selectedFactoryName = "";
@@ -57,8 +74,8 @@ public class DeliveryTeaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadFactory();
-        loadStock();
+        loadFactoryCombo();
+        loadStockCombo();
         initializeCartTable();
 
         cmdFactoryName.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
@@ -75,6 +92,12 @@ public class DeliveryTeaController implements Initializable {
                 System.out.println(newVal.getDate());
             }
         });
+
+        col_stockTableId.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("id"));
+        col_stockTableQuality.setCellValueFactory(new PropertyValueFactory<StockDTO,String>("quality"));
+        col_stockTableStock.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("availableQuantity"));
+
+        tblStock.setItems(loadStockTable());
     }
 
     private void initializeCartTable() {
@@ -120,7 +143,7 @@ public class DeliveryTeaController implements Initializable {
                 new Alert(Alert.AlertType.INFORMATION, "Delivery Order Placed Successfully!").show();
                 cartList.clear();
                 tblDelivery.refresh();
-                loadStock(); // refresh stock table
+                refreshStockTable();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Order Failed!").show();
             }
@@ -130,7 +153,23 @@ public class DeliveryTeaController implements Initializable {
         }
     }
 
-    private void loadFactory() {
+    private void refreshStockTable() {
+        stockDTOObservableList.clear();
+        stockDTOObservableList.addAll(loadStockTable());
+        tblStock.setItems(stockDTOObservableList);
+    }
+
+    private ObservableList<StockDTO> loadStockTable(){
+        try {
+            ObservableList<StockDTO> list = stockModel.getStock();
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
+    }
+
+    private void loadFactoryCombo() {
         try {
             ObservableList<FactoryDTO> list = deliveryTeaModel.getComboFactory();
             cmdFactoryName.setItems(list);
@@ -168,7 +207,7 @@ public class DeliveryTeaController implements Initializable {
         }
     }
 
-    private void loadStock() {
+    private void loadStockCombo() {
         try {
 
             ObservableList<StockDTO> list = deliveryTeaModel.getComboStock();

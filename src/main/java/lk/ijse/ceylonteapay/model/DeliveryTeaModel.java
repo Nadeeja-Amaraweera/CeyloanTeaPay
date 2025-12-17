@@ -59,7 +59,7 @@ public class DeliveryTeaModel {
     public boolean placeOrder(ObservableList<DeliveryCartTM> cartList)throws Exception {
 
             Connection con = DBConnection.getInstance().getConnection();
-            con.setAutoCommit(false); // 🚨 START TRANSACTION
+            con.setAutoCommit(false);
 
             try {
                 for (DeliveryCartTM item : cartList) {
@@ -79,7 +79,7 @@ public class DeliveryTeaModel {
                         );
                     }
 
-                    // 2️⃣ Insert delivery
+                    //Insert delivery
                     PreparedStatement insert = con.prepareStatement(
                             "INSERT INTO DeliveryTea " +
                                     "(deliveryFactoryId, deliveryFactoryName, StockId, deliveryQty, deliveryDate) " +
@@ -93,7 +93,7 @@ public class DeliveryTeaModel {
 
                     insert.executeUpdate();
 
-                    // 3️⃣ Update stock
+                    //Update stock
                     PreparedStatement update = con.prepareStatement(
                             "UPDATE Stock SET availableQuantity = availableQuantity - ? WHERE id = ?"
                     );
@@ -103,11 +103,11 @@ public class DeliveryTeaModel {
                     update.executeUpdate();
                 }
 
-                con.commit(); // ✅ SUCCESS
+                con.commit(); // SUCCESS
                 return true;
 
             } catch (Exception e) {
-                con.rollback(); // ❌ FAIL
+                con.rollback(); // FAIL
                 throw e;
 
             } finally {

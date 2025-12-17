@@ -14,15 +14,15 @@
          <left>
             <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #F5F2E3;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="249.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="398.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
                      <image>
-                        <Image url="@images/logo.png" />
+                        <Image url="@images/Gemini_Generated_Image_7z2ek87z2ek87z2e.png" />
                      </image>
-                     <VBox.margin>
-                        <Insets bottom="30.0" top="30.0" />
-                     </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#clickTeaPlucking" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Tea Plucking" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickTeaPlucking" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Tea Plucking" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
@@ -30,7 +30,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickOtherWork" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Other Works" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickOtherWork" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Other Works" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
@@ -38,7 +38,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickStock" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Stock Manage" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickStock" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Stock Manage" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -46,7 +46,7 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Employee Manage" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Employee Manage" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
@@ -54,7 +54,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickAreas" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Areas Manage" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickAreas" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Areas Manage" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
@@ -62,7 +62,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickFactories" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Factory Manage" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickFactories" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Factory Manage" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -70,7 +70,7 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickDelivery" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C;" text="Tea Delivery" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#clickDelivery" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Tea Delivery" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -84,7 +84,7 @@
          <right>
             <AnchorPane fx:id="mainContent" prefHeight="800.0" prefWidth="1250.0" style="-fx-background-color: #F5F2E3;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="536.0" fitWidth="736.0" layoutX="260.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="536.0" fitWidth="736.0" layoutX="266.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/welcome.png" />
                      </image>

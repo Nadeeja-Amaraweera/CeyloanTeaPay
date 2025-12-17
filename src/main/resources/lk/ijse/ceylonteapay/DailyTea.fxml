@@ -37,7 +37,7 @@
                   </Label>
                </children>
             </Pane>
-            <HBox alignment="CENTER" layoutX="116.0" layoutY="89.0" prefHeight="158.0" prefWidth="1028.0" style="-fx-background-color: #C9E2AB; -fx-border-radius: 25; -fx-background-radius: 25;">
+            <HBox alignment="CENTER" layoutX="116.0" layoutY="89.0" prefHeight="158.0" prefWidth="1028.0" style="-fx-background-color: #C9E2AB; -fx-border-radius: 25; -fx-background-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
                <children>
                   <VBox prefHeight="139.0" prefWidth="129.0">
                      <children>
