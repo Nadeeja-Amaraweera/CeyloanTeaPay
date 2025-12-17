@@ -1,23 +1,18 @@
 package lk.ijse.ceylonteapay.controller;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.ceylonteapay.db.DBConnection;
-import lk.ijse.ceylonteapay.dto.FactoryDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 import lk.ijse.ceylonteapay.model.StockModel;
 
 import javax.swing.*;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 
 public class StockController implements Initializable {
@@ -25,16 +20,15 @@ public class StockController implements Initializable {
     @FXML
     private TableView<StockDTO> tableView;
     @FXML
-    private TableColumn<StockDTO,Integer> col_id;
+    private TableColumn<StockDTO, Integer> col_id;
     @FXML
     private TableColumn<StockDTO, LocalDate> col_date;
     @FXML
-    private TableColumn<StockDTO,String> col_quality;
+    private TableColumn<StockDTO, String> col_quality;
     @FXML
-    private TableColumn<StockDTO,Integer> col_qty;
+    private TableColumn<StockDTO, Integer> col_qty;
     @FXML
-    private TableColumn<StockDTO,Integer> col_ava_qty;
-
+    private TableColumn<StockDTO, Integer> col_ava_qty;
 
 
     @FXML
@@ -52,18 +46,20 @@ public class StockController implements Initializable {
 
     ObservableList<StockDTO> stockDTOObservableList = FXCollections.observableArrayList();
 
+    private final String QUALITY_REGEX = "^[A-Za-z0-9 ]+$";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        col_id.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("id"));
+        col_id.setCellValueFactory(new PropertyValueFactory<StockDTO, Integer>("id"));
         col_date.setCellValueFactory(new PropertyValueFactory<StockDTO, LocalDate>("date"));
-        col_quality.setCellValueFactory(new PropertyValueFactory<StockDTO,String>("quality"));
-        col_qty.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("quantity"));
-        col_ava_qty.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("availableQuantity"));
+        col_quality.setCellValueFactory(new PropertyValueFactory<StockDTO, String>("quality"));
+        col_qty.setCellValueFactory(new PropertyValueFactory<StockDTO, Integer>("quantity"));
+        col_ava_qty.setCellValueFactory(new PropertyValueFactory<StockDTO, Integer>("availableQuantity"));
 
 
         tableView.getSelectionModel().selectedItemProperty().addListener(
-                (obs,oldvalue,newvalue)->{
-                    if (newvalue!=null){
+                (obs, oldvalue, newvalue) -> {
+                    if (newvalue != null) {
                         setStockDetails(newvalue);
                     }
                 }
@@ -71,7 +67,7 @@ public class StockController implements Initializable {
         tableView.setItems(loadStock());
     }
 
-    private void setStockDetails(StockDTO stockDTO){
+    private void setStockDetails(StockDTO stockDTO) {
         txtStockId.setText(String.valueOf(stockDTO.getId()));
         txtDate.setValue(stockDTO.getDate());
         txtQuality.setText(stockDTO.getQuality());
@@ -80,37 +76,55 @@ public class StockController implements Initializable {
     }
 
     @FXML
-    private void save(){
-        try {
+    private void save() {
 
-            LocalDate date = txtDate.getValue();
-            String quality = txtQuality.getText();
-            int qty = Integer.parseInt(txtQuantity.getText());
-            int avaQty = Integer.parseInt(txtAvailableQuantity.getText());
+        LocalDate date = txtDate.getValue();
+        String quality = txtQuality.getText();
+        String qtyText = txtQuantity.getText();
+        String avaQtyText = txtAvailableQuantity.getText();
 
-            StockDTO stockDTO = new StockDTO(date,quality,qty,avaQty);
-            boolean result = stockModel.saveStock(stockDTO);
-
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Stock Added Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Stock Added Not Successfully.");
-                alert.show();
+        // First, check for empty TextFields and invalid inputs
+        if (date == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a date.").show();
+        } else if (quality.isEmpty() || !quality.matches(QUALITY_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Quality. Must contain letters, numbers, or spaces and cannot be empty.").show();
+        } else if (qtyText.isEmpty() || avaQtyText.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity cannot be empty.").show();
+        } else {
+            // Safe to parse integers now
+            int qty, avaQty;
+            try {
+                qty = Integer.parseInt(qtyText);
+                avaQty = Integer.parseInt(avaQtyText);
+            } catch (NumberFormatException e) {
+                new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity must be valid integers.").show();
+                return;
             }
 
+            // Further validation
+            if (qty <= 0) {
+                new Alert(Alert.AlertType.ERROR, "Quantity must be a positive number.").show();
+            } else if (avaQty < 0) {
+                new Alert(Alert.AlertType.ERROR, "Available Quantity cannot be negative.").show();
+            } else {
+                try {
+                    StockDTO stockDTO = new StockDTO(date, quality, qty, avaQty);
+                    boolean result = stockModel.saveStock(stockDTO);
 
-        }catch (Exception e){
-            e.printStackTrace();
+                    if (result) {
+                        new Alert(Alert.AlertType.INFORMATION, "Stock Added Successfully.").show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Stock Added Not Successfully.").show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
     }
+
 
     private void clearFields() {
         txtStockId.setText("No id is here");
@@ -127,76 +141,98 @@ public class StockController implements Initializable {
     }
 
     @FXML
-    private void update(){
-        try {
+    private void update() {
 
-            LocalDate date = txtDate.getValue();
-            String quality = txtQuality.getText();
-            int qty = Integer.parseInt(txtQuantity.getText());
-            int avaQty = Integer.parseInt(txtAvailableQuantity.getText());
+        LocalDate date = txtDate.getValue();
+        String quality = txtQuality.getText();
+        String qtyText = txtQuantity.getText();
+        String avaQtyText = txtAvailableQuantity.getText();
 
-            StockDTO selected = tableView.getSelectionModel().getSelectedItem();
-            int id = selected.getId();
-
-            System.out.println(id);
-
-            StockDTO stockDTO = new StockDTO(id,date,quality,qty,avaQty);
-            boolean result = stockModel.updateStock(stockDTO);
-
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Stock Updated Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Stock Updated Not Successfully.");
-                alert.show();
-            }
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void delete(){
         StockDTO selected = tableView.getSelectionModel().getSelectedItem();
-        int id = selected.getId();
-        try {
-            boolean result = stockModel.deleteStock(id);
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Stock Deleted Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Stock Deleted Not Successfully.");
-                alert.show();
+        final String QUALITY_REGEX = "^[A-Za-z0-9 ]+$"; // letters, numbers, spaces
+
+        if (selected == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a stock item from the table!").show();
+        } else if (date == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a date.").show();
+        } else if (quality.isEmpty() || !quality.matches(QUALITY_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Quality. Must contain letters, numbers, or spaces and cannot be empty.").show();
+        } else if (qtyText.isEmpty() || avaQtyText.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity cannot be empty.").show();
+        } else {
+            int qty, avaQty;
+            try {
+                qty = Integer.parseInt(qtyText);
+                avaQty = Integer.parseInt(avaQtyText);
+            } catch (NumberFormatException e) {
+                new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity must be valid integers.").show();
+                return;
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+
+            if (qty <= 0) {
+                new Alert(Alert.AlertType.ERROR, "Quantity must be a positive number.").show();
+            } else if (avaQty < 0) {
+                new Alert(Alert.AlertType.ERROR, "Available Quantity cannot be negative.").show();
+            } else {
+                try {
+                    int id = selected.getId();
+                    StockDTO stockDTO = new StockDTO(id, date, quality, qty, avaQty);
+                    boolean result = stockModel.updateStock(stockDTO);
+
+                    if (result) {
+                        new Alert(Alert.AlertType.INFORMATION, "Stock Updated Successfully.").show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Stock Updated Not Successfully.").show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
+
     @FXML
-    private void reset(){
+    private void delete() {
+        StockDTO selected = tableView.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a stock item from the table!").show();
+        }else {
+            try {
+                int id = selected.getId();
+                boolean result = stockModel.deleteStock(id);
+                if (result) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Stock Deleted Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Stock Deleted Not Successfully.");
+                    alert.show();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+
+    }
+
+    @FXML
+    private void reset() {
         clearFields();
     }
 
-    private ObservableList<StockDTO> loadStock(){
+    private ObservableList<StockDTO> loadStock() {
         try {
             ObservableList<StockDTO> list = stockModel.getStock();
             return list;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return FXCollections.observableArrayList();
         }

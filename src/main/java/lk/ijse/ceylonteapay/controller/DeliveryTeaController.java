@@ -112,22 +112,47 @@ public class DeliveryTeaController implements Initializable {
     private void addToCart() {
 //        int stockId, int factoryId, String factoryName, int qty, LocalDate date
 
+        FactoryDTO selectedFactory = cmdFactoryName.getSelectionModel().getSelectedItem();
+        StockDTO selectedStock = cmdStockNo.getSelectionModel().getSelectedItem();
+
         int stockId = selectedStockId;
         int factoryId = selectedFactoryId;
         String factoryName = selectedFactoryName;
-        int qty = Integer.parseInt(txtQuantity.getText());
+        String qtyText = txtQuantity.getText();
         LocalDate date = txtDate.getValue();
 
-        DeliveryCartTM cartTM = new DeliveryCartTM(
-                stockId,
-                factoryId,
-                factoryName,
-                qty,
-                date
-        );
+        if (selectedStock==null){
+            new Alert(Alert.AlertType.ERROR, "Please select a Stock.").show();
+        } else if(selectedFactory==null){
+            new Alert(Alert.AlertType.ERROR, "Please select a Factory.").show();
+        } else if (qtyText.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Quantity cannot be empty.").show();
+        } else if (date == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a date.").show();
+        } else {
+            int qty;
+            try {
+                qty = Integer.parseInt(qtyText);
+            } catch (NumberFormatException e) {
+                new Alert(Alert.AlertType.ERROR, "Quantity must be a valid number.").show();
+                return;
+            }
 
-        cartList.add(cartTM);
-        tblDelivery.setItems(cartList);
+            if (qty <= 0) {
+                new Alert(Alert.AlertType.ERROR, "Quantity must be a positive number.").show();
+            } else {
+                DeliveryCartTM cartTM = new DeliveryCartTM(
+                        stockId,
+                        factoryId,
+                        factoryName,
+                        qty,
+                        date
+                );
+
+                cartList.add(cartTM);
+                tblDelivery.setItems(cartList);
+            }
+        }
     }
 
     @FXML

@@ -44,6 +44,12 @@ public class FactoryController implements Initializable {
 
     ObservableList<FactoryDTO> factoryDTOObservableList = FXCollections.observableArrayList();
 
+    // Factory Name – letters + spaces, minimum 3 characters
+    private final String FACTORY_NAME_REGEX = "^[A-Za-z ]{3,}$";
+
+    // Factory Address – letters, numbers, spaces, comma, dot, slash, dash, minimum 5 characters
+    private final String FACTORY_ADDRESS_REGEX = "^[A-Za-z0-9 ,./-]{5,}$";
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,85 +76,110 @@ public class FactoryController implements Initializable {
 
     @FXML
     private void save(){
-        try {
-            String name = txtFactoryName.getText();
-            String address = txtFactoryAddress.getText();
 
-            FactoryDTO factoryDTO = new FactoryDTO(name, address);
-            boolean result = factoryModel.addFactory(factoryDTO);
+        String name = txtFactoryName.getText();
+        String address = txtFactoryAddress.getText();
 
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Factory Added Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Factory Added Not Successfully.");
-                alert.show();
+        if (!name.matches(FACTORY_NAME_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Factory Name. Must be at least 3 letters and only contain letters and spaces.").show();
+        }else if (!address.matches(FACTORY_ADDRESS_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Factory Address. Must be at least 5 characters and can include letters, numbers, spaces, comma, dot, slash, dash.").show();
+        }else {
+            try {
+
+                FactoryDTO factoryDTO = new FactoryDTO(name, address);
+                boolean result = factoryModel.addFactory(factoryDTO);
+
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Factory Added Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Factory Added Not Successfully.");
+                    alert.show();
+                }
+            }catch (Exception e){
+
             }
-        }catch (Exception e){
-
         }
+
+
     }
 
     @FXML
     private void update(){
+        FactoryDTO selected = tableView.getSelectionModel().getSelectedItem();
         String factoryNameText = txtFactoryName.getText();
         String factoryAddressText = txtFactoryAddress.getText();
 
-        try {
-            FactoryDTO selected = tableView.getSelectionModel().getSelectedItem();
-            int id = selected.getFactoryId();
-            System.out.println(id);
+        if (selected == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a factory from the table!").show();
 
-            FactoryDTO factoryDTO = new FactoryDTO(id,factoryNameText,factoryAddressText);
-            boolean result = factoryModel.update(factoryDTO);
+        } else if (!factoryNameText.matches(FACTORY_NAME_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Factory Name. Must be at least 3 letters and only contain letters and spaces.").show();
+        } else if (!factoryAddressText.matches(FACTORY_ADDRESS_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Factory Address. Must be at least 5 characters and can include letters, numbers, spaces, comma, dot, slash, dash.").show();
+        } else {
+            try {
 
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Factory Updated Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Factory Updated Not Successfully.");
-                alert.show();
+                int id = selected.getFactoryId();
+                System.out.println(id);
+
+                FactoryDTO factoryDTO = new FactoryDTO(id,factoryNameText,factoryAddressText);
+                boolean result = factoryModel.update(factoryDTO);
+
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Factory Updated Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Factory Updated Not Successfully.");
+                    alert.show();
+                }
+
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null,e);
             }
-
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,e);
         }
+
+
     }
 
     @FXML
     private void delete(){
         FactoryDTO selected = tableView.getSelectionModel().getSelectedItem();
-        int id = selected.getFactoryId();
-
-        try {
-            boolean result = factoryModel.deleteFactory(id);
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Factory Deleted Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Factory Deleted Not Successfully.");
-                alert.show();
+        if (selected==null){
+            new Alert(Alert.AlertType.ERROR, "Please select a factory from the table!").show();
+        }else {
+            try {
+                int id = selected.getFactoryId();
+                boolean result = factoryModel.deleteFactory(id);
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Factory Deleted Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Factory Deleted Not Successfully.");
+                    alert.show();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,e);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
         }
     }
 

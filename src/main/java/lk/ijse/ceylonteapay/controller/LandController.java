@@ -45,6 +45,13 @@ public class LandController implements Initializable {
 
     ObservableList<LandDTO> landDTOObservableList = FXCollections.observableArrayList();
 
+    // Land Name – letters + spaces, minimum 3 characters
+    private final String LAND_NAME_REGEX = "^[A-Za-z ]{3,}$";
+
+    // Land Number – letters, numbers, dash, slash, minimum 1 character
+    private final String LAND_NO_REGEX = "^[A-Za-z0-9/-]{1,}$";
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         col_id.setCellValueFactory(new PropertyValueFactory<LandDTO,Integer>("lndID"));
@@ -72,75 +79,97 @@ public class LandController implements Initializable {
         String landNo = txtLandNoField.getText();
         System.out.println("Name: "+landName+" No: "+landNo);
 
-        try {
-            LandDTO landDTO = new LandDTO(landName,landNo);
-            boolean result = landModel.saveLand(landDTO);
+        if (!landName.matches(LAND_NAME_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Land Name. Must be at least 3 letters and only contain letters and spaces.").show();
 
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Land Save");
-                alert.setContentText("Land save successfully !");
-                alert.show();
-                clearFields();
+        } else if (!landNo.matches(LAND_NO_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Land Number. Can contain letters, numbers, dash, or slash.").show();
+
+        }else {
+            try {
+                LandDTO landDTO = new LandDTO(landName,landNo);
+                boolean result = landModel.saveLand(landDTO);
+
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Land Save");
+                    alert.setContentText("Land save successfully !");
+                    alert.show();
+                    clearFields();
+                }
+                refreshTable();
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null,e);
             }
-            refreshTable();
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,e);
         }
     }
     @FXML
     public void updateLand(){
+        LandDTO selected = tableView.getSelectionModel().getSelectedItem();
         String landName = txtLandNameField.getText();
         String landNo = txtLandNoField.getText();
 
-        try {
-            LandDTO selected = tableView.getSelectionModel().getSelectedItem();
-            int id = selected.getLndID();
-            System.out.println(id);
+        if (selected == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a land from the table!").show();
+        } else if (!landName.matches(LAND_NAME_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Land Name. Must be at least 3 letters and only contain letters and spaces.").show();
+        } else if (!landNo.matches(LAND_NO_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Land Number. Can contain letters, numbers, dash, or slash.").show();
+        } else {
+            try {
 
-            LandDTO landDTO = new LandDTO(id,landName,landNo);
-            boolean result = landModel.updateLand(landDTO);
+                int id = selected.getLndID();
+                System.out.println(id);
 
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Land Updated Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Land Updated Not Successfully.");
-                alert.show();
+                LandDTO landDTO = new LandDTO(id,landName,landNo);
+                boolean result = landModel.updateLand(landDTO);
+
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Land Updated Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Land Updated Not Successfully.");
+                    alert.show();
+                }
+
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null,e);
             }
-
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,e);
         }
+
+
     }
     @FXML
     public void deleteLand(){
         LandDTO selected = tableView.getSelectionModel().getSelectedItem();
-        int id = selected.getLndID();
-
-        try {
-            boolean result = landModel.deleteLand(id);
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Land Deleted Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Land Deleted Not Successfully.");
-                alert.show();
+        if (selected == null) {
+            new Alert(Alert.AlertType.ERROR, "Please select a land from the table!").show();
+        } else {
+            try {
+                int id = selected.getLndID();
+                boolean result = landModel.deleteLand(id);
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Land Deleted Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Land Deleted Not Successfully.");
+                    alert.show();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,e);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
         }
     }
     @FXML
