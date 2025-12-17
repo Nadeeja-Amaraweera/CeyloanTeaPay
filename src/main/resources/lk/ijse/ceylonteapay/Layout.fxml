@@ -8,90 +8,113 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.LayoutController">
-   <children>
-      <BorderPane prefHeight="800.0" prefWidth="1000.0">
-         <left>
-            <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #F5F2E3;" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="398.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="@images/Gemini_Generated_Image_7z2ek87z2ek87z2e.png" />
-                     </image>
-                  </ImageView>
-                  <Button mnemonicParsing="false" onAction="#clickTeaPlucking" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Tea Plucking" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickOtherWork" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Other Works" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickStock" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Stock Manage" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickEmployee" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Employee Manage" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickAreas" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Areas Manage" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickFactories" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Factory Manage" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#clickDelivery" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00750C; -fx-border-radius: 20; -fx-background-radius: 20;" text="Tea Delivery" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </left>
-         <right>
-            <AnchorPane fx:id="mainContent" prefHeight="800.0" prefWidth="1250.0" style="-fx-background-color: #F5F2E3;" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="536.0" fitWidth="736.0" layoutX="266.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/welcome.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-         </right>
-      </BorderPane>
-   </children>
+<?import java.net.URL?>
+<AnchorPane
+        prefHeight="800.0"
+        prefWidth="1500.0"
+        xmlns="http://javafx.com/javafx/25"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="lk.ijse.ceylonteapay.controller.LayoutController">
+
+    <!-- Attach CSS -->
+    <stylesheets>
+        <URL value="@/styles/layout.css"/>
+    </stylesheets>
+
+    <children>
+        <BorderPane prefHeight="800.0" prefWidth="1500.0">
+
+            <!-- LEFT SIDEBAR -->
+            <left>
+                <VBox
+                        alignment="TOP_CENTER"
+                        prefHeight="800.0"
+                        prefWidth="250.0"
+                        styleClass="sidebar">
+
+                    <children>
+                        <!-- LOGO -->
+                        <ImageView
+                                fitHeight="380.0"
+                                fitWidth="240.0"
+                                preserveRatio="true">
+                            <VBox.margin>
+                                <Insets bottom="30"/>
+                            </VBox.margin>
+                            <image>
+                                <Image url="@images/Gemini_Generated_Image_7z2ek87z2ek87z2e.png"/>
+                            </image>
+                        </ImageView>
+
+                        <!-- BUTTONS -->
+                        <Button text="Tea Plucking"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickTeaPlucking"
+                                styleClass="sidebar-button"/>
+
+                        <Button text="Other Works"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickOtherWork"
+                                styleClass="sidebar-button"/>
+
+                        <Button text="Stock Manage"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickStock"
+                                styleClass="sidebar-button"/>
+
+                        <Button text="Employee Manage"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickEmployee"
+                                styleClass="sidebar-button"/>
+
+                        <Button text="Areas Manage"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickAreas"
+                                styleClass="sidebar-button"/>
+
+                        <Button text="Factory Manage"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickFactories"
+                                styleClass="sidebar-button"/>
+
+                        <Button text="Tea Delivery"
+                                prefHeight="40"
+                                prefWidth="150"
+                                onAction="#clickDelivery"
+                                styleClass="sidebar-button"/>
+                    </children>
+                </VBox>
+            </left>
+
+            <!-- MAIN CONTENT -->
+            <center>
+                <AnchorPane
+                        fx:id="mainContent"
+                        prefHeight="800.0"
+                        prefWidth="1250.0"
+                        styleClass="main-content">
+
+                    <children>
+                        <ImageView
+                                fitHeight="520.0"
+                                fitWidth="720.0"
+                                layoutX="265.0"
+                                layoutY="140.0"
+                                preserveRatio="true">
+                            <image>
+                                <Image url="@images/welcome.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </center>
+
+        </BorderPane>
+    </children>
 </AnchorPane>

@@ -1,0 +1,22 @@
+/* Sidebar buttons */
+.sidebar-button {
+    -fx-background-color: #00750C;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+
+    /* Shadow */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 4);
+}
+
+/* Hover effect */
+.sidebar-button:hover {
+    -fx-background-color: #009915;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0.4, 0, 6);
+}
+
+/* Pressed effect */
+.sidebar-button:pressed {
+    -fx-background-color: #006400;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
+}
