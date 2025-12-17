@@ -30,9 +30,9 @@
                         <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="513.0" layoutY="21.0" text="Daily Tea Plucking" textFill="WHITE">
+                  <Label layoutX="488.0" layoutY="22.0" text="Daily Tea Plucking" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
                </children>
