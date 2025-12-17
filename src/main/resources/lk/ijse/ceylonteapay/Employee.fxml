@@ -9,6 +9,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -19,22 +21,27 @@
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0">
          <children>
-            <Pane prefHeight="90.0" prefWidth="1250.0">
+            <Pane prefHeight="158.0" prefWidth="1250.0">
                <children>
-                  <Label layoutX="437.0" layoutY="28.0" text="Ceylon Tea Pay Employee Manage">
+                  <ImageView fitHeight="158.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="488.0" layoutY="20.0" text="Employee Manage" textFill="WHITE">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <HBox alignment="CENTER" layoutX="-1.0" layoutY="90.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="1250.0">
+            <HBox alignment="CENTER" layoutX="224.0" layoutY="90.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="797.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
                <children>
                   <VBox prefHeight="192.0" prefWidth="126.0">
                      <children>
-                        <Label text="Name">
+                        <Label text="Name  :">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -43,9 +50,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="NIC">
+                        <Label text="NIC  :">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="15.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -54,9 +61,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="Date of birth">
+                        <Label text="Date of birth  :">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -69,37 +76,43 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="388.0" prefWidth="229.0">
                      <children>
-                        <TextField fx:id="employeeNameField" prefHeight="26.0" prefWidth="200.0" promptText="Enter Name">
+                        <TextField fx:id="employeeNameField" prefHeight="26.0" prefWidth="200.0" promptText="Enter Name" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-border-width: 2px; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <font>
                               <Font size="14.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </TextField>
-                        <TextField fx:id="employeeNICField" prefHeight="26.0" prefWidth="200.0" promptText="Enter NIC">
+                        <TextField fx:id="employeeNICField" prefHeight="26.0" prefWidth="200.0" promptText="Enter NIC" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-border-width: 2px; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <font>
                               <Font size="14.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </TextField>
-                        <DatePicker fx:id="employeeDateField" promptText="Select Date">
+                        <DatePicker fx:id="employeeDateField" promptText="Select Date" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-border-width: 2px; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <padding>
-                              <Insets left="10.0" right="10.0" />
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </DatePicker>
                      </children>
                   </VBox>
-                  <VBox prefHeight="192.0" prefWidth="181.0">
+                  <VBox prefHeight="151.0" prefWidth="181.0">
                      <children>
-                        <Label text="Address">
+                        <Label text="Address  :">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -108,9 +121,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="Gender">
+                        <Label text="Gender  :">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -119,7 +132,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="50.0" prefWidth="202.0" text="Telephone number">
+                        <Label prefHeight="50.0" prefWidth="202.0" text="Telephone number  :">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -134,13 +147,16 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="256.0" prefWidth="239.0">
                      <children>
-                        <TextField fx:id="employeeAddressField" prefHeight="26.0" prefWidth="200.0" promptText="Enter Address">
+                        <TextField fx:id="employeeAddressField" prefHeight="26.0" prefWidth="200.0" promptText="Enter Address" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-border-width: 2px; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <font>
                               <Font size="14.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </TextField>
                         <HBox alignment="CENTER" prefHeight="59.0" prefWidth="239.0">
                            <children>
@@ -165,23 +181,26 @@
                               </RadioButton>
                            </children>
                         </HBox>
-                        <TextField fx:id="employeeTelField" prefHeight="26.0" prefWidth="200.0" promptText="Enter Phone Number">
+                        <TextField fx:id="employeeTelField" prefHeight="26.0" prefWidth="200.0" promptText="Enter Phone Number" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-border-width: 2px; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <font>
                               <Font size="14.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </TextField>
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutY="253.0" prefHeight="86.0" prefWidth="1250.0">
+            <HBox alignment="CENTER" layoutY="273.0" prefHeight="92.0" prefWidth="1250.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addEmployee" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#addEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -189,7 +208,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#updateEmployee" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#updateEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -197,7 +216,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#deleteEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -205,7 +224,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#resetEmployee" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#resetEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -213,15 +232,15 @@
                   </VBox>
                </children>
             </HBox>
-            <TableView fx:id="tableView" layoutY="339.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="1250.0">
+            <TableView fx:id="tableView" layoutY="364.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="1250.0">
               <columns>
                   <TableColumn fx:id="col_id" maxWidth="60.0001220703125" prefWidth="60.0001220703125" text="ID" />
                 <TableColumn fx:id="col_Name" prefWidth="136.80002135038376" text="Name" />
                   <TableColumn fx:id="col_Nic" prefWidth="193.59999084472656" text="NIC" />
-                  <TableColumn fx:id="col_address" prefWidth="118.4000244140625" text="Address" />
-                  <TableColumn fx:id="col_dob" prefWidth="114.39996337890625" text="Birthday" />
-                  <TableColumn fx:id="col_gender" prefWidth="88.79998779296875" text="Gender" />
-                  <TableColumn fx:id="col_telNo" maxWidth="124.800048828125" prefWidth="86.39990234375" text="Tele_No" />
+                  <TableColumn fx:id="col_address" prefWidth="326.0" text="Address" />
+                  <TableColumn fx:id="col_dob" prefWidth="154.0" text="Birthday" />
+                  <TableColumn fx:id="col_gender" prefWidth="140.0" text="Gender" />
+                  <TableColumn fx:id="col_telNo" maxWidth="534.0" prefWidth="237.0" text="Tele_No" />
               </columns>
             </TableView>
          </children>

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -14,48 +16,68 @@
 
 <AnchorPane id="AnchorPane" fx:id="rootLand" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.LandController">
    <children>
-      <Pane prefHeight="90.0" prefWidth="1250.0">
+      <ImageView fitHeight="158.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
+         </image>
+      </ImageView>
+      <Pane layoutY="127.0" prefHeight="90.0" prefWidth="1250.0">
          <children>
-            <Label layoutX="557.0" layoutY="32.0" text="Land Manage ">
-               <font>
-                  <Font name="FreeSans Bold" size="20.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER" layoutX="183.0" prefHeight="90.0" prefWidth="875.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="132.0" prefWidth="166.0">
+                     <children>
+                        <Label text="Land Name :">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="132.0" prefWidth="264.0">
+                     <children>
+                        <TextField fx:id="txtLandNameField" promptText="Enter area name" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-background-radius: 10; -fx-border-radius: 10;">
+                           <VBox.margin>
+                              <Insets right="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="132.0" prefWidth="166.0">
+                     <children>
+                        <Label text="Land No :">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="132.0" prefWidth="280.0">
+                     <children>
+                        <TextField fx:id="txtLandNoField" prefHeight="26.0" prefWidth="198.0" promptText="Enter area no" style="-fx-background-color: #E4F0DA; -fx-border-color: #869F75; -fx-background-radius: 10; -fx-border-radius: 10;">
+                           <VBox.margin>
+                              <Insets right="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </Pane>
-      <HBox alignment="CENTER" layoutY="127.0" prefHeight="64.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="132.0" prefWidth="166.0">
-               <children>
-                  <Label text="Land Name :" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="132.0" prefWidth="264.0">
-               <children>
-                  <TextField fx:id="txtLandNameField">
-                     <VBox.margin>
-                        <Insets right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="132.0" prefWidth="166.0">
-               <children>
-                  <Label text="Land No :" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="132.0" prefWidth="280.0">
-               <children>
-                  <TextField fx:id="txtLandNoField" prefHeight="26.0" prefWidth="198.0">
-                     <VBox.margin>
-                        <Insets right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="166.0" prefHeight="428.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="166.0" prefHeight="466.0" prefWidth="1250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TableView fx:id="tableView" prefHeight="428.0" prefWidth="1584.0">
                <columns>
@@ -67,12 +89,11 @@
                   <Insets />
                </HBox.margin>
             </TableView>
-            <VBox alignment="CENTER" prefHeight="428.0" prefWidth="318.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="235.0" prefHeight="100.0" prefWidth="1250.0">
+      <HBox alignment="CENTER" layoutY="217.0" prefHeight="118.0" prefWidth="1250.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#addLand" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#addLand" opacity="0.81" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -80,7 +101,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#updateLand" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#updateLand" opacity="0.81" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -88,7 +109,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteLand" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#deleteLand" opacity="0.81" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -96,7 +117,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#reset" opacity="0.81" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -104,7 +125,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: #006308;" text="Exit" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#exit" opacity="0.81" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Exit" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -114,5 +135,10 @@
             </Button>
          </children>
       </HBox>
+      <Label layoutX="526.0" layoutY="34.0" text="Area Manage" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

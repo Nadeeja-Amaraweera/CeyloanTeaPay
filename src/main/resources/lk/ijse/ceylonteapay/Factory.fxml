@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -17,80 +19,85 @@
    <children>
       <Pane prefHeight="800.0" prefWidth="1250.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="1.0" prefHeight="800.0" prefWidth="1250.0">
+            <ImageView fitHeight="158.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
+               </image>
+            </ImageView>
+            <Pane layoutX="232.0" layoutY="105.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="866.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
                <children>
-                  <Label text="Factory Manage">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="50.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox prefHeight="51.0" prefWidth="1000.0">
+                  <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="866.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="250.0">
+                        <VBox prefHeight="200.0" prefWidth="148.0">
                            <children>
-                              <Label text="Factory Id">
+                              <Label text="Factory Id  :">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Factory Name  :">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="150.0" prefWidth="250.0">
+                        <VBox prefHeight="200.0" prefWidth="218.0">
                            <children>
                               <Label fx:id="txtFactoryId" text="No id is here">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
                               </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="250.0">
-                           <children>
-                              <Label text="Factory Name">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="250.0">
-                           <children>
-                              <TextField fx:id="txtFactoryName">
+                              <TextField fx:id="txtFactoryName" style="-fx-background-color: #E4F0DA; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #869F75;">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                  <VBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
                               </TextField>
                            </children>
                         </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="51.0" prefWidth="1000.0">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0">
+                        <VBox prefHeight="200.0" prefWidth="214.0">
                            <children>
-                              <Label text="Factory Address" />
+                              <Label text="Factory Address  :">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="20.0" top="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="750.0">
+                        <VBox prefHeight="129.0" prefWidth="262.0">
                            <children>
-                              <TextArea fx:id="txtFactoryAddress" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="txtFactoryAddress" prefHeight="90.0" prefWidth="262.0" style="-fx-background-color: #E4F0DA; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #869F75;">
                                  <VBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </TextArea>
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="101.0" prefWidth="1250.0">
+               </children>
+            </Pane>
+            <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="224.0" prefHeight="576.0" prefWidth="1250.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="98.0" prefWidth="1250.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -98,7 +105,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Update" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -106,7 +113,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Delete" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -114,7 +121,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #006308;" text="Reset" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -124,15 +131,20 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableView" prefHeight="533.0" prefWidth="1250.0">
+                  <TableView fx:id="tableView" prefHeight="463.0" prefWidth="1250.0">
                     <columns>
                       <TableColumn fx:id="col_id" prefWidth="164.0" text="Factory ID" />
-                      <TableColumn fx:id="col_Name" prefWidth="256.0" text="Factory Name" />
-                        <TableColumn fx:id="col_Address" prefWidth="829.0" text="Factory Address" />
+                      <TableColumn fx:id="col_Name" prefWidth="368.0" text="Factory Name" />
+                        <TableColumn fx:id="col_Address" prefWidth="717.0" text="Factory Address" />
                     </columns>
                   </TableView>
                </children>
             </VBox>
+            <Label layoutX="504.0" layoutY="33.0" text="Factory Manage" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
