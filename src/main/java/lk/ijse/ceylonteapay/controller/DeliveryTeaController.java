@@ -1,19 +1,20 @@
 package lk.ijse.ceylonteapay.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import lk.ijse.ceylonteapay.dto.DeliveryTeaDTO;
-import lk.ijse.ceylonteapay.dto.EmployeeDTO;
+import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.ceylonteapay.dto.DeliveryCartTM;
 import lk.ijse.ceylonteapay.dto.FactoryDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 import lk.ijse.ceylonteapay.model.DeliveryTeaModel;
 
 import javax.swing.*;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 
 public class DeliveryTeaController implements Initializable {
@@ -21,7 +22,7 @@ public class DeliveryTeaController implements Initializable {
     @FXML
     private TableView<StockDTO> tblStock;
     @FXML
-    private TableView<DeliveryTeaDTO> tblDelivery;
+    private TableView<DeliveryCartTM> tblDelivery;
 
     @FXML
     private TextField txtDeliveryId;
@@ -34,9 +35,23 @@ public class DeliveryTeaController implements Initializable {
     @FXML
     private TextField txtQuantity;
 
+    @FXML
+    private TableColumn<DeliveryCartTM,Integer> colStockId;
+    @FXML
+    private TableColumn<DeliveryCartTM,Integer> colFactoryId;
+    @FXML
+    private TableColumn<DeliveryCartTM,String> colFactoryName;
+    @FXML
+    private TableColumn<DeliveryCartTM,Integer> colQty;
+    @FXML
+    private TableColumn<DeliveryCartTM,LocalDate> colDate;
+
+    ObservableList<DeliveryCartTM> cartList = FXCollections.observableArrayList();
+
     private static DeliveryTeaModel deliveryTeaModel = new DeliveryTeaModel();
 
     private int selectedFactoryId = -1;
+    private String selectedFactoryName = "";
     private int selectedStockId = -1;
 
 
@@ -44,33 +59,78 @@ public class DeliveryTeaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadFactory();
         loadStock();
+        initializeCartTable();
 
         cmdFactoryName.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal!=null){
+            if (newVal != null) {
                 selectedFactoryId = newVal.getFactoryId();
-                System.out.println(newVal.getFactoryName());
+                selectedFactoryName = newVal.getFactoryName();
+                System.out.println(selectedFactoryName);
             }
         });
 
         cmdStockNo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal!=null){
+            if (newVal != null) {
                 selectedStockId = newVal.getId();
                 System.out.println(newVal.getDate());
             }
         });
     }
 
-    @FXML
-    private void addToCart(){
-//        int stockId, int factoryId, String factoryName, int qty, LocalDate date
-
-//        StockDTO stockid = cmdStockNo.getSelectionModel().getSelectedItem();
-//        FactoryDTO factoryid = cmdFactoryName.getSelectionModel().getSelectedItem();
-
-        System.out.println(selectedStockId+" - "+selectedFactoryId);
+    private void initializeCartTable() {
+        colStockId.setCellValueFactory(new PropertyValueFactory<>("stockId"));
+        colFactoryId.setCellValueFactory(new PropertyValueFactory<>("factoryId"));
+        colFactoryName.setCellValueFactory(new PropertyValueFactory<>("factoryName"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
     }
 
-    private void loadFactory(){
+    @FXML
+    private void addToCart() {
+//        int stockId, int factoryId, String factoryName, int qty, LocalDate date
+
+        int stockId = selectedStockId;
+        int factoryId = selectedFactoryId;
+        String factoryName = selectedFactoryName;
+        int qty = Integer.parseInt(txtQuantity.getText());
+        LocalDate date = txtDate.getValue();
+
+        DeliveryCartTM cartTM = new DeliveryCartTM(
+                stockId,
+                factoryId,
+                factoryName,
+                qty,
+                date
+        );
+
+        cartList.add(cartTM);
+        tblDelivery.setItems(cartList);
+    }
+
+    @FXML
+    private void placeOrder(){
+        if (cartList.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Cart is empty!").show();
+            return;
+        }
+        try {
+            boolean isSuccess = deliveryTeaModel.placeOrder(cartList);
+
+            if (isSuccess) {
+                new Alert(Alert.AlertType.INFORMATION, "Delivery Order Placed Successfully!").show();
+                cartList.clear();
+                tblDelivery.refresh();
+                loadStock(); // refresh stock table
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Order Failed!").show();
+            }
+
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    private void loadFactory() {
         try {
             ObservableList<FactoryDTO> list = deliveryTeaModel.getComboFactory();
             cmdFactoryName.setItems(list);
@@ -103,12 +163,12 @@ public class DeliveryTeaController implements Initializable {
                     }
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    private void loadStock(){
+    private void loadStock() {
         try {
 
             ObservableList<StockDTO> list = deliveryTeaModel.getComboStock();
@@ -122,7 +182,7 @@ public class DeliveryTeaController implements Initializable {
                         setText(null);
                     } else {
 //                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
-                        setText(item.getDate()+ " - "+item.getQuality());
+                        setText(item.getDate() + " - " + item.getQuality());
                     }
                 }
             });
@@ -136,15 +196,15 @@ public class DeliveryTeaController implements Initializable {
                         setText(null);
                     } else {
 //                        setText(item.getId() + " - " + item.getDate()+ " - "+item.getQuality());
-                        setText(item.getDate()+ " - "+item.getQuality());
+                        setText(item.getDate() + " - " + item.getQuality());
 
                     }
                 }
             });
 
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
 }

@@ -25,7 +25,7 @@
                   <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <HBox alignment="TOP_CENTER" prefHeight="161.0" prefWidth="1250.0">
+            <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="1250.0">
                <children>
                   <VBox prefHeight="130.0" prefWidth="200.0">
                      <children>
@@ -143,7 +143,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="174.0" prefWidth="1250.0">
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1250.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#addToCart" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #006308;" text="Add" textFill="WHITE">
                      <HBox.margin>
@@ -173,7 +173,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="564.0" prefWidth="1250.0">
+            <HBox prefHeight="439.0" prefWidth="1250.0">
                <children>
                   <TableView fx:id="tblStock" prefHeight="564.0" prefWidth="457.0">
                     <columns>
@@ -182,18 +182,30 @@
                         <TableColumn prefWidth="165.0" text="Quality" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblDelivery" prefHeight="564.0" prefWidth="884.0">
+                  <TableView fx:id="tblDelivery" prefHeight="403.0" prefWidth="829.0">
                     <columns>
-                      <TableColumn prefWidth="54.0" text="ID" />
-                      <TableColumn prefWidth="131.0" text="Factory Id" />
-                        <TableColumn prefWidth="230.0" text="Factory Name" />
-                        <TableColumn prefWidth="181.0" text="Date" />
-                        <TableColumn prefWidth="232.0" text="Amount" />
+                      <TableColumn fx:id="colFactoryId" prefWidth="82.0" text="Factory Id" />
+                        <TableColumn fx:id="colFactoryName" prefWidth="217.0" text="Factory Name" />
+                        <TableColumn fx:id="colStockId" prefWidth="150.6666259765625" text="Stock ID" />
+                        <TableColumn fx:id="colQty" prefWidth="148.0" text="Delivery Qty" />
+                        <TableColumn fx:id="colDate" prefWidth="230.0" text="Delivery Date" />
                     </columns>
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </TableView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#placeOrder" prefHeight="47.0" prefWidth="201.0" text="Place Order">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>
