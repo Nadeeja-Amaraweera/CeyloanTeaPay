@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="lk.ijse.ceylonteapay.controller.IcomeController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.IcomeController">
    <children>
       <Pane prefHeight="149.0" prefWidth="1250.0">
          <padding>
@@ -31,13 +30,22 @@
             </Label>
          </children>
       </Pane>
-      <BarChart fx:id="stockBarChart" layoutX="63.0" layoutY="175.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
+      <Pane layoutX="10.0" layoutY="157.0" prefHeight="398.0" prefWidth="417.0" style="-fx-border-color: black;">
+         <children>
+            <BarChart fx:id="stockBarChart" layoutX="4.0" layoutY="58.0" prefHeight="261.0" prefWidth="410.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Label layoutX="160.0" layoutY="23.0" text="Stock Chart">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
