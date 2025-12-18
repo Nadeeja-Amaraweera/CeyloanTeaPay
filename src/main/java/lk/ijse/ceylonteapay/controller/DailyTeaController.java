@@ -294,33 +294,40 @@ try{
     }
     @FXML
     public void delete(){
-        try {
-            int teaID = Integer.parseInt(txtTeaID.getText());
-            if (checkTeaID(teaID).next()) {
-                boolean result = dailyTeaModel.deleteTeaField(teaID);
+        DailyTeaDTO selectedItem = tableView.getSelectionModel().getSelectedItem();
+        if (selectedItem==null){
+            new Alert(Alert.AlertType.ERROR, "Please select an employee from the table!").show();
+        } else {
+            try {
 
-                if (result){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText(teaID +": Tea Field Deleted Successfully.");
-                    alert.show();
-                    refreshTable();
-                    clearFields();
+                int teaID = selectedItem.getTeaID();
+                if (checkTeaID(teaID).next()) {
+                    boolean result = dailyTeaModel.deleteTeaField(teaID);
+
+                    if (result){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText(teaID +": Tea Field Deleted Successfully.");
+                        alert.show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText(teaID +": Tea Field Deleted Not Successfully.");
+                        alert.show();
+                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error !");
-                    alert.setHeaderText(teaID +": Tea Field Deleted Not Successfully.");
+                    alert.setHeaderText(teaID+" : TeaID Is Not Found.");
                     alert.show();
                 }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText(teaID+" : TeaID Is Not Found.");
-                alert.show();
+            } catch (Exception e){
+                e.printStackTrace();
             }
-        } catch (Exception e){
-            e.printStackTrace();
         }
+
 
     }
 

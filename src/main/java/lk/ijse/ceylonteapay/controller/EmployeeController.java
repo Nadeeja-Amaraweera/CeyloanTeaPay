@@ -185,13 +185,10 @@ public class EmployeeController implements Initializable {
     @FXML
     private void deleteEmployee() {
         EmployeeDTO selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected==null){
+        if (selected == null) {
             new Alert(Alert.AlertType.ERROR, "Please select an employee from the table!").show();
-
-        }else {
+        } else {
             try {
-
-
                 int id = selected.getId();
 
                 boolean result = employeeModel.deleteEmployee(id);
@@ -209,7 +206,7 @@ public class EmployeeController implements Initializable {
                     alert.setHeaderText("Employee Deleted Not Successfully.");
                     alert.show();
                 }
-            }  catch (Exception e) {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
         }

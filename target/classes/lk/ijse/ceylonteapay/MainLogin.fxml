@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="633.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.MainLoginController" stylesheets="@Login.css">
+<AnchorPane id="AnchorPane" prefHeight="633.0" prefWidth="891.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.MainLoginController">
    <children>
       <Pane prefHeight="633.0" prefWidth="896.0">
          <children>
@@ -27,7 +27,7 @@
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="64.0" layoutY="487.0" mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="175.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: #CFD6AA; -fx-border-color: none;" text="Login" textFill="#143403" styleClass="login-button"/>
+                  <Button layoutX="64.0" layoutY="487.0" mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="175.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: #CFD6AA; -fx-border-color: none;" styleClass="login-button" text="Login" textFill="#143403" />
                   <HBox layoutX="40.0" layoutY="338.0" prefHeight="133.0" prefWidth="222.0">
                      <children>
                         <VBox prefHeight="133.0" prefWidth="230.0">
@@ -37,13 +37,13 @@
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="txtName" styleClass="input-field" style="-fx-background-color: #E2E9CE; -fx-border-color: #9AAC53; -fx-background-radius: 10; -fx-border-radius: 10;" />
+                              <TextField fx:id="txtName" style="-fx-background-color: #E2E9CE; -fx-border-color: #9AAC53; -fx-background-radius: 10; -fx-border-radius: 10;" styleClass="input-field" />
                               <Label text="Password" textFill="#143403">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="txtPassword" styleClass="input-field" style="-fx-background-color: #E2E9CE; -fx-border-color: #9AAC53; -fx-background-radius: 10; -fx-border-radius: 10; " />
+                              <TextField fx:id="txtPassword" style="-fx-background-color: #E2E9CE; -fx-border-color: #9AAC53; -fx-background-radius: 10; -fx-border-radius: 10; " styleClass="input-field" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -51,7 +51,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Label layoutX="94.0" layoutY="538.0" text="Forgot Password ?" textFill="#09008a" />
+                  <Label layoutX="94.0" layoutY="538.0" onMousePressed="#forgorPassword" text="Forgot Password ?" textFill="#09008a" />
                </children>
             </Pane>
          </children>
