@@ -28,6 +28,7 @@ module-info.class
 lk/ijse/ceylonteapay/controller/LayoutController.class
 lk/ijse/ceylonteapay/model/DeliveryTeaModel.class
 lk/ijse/ceylonteapay/dto/IncomeDTO.class
+lk/ijse/ceylonteapay/controller/MainLoginController.class
 lk/ijse/ceylonteapay/dto/EmployeeDTO.class
 lk/ijse/ceylonteapay/controller/LandController.class
 lk/ijse/ceylonteapay/controller/DailyTeaController.class
