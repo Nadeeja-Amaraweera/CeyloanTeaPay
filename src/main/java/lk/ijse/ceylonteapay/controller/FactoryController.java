@@ -86,7 +86,6 @@ public class FactoryController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Factory Address. Must be at least 5 characters and can include letters, numbers, spaces, comma, dot, slash, dash.").show();
         }else {
             try {
-
                 FactoryDTO factoryDTO = new FactoryDTO(name, address);
                 boolean result = factoryModel.addFactory(factoryDTO);
 
