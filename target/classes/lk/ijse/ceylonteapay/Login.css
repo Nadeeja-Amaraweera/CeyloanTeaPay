@@ -1,0 +1,49 @@
+/* Root background */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #e6f0d4, #cddfa0);
+}
+
+/* Card */
+.login-card {
+    -fx-background-color: #F3F0DF;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0.3, 0, 8);
+}
+
+/* Title */
+.title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #143403;
+}
+
+/* Text fields */
+.input-field {
+    -fx-background-color: #E2E9CE;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #9AAC53;
+    -fx-padding: 8;
+}
+
+/* Login button */
+.login-button {
+    -fx-background-color: #CFD6AA;
+    -fx-background-radius: 25;
+    -fx-text-fill: #143403;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 4);
+}
+
+/* Hover effect */
+.login-button:hover {
+    -fx-background-color: #BFC98F;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 9, 0.4, 0, 6);
+}
+
+/* Pressed effect */
+.login-button:pressed {
+    -fx-translate-y: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
+}
