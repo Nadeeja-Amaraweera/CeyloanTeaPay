@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -12,6 +13,10 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.IcomeController">
+   <!-- Attach CSS -->
+   <stylesheets>
+      <URL value="@income.css" />
+   </stylesheets>
    <children>
       <Pane prefHeight="149.0" prefWidth="1250.0">
          <padding>
@@ -30,9 +35,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="10.0" layoutY="157.0" prefHeight="398.0" prefWidth="417.0" style="-fx-border-color: black;">
+      <Pane styleClass="chart-pane" layoutY="149.0" prefHeight="347.0" prefWidth="417.0">
          <children>
-            <BarChart fx:id="stockBarChart" layoutX="4.0" layoutY="58.0" prefHeight="261.0" prefWidth="410.0">
+            <BarChart fx:id="stockBarChart" layoutY="58.0" prefHeight="287.0" prefWidth="417.0" styleClass="chart">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
