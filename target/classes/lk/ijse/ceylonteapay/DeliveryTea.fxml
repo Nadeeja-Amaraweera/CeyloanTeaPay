@@ -153,22 +153,22 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Button mnemonicParsing="false" onAction="#addToCart" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
+                  <Button styleClass="action-button" mnemonicParsing="false" onAction="#addToCart" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
+                  <Button styleClass="action-button" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
+                  <Button styleClass="action-button" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
+                  <Button styleClass="action-button" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>

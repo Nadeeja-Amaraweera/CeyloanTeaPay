@@ -6,3 +6,27 @@
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6,0.3, 4, 4);
 }
+.action-button {
+    -fx-text-fill: #5c4a02;
+    -fx-background-color: #fff0a6;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 4);
+}
+
+/* Hover */
+.action-button:hover {
+    -fx-text-fill: #5c4a02;
+    -fx-background-color: #fff0a6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0.4, 0, 6);
+}
+
+/* Pressed */
+.action-button:pressed {
+    -fx-text-fill: #473a01;
+    -fx-background-color: #c1b47f;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
+}

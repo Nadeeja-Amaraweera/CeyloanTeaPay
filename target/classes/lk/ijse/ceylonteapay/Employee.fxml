@@ -204,7 +204,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
+                        <Button styleClass="action-button" mnemonicParsing="false" onAction="#addEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -212,7 +212,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#updateEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
+                        <Button styleClass="action-button" mnemonicParsing="false" onAction="#updateEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -220,7 +220,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#deleteEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
+                        <Button styleClass="action-button" mnemonicParsing="false" onAction="#deleteEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -228,7 +228,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#resetEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
+                        <Button styleClass="action-button" mnemonicParsing="false" onAction="#resetEmployee" opacity="0.81" prefHeight="32.0" prefWidth="84.0" style="-fx-background-color: #2A7B2F; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
