@@ -17,7 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane id="AnchorPane" fx:id="rootWork" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.OtherWorkController">
+   <stylesheets>
+      <URL value="@OtherWork.css"/>
+   </stylesheets>
    <children>
       <ImageView fitHeight="158.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,7 +32,7 @@
          <children>
             <Pane layoutY="106.0" prefHeight="174.0" prefWidth="1250.0">
                <children>
-                  <HBox alignment="TOP_CENTER" layoutX="279.0" layoutY="-1.0" prefHeight="174.0" prefWidth="665.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: #048700; -fx-border-width: 2px;">
+                  <HBox styleClass="textField-pane" alignment="TOP_CENTER" layoutX="279.0" layoutY="-1.0" prefHeight="174.0" prefWidth="665.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: #048700; -fx-border-width: 2px;">
                      <children>
                         <VBox prefHeight="216.0" prefWidth="130.0">
                            <children>

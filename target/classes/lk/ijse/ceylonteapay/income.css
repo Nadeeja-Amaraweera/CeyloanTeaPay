@@ -4,5 +4,5 @@
     -fx-text-fill: #143403;
     -fx-font-size: 14px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 4, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6,0.3, 4, 4);
 }

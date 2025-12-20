@@ -15,7 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.FactoryController">
+   <stylesheets>
+      <URL value="@Factory.css"/>
+   </stylesheets>
    <children>
       <Pane prefHeight="800.0" prefWidth="1250.0">
          <children>
@@ -24,7 +28,7 @@
                   <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
                </image>
             </ImageView>
-            <Pane layoutX="232.0" layoutY="105.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="866.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
+            <Pane styleClass="textField-pane" layoutX="232.0" layoutY="105.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="866.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
                <children>
                   <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="866.0">
                      <children>

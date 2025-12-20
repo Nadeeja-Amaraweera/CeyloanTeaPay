@@ -35,9 +35,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane styleClass="chart-pane" layoutY="149.0" prefHeight="347.0" prefWidth="417.0">
+      <Pane layoutX="5.0" layoutY="153.0" prefHeight="347.0" prefWidth="417.0" styleClass="chart-pane">
          <children>
-            <BarChart fx:id="stockBarChart" layoutY="58.0" prefHeight="287.0" prefWidth="417.0" styleClass="chart">
+            <BarChart fx:id="stockBarChart" layoutY="59.0" prefHeight="287.0" prefWidth="417.0" styleClass="chart">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

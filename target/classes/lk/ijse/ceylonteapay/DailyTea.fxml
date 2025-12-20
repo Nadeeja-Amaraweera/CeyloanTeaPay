@@ -16,7 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane id="AnchorPane" fx:id="rootTea" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.DailyTeaController">
+   <stylesheets>
+      <URL value="@DailyTea.css" />
+   </stylesheets>
    <children>
       <Pane prefHeight="619.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -37,7 +41,7 @@
                   </Label>
                </children>
             </Pane>
-            <HBox alignment="CENTER" layoutX="116.0" layoutY="89.0" prefHeight="158.0" prefWidth="1028.0" style="-fx-background-color: #C9E2AB; -fx-border-radius: 25; -fx-background-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
+            <HBox styleClass="textField-pane" alignment="CENTER" layoutX="116.0" layoutY="89.0" prefHeight="158.0" prefWidth="1028.0" style="-fx-background-color: #C9E2AB; -fx-border-radius: 25; -fx-background-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
                <children>
                   <VBox prefHeight="139.0" prefWidth="129.0">
                      <children>
