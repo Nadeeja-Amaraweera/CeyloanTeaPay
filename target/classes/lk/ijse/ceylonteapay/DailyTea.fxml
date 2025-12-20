@@ -261,7 +261,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-            <TableView fx:id="tableView" layoutY="337.0" prefHeight="464.0" prefWidth="1250.0" style="-fx-background-color: #F6F3E4; -fx-border-color: #AEB79C;">
+            <TableView styleClass="app-table" fx:id="tableView" layoutY="337.0" prefHeight="464.0" prefWidth="1250.0" style="-fx-background-color: #F6F3E4; -fx-border-color: #AEB79C;">
               <columns>
                 <TableColumn fx:id="col_TeaID" prefWidth="57.59997636079788" text="Tea ID" />
                 <TableColumn fx:id="col_EmployeeID" prefWidth="95.19997787475586" text="Employee ID" />

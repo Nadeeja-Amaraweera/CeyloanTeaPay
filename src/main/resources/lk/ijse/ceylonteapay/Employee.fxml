@@ -236,7 +236,7 @@
                   </VBox>
                </children>
             </HBox>
-            <TableView fx:id="tableView" layoutY="364.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="1250.0">
+            <TableView styleClass="app-table" fx:id="tableView" layoutY="364.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="1250.0">
               <columns>
                   <TableColumn fx:id="col_id" maxWidth="60.0001220703125" prefWidth="60.0001220703125" text="ID" />
                 <TableColumn fx:id="col_Name" prefWidth="136.80002135038376" text="Name" />

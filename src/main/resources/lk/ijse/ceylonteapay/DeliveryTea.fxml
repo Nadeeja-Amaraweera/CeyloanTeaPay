@@ -192,14 +192,14 @@
             </HBox>
             <HBox prefHeight="444.0" prefWidth="1250.0">
                <children>
-                  <TableView fx:id="tblStock" prefHeight="564.0" prefWidth="457.0">
+                  <TableView styleClass="app-table" fx:id="tblStock" prefHeight="564.0" prefWidth="457.0">
                     <columns>
                       <TableColumn fx:id="col_stockTableId" prefWidth="62.0" text="Stock id" />
                       <TableColumn fx:id="col_stockTableStock" prefWidth="183.6666717529297" text="Available Stock" />
                         <TableColumn fx:id="col_stockTableQuality" prefWidth="182.3333282470703" text="Quality" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tblDelivery" prefHeight="403.0" prefWidth="829.0">
+                  <TableView styleClass="app-table" fx:id="tblDelivery" prefHeight="403.0" prefWidth="829.0">
                     <columns>
                       <TableColumn fx:id="colFactoryId" prefWidth="82.0" text="Factory Id" />
                         <TableColumn fx:id="colFactoryName" prefWidth="217.0" text="Factory Name" />

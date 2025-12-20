@@ -83,7 +83,7 @@
       </Pane>
       <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="166.0" prefHeight="466.0" prefWidth="1250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TableView fx:id="tableView" prefHeight="428.0" prefWidth="1584.0">
+            <TableView styleClass="app-table" fx:id="tableView" prefHeight="428.0" prefWidth="1584.0">
                <columns>
                   <TableColumn fx:id="col_id" prefWidth="111.0" text="ID" />
                   <TableColumn fx:id="col_No" prefWidth="371.0" text="Land No" />
