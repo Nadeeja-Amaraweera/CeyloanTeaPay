@@ -17,7 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane id="AnchorPane" fx:id="rootEmployee" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.EmployeeController">
+   <stylesheets>
+      <URL value="@Employee.css"/>
+   </stylesheets>
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0">
          <children>
@@ -35,7 +39,7 @@
                   </Label>
                </children>
             </Pane>
-            <HBox alignment="CENTER" layoutX="224.0" layoutY="90.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="797.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
+            <HBox styleClass="textField-pane" alignment="CENTER" layoutX="224.0" layoutY="90.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="797.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 2px; -fx-border-color: #048700;">
                <children>
                   <VBox prefHeight="192.0" prefWidth="126.0">
                      <children>
