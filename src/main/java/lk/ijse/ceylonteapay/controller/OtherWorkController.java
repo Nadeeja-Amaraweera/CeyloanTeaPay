@@ -28,7 +28,7 @@ public class OtherWorkController implements Initializable {
     @FXML
     private AnchorPane rootWork;
     @FXML
-    private TextField txtWorkID;
+    private Label txtWorkID;
     @FXML
     private ComboBox<EmployeeDTO>  cmbEmployeeIds;
     @FXML
@@ -37,6 +37,8 @@ public class OtherWorkController implements Initializable {
     private DatePicker txtDate;
     @FXML
     private TextArea txtDetails;
+    @FXML
+    private TextField txtSalary;
     @FXML
     private TableView<OtherWorkDTO> tableView;
     @FXML
@@ -53,6 +55,8 @@ public class OtherWorkController implements Initializable {
     private TableColumn<OtherWorkDTO,LocalDate> col_Date;
     @FXML
     private TableColumn<OtherWorkDTO,String> col_Details;
+    @FXML
+    private TableColumn<OtherWorkDTO,Double> col_Salary;
 
     private final OtherWorkModel otherWorkModel = new OtherWorkModel();
 
@@ -117,6 +121,7 @@ public class OtherWorkController implements Initializable {
         txtWorkID.setText(String.valueOf(newVal.getWorkID()));
         txtDate.setValue(newVal.getDate());
         txtDetails.setText(newVal.getDetails());
+        txtSalary.setText(String.valueOf(newVal.getSalary()));
 
     }
 
@@ -127,8 +132,9 @@ public class OtherWorkController implements Initializable {
             if (validation()) {
                 LocalDate date = txtDate.getValue();
                 String details = txtDetails.getText();
+                double salary = Double.parseDouble(txtSalary.getText());
 
-                OtherWorkDTO otherWorkDTO = new OtherWorkDTO(selectedEmpId, selectedLandId, date, details);
+                OtherWorkDTO otherWorkDTO = new OtherWorkDTO(selectedEmpId, selectedLandId, date, details,salary);
                 boolean result = otherWorkModel.addWorkField(otherWorkDTO);
 
                 if (result) {
@@ -157,8 +163,10 @@ public class OtherWorkController implements Initializable {
                     int workId = Integer.parseInt(txtWorkID.getText());
                     LocalDate date = txtDate.getValue();
                     String details = txtDetails.getText();
+                    double salary = Double.parseDouble(txtSalary.getText());
 
-                    OtherWorkDTO otherWorkDTO = new OtherWorkDTO(workId, selectedEmpId, selectedLandId, date, details);
+
+                    OtherWorkDTO otherWorkDTO = new OtherWorkDTO(workId, selectedEmpId, selectedLandId, date, details,salary);
                     boolean result = otherWorkModel.updateWorkField(otherWorkDTO);
 
                     if (result) {
@@ -190,6 +198,7 @@ public class OtherWorkController implements Initializable {
     private boolean validation() {
         LocalDate date = txtDate.getValue();
         String details = txtDetails.getText();
+        String salary = txtSalary.getText();
 
 
         if (cmbEmployeeIds.getValue()==null){
@@ -222,6 +231,14 @@ public class OtherWorkController implements Initializable {
             alert.setHeaderText("Details is empty");
             alert.show();
             txtDetails.requestFocus();
+            return false;
+        }
+        if (salary.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Empty");
+            alert.setHeaderText("Salary is empty");
+            alert.show();
+            txtSalary.requestFocus();
             return false;
         }
         return true;
@@ -262,9 +279,10 @@ public class OtherWorkController implements Initializable {
     }
 
     private void clearFields() {
-        txtWorkID.clear();
+        txtWorkID.setText("No id is here");
         txtDetails.clear();
         txtDate.setValue(null);
+        txtSalary.clear();
         cmbEmployeeIds.getSelectionModel().clearSelection();
         cmbLandIds.getSelectionModel().clearSelection();
     }
@@ -287,6 +305,7 @@ public class OtherWorkController implements Initializable {
         col_AreaName.setCellValueFactory(new PropertyValueFactory<OtherWorkDTO,String>("lndName"));
         col_Date.setCellValueFactory(new PropertyValueFactory<OtherWorkDTO,LocalDate>("date"));
         col_Details.setCellValueFactory(new PropertyValueFactory<OtherWorkDTO,String>("details"));
+        col_Salary.setCellValueFactory(new PropertyValueFactory<OtherWorkDTO,Double>("salary"));
 
         tableView.setItems(loadOtherWorkFields());
     }

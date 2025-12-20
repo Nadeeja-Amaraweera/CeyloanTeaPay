@@ -85,3 +85,36 @@
 .app-table .table-row-cell:selected {
     -fx-background-color: #faf6ee;
 }
+/* =================================================
+   PRIMARY ACTION BUTTON
+   ================================================= */
+
+.app-btn-primary {
+    -fx-background-color: #F8FF4A;
+    -fx-border-color: #B7BF00;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E3B2F;
+
+    -fx-cursor: hand;
+}
+
+/* Hover */
+.app-btn-primary:hover {
+    -fx-background-color: #EFFF2E;
+}
+
+/* Pressed */
+.app-btn-primary:pressed {
+    -fx-background-color: #DCEB00;
+    -fx-translate-y: 1;
+}
+
+/* Focus ring */
+.app-btn-primary:focused {
+    -fx-border-color: #7F8B6A;
+    -fx-border-width: 2;
+}

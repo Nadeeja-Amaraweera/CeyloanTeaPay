@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -17,10 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
 <AnchorPane id="AnchorPane" fx:id="rootWork" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.OtherWorkController">
    <stylesheets>
-      <URL value="@OtherWork.css"/>
+      <URL value="@OtherWork.css" />
    </stylesheets>
    <children>
       <ImageView fitHeight="158.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
@@ -32,7 +32,7 @@
          <children>
             <Pane layoutY="106.0" prefHeight="174.0" prefWidth="1250.0">
                <children>
-                  <HBox styleClass="textField-pane" alignment="TOP_CENTER" layoutX="279.0" layoutY="-1.0" prefHeight="174.0" prefWidth="665.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: #048700; -fx-border-width: 2px;">
+                  <HBox alignment="TOP_CENTER" layoutX="279.0" layoutY="-1.0" prefHeight="174.0" prefWidth="665.0" style="-fx-background-color: #C9E2AB; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: #048700; -fx-border-width: 2px;" styleClass="textField-pane">
                      <children>
                         <VBox prefHeight="216.0" prefWidth="130.0">
                            <children>
@@ -60,18 +60,23 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                                  </VBox.margin>
                               </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="139.0" prefWidth="180.0">
-                           <children>
-                              <TextField fx:id="txtWorkID" prefHeight="26.0" prefWidth="156.0" style="-fx-background-color: #E4F0DA; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #869F75;">
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="59.0" text="Salary  :">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="139.0" prefWidth="180.0">
+                           <children>
+                              <Label fx:id="txtWorkID" text="No id is here">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                                  </VBox.margin>
-                              </TextField>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
                               <ComboBox fx:id="cmbEmployeeIds" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: #E4F0DA; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #869F75;">
                                  <VBox.margin>
                                     <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
@@ -88,6 +93,14 @@
                                     <Insets left="5.0" right="5.0" />
                                  </padding>
                               </ComboBox>
+                              <TextField fx:id="txtSalary" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #E4F0DA; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #869F75;">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                         </VBox>
                         <VBox prefHeight="216.0" prefWidth="118.0">
@@ -120,7 +133,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </DatePicker>
-                              <TextArea fx:id="txtDetails" prefHeight="156.0" prefWidth="170.0" promptText="Enter Work Details" style="-fx-background-color: #E4F0DA; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #869F75;">
+                              <TextArea fx:id="txtDetails" prefHeight="97.0" prefWidth="170.0" promptText="Enter Work Details" style="-fx-background-color: #E4F0DA; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #869F75;">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
@@ -131,7 +144,7 @@
                   </HBox>
                </children>
             </Pane>
-            <TableView fx:id="tableView" layoutY="389.0" prefHeight="411.0" prefWidth="1250.0">
+            <TableView fx:id="tableView" layoutY="389.0" prefHeight="411.0" prefWidth="1250.0" styleClass="app-table">
                <columns>
                   <TableColumn fx:id="col_WorkID" maxWidth="85.0" prefWidth="85.0" text="Work ID" />
                   <TableColumn fx:id="col_EmployeeID" maxWidth="111.0" prefWidth="78.0" text="ID" />
@@ -139,10 +152,11 @@
                   <TableColumn fx:id="col_AreaID" prefWidth="127.0" text="Area" />
                   <TableColumn fx:id="col_AreaName" prefWidth="262.0" text="Area Name" />
                   <TableColumn fx:id="col_Date" maxWidth="482.0" minWidth="0.0" prefWidth="158.0" text="Date" />
-                  <TableColumn fx:id="col_Details" maxWidth="693.0" prefWidth="303.0" text="Work Details" />
+                  <TableColumn fx:id="col_Details" maxWidth="693.0" prefWidth="183.0" text="Work Details" />
+                  <TableColumn fx:id="col_Salary" prefWidth="120.0" text="Salary" />
                </columns>
             </TableView>
-            <HBox alignment="CENTER" layoutY="282.0" prefHeight="100.0" prefWidth="1250.0">
+            <HBox alignment="CENTER" layoutY="285.0" prefHeight="100.0" prefWidth="1250.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#addFields" prefHeight="34.0" prefWidth="74.0" styleClass="action-button" text="Add" textFill="WHITE">
                      <font>

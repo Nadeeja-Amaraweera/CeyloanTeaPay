@@ -27,3 +27,63 @@
     -fx-background-color: #c1b47f;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
 }
+
+
+/* =================================================
+   HEADER BORDERS (ALL HEADERS)
+   ================================================= */
+
+/* Header background */
+.app-table .column-header-background {
+    -fx-background-color: #AEB79C;
+}
+
+/* Individual header cells */
+.app-table .column-header {
+    -fx-size: 42px;
+    -fx-background-color: transparent;
+
+    /* Header borders */
+    -fx-border-color: #8F9B78;
+    -fx-border-width: 1 1 1 1;
+}
+
+/* Header text */
+.app-table .column-header .label {
+    -fx-text-fill: #2E3B2F;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+/* =================================================
+   CELL BORDERS (ALL ROWS & COLUMNS)
+   ================================================= */
+
+.app-table .table-cell {
+    -fx-padding: 0 10 0 10;
+    -fx-font-size: 12px;
+    -fx-text-fill: #2E3B2F;
+    -fx-alignment: CENTER_LEFT;
+
+    /* Cell borders */
+    -fx-border-color: #D0D6C0;
+    -fx-border-width: 1;
+}
+
+/* =================================================
+   ROW BACKGROUND (KEEP CLEAN GRID)
+   ================================================= */
+
+.app-table .table-row-cell {
+    -fx-background-color: #EFEBD8;
+    -fx-cell-size: 38px;
+}
+
+.app-table .table-row-cell:odd {
+    -fx-background-color: #EFEBD8;
+}
+
+.app-table .table-row-cell:selected {
+    -fx-background-color: #faf6ee;
+}

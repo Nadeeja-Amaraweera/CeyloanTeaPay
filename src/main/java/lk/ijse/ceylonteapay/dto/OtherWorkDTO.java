@@ -10,26 +10,29 @@ public class OtherWorkDTO {
     private String lndName;
     private LocalDate date;
     private String details;
+    private double salary;
 
     public OtherWorkDTO() {
     }
 
-    public OtherWorkDTO(int emp_ID, int lnd_Id, LocalDate date, String details) {
+    public OtherWorkDTO(int emp_ID, int lnd_Id, LocalDate date, String details,double salary) {
         this.emp_ID = emp_ID;
         this.lnd_Id = lnd_Id;
         this.date = date;
         this.details = details;
+        this.salary = salary;
     }
 
-    public OtherWorkDTO(int workID, int emp_ID, int lnd_Id, LocalDate date, String details) {
+    public OtherWorkDTO(int workID, int emp_ID, int lnd_Id, LocalDate date, String details,double salary) {
         this.workID = workID;
         this.emp_ID = emp_ID;
         this.lnd_Id = lnd_Id;
         this.date = date;
         this.details = details;
+        this.salary = salary;
     }
 
-    public OtherWorkDTO(int workID, int emp_ID, String empName, int lnd_Id, String lndName, LocalDate date, String details) {
+    public OtherWorkDTO(int workID, int emp_ID, String empName, int lnd_Id, String lndName, LocalDate date, String details , double salary) {
         this.workID = workID;
         this.emp_ID = emp_ID;
         this.empName = empName;
@@ -37,6 +40,7 @@ public class OtherWorkDTO {
         this.lndName = lndName;
         this.date = date;
         this.details = details;
+        this.salary = salary;
     }
 
     public String getEmpName() {
@@ -95,14 +99,25 @@ public class OtherWorkDTO {
         this.details = details;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
         return "OtherWorkDTO{" +
                 "workID=" + workID +
                 ", emp_ID=" + emp_ID +
-                ", lnd_id=" + lnd_Id +
+                ", empName='" + empName + '\'' +
+                ", lnd_Id=" + lnd_Id +
+                ", lndName='" + lndName + '\'' +
                 ", date=" + date +
                 ", details='" + details + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 }

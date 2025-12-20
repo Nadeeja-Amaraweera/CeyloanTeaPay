@@ -20,7 +20,7 @@ public class OtherWorkModel {
         Connection conn = dbc.getConnection();
 
         String sql = "SELECT OtherWork.Work_ID, OtherWork.Emp_ID, Employee.Name AS EmployeeName, " +
-                "OtherWork.Lnd_ID, Land.LandName AS LandName, OtherWork.Date, OtherWork.Details " +
+                "OtherWork.Lnd_ID, Land.LandName AS LandName, OtherWork.Date, OtherWork.Details ,OtherWork.Salary " +
                 "FROM OtherWork " +
                 "JOIN Employee ON OtherWork.Emp_ID = Employee.EmpID " +
                 "JOIN Land ON OtherWork.Lnd_ID = Land.LndID " +
@@ -42,14 +42,15 @@ public class OtherWorkModel {
 
             LocalDate date = rs.getDate("Date").toLocalDate();
             String details = rs.getString("Details");
+            double salary = rs.getDouble("Salary");
 
             OtherWorkDTO dto = new OtherWorkDTO(
                     workID, empID, empName,
                     lndID, landName,
-                    date, details
+                    date, details , salary
             );
 
-            list.add(dto); // ✔ FIXED (use add, not addAll)
+            list.add(dto); //FIXED (use add, not addAll)
         }
 
         return list;
@@ -59,12 +60,13 @@ public class OtherWorkModel {
         DBConnection dbc = DBConnection.getInstance();
         Connection conn = dbc.getConnection();
 
-        String sql = "INSERT INTO OtherWork (Emp_ID,Lnd_ID,Date,Details) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO OtherWork (Emp_ID,Lnd_ID,Date,Details,Salary) VALUES (?,?,?,?,?)";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1,otherWorkDTO.getEmp_ID());
         pstm.setInt(2,otherWorkDTO.getLnd_Id());
         pstm.setDate(3, Date.valueOf(otherWorkDTO.getDate()));
         pstm.setString(4,otherWorkDTO.getDetails());
+        pstm.setDouble(5,otherWorkDTO.getSalary());
         int result = pstm.executeUpdate();
 
         return result>0;
@@ -74,13 +76,14 @@ public class OtherWorkModel {
         DBConnection dbc = DBConnection.getInstance();
         Connection conn = dbc.getConnection();
 
-        String sql = "UPDATE OtherWork SET Emp_ID = ?, Lnd_ID = ?, Date = ?, Details = ? WHERE Work_ID = ?";
+        String sql = "UPDATE OtherWork SET Emp_ID = ?, Lnd_ID = ?, Date = ?, Details = ?,Salary = ? WHERE Work_ID = ?";
         PreparedStatement pstm = conn.prepareCall(sql);
         pstm.setInt(1,otherWorkDTO.getEmp_ID());
         pstm.setInt(2,otherWorkDTO.getLnd_Id());
         pstm.setDate(3,Date.valueOf(otherWorkDTO.getDate()));
         pstm.setString(4, otherWorkDTO.getDetails());
-        pstm.setInt(5,otherWorkDTO.getWorkID());
+        pstm.setDouble(5,otherWorkDTO.getSalary());
+        pstm.setInt(6,otherWorkDTO.getWorkID());
 
         int result = pstm.executeUpdate();
 

@@ -52,7 +52,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tableView" prefHeight="453.0" prefWidth="1250.0">
+            <TableView styleClass="app-table" fx:id="tableView" prefHeight="453.0" prefWidth="1250.0">
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="133.0" text="Stock ID" />
                 <TableColumn fx:id="col_date" prefWidth="236.0" text="Date" />
