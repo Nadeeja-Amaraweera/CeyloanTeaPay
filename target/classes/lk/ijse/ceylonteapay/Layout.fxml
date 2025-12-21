@@ -49,6 +49,7 @@
 
                         <Button onAction="#clickDelivery" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Tea Delivery" />
                   <Button onAction="#clickIncome" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Income" />
+                  <Button onAction="#clickPayment" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Payment" />
                     </children>
                 </VBox>
             </left>

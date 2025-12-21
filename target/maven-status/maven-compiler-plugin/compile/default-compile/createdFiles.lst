@@ -46,5 +46,6 @@ lk/ijse/ceylonteapay/model/PaymentModel.class
 lk/ijse/ceylonteapay/controller/DeliveryTeaController$1.class
 lk/ijse/ceylonteapay/controller/DailyTeaController$2.class
 lk/ijse/ceylonteapay/controller/OtherWorkController.class
+lk/ijse/ceylonteapay/controller/TeaRateController.class
 lk/ijse/ceylonteapay/dto/StockDTO.class
 lk/ijse/ceylonteapay/dto/DailyTeaDTO.class
