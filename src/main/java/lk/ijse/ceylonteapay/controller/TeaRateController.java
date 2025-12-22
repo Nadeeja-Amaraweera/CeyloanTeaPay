@@ -9,11 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.util.StringConverter;
+import lk.ijse.ceylonteapay.dto.TeaRateDTO;
+import lk.ijse.ceylonteapay.model.TeaRateModel;
 
 
 public class TeaRateController implements Initializable {
@@ -27,6 +26,8 @@ public class TeaRateController implements Initializable {
     @FXML
     private TextField txtTeaRate;
 
+    private static TeaRateModel teaRateModel = new TeaRateModel();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setMonthAndYears();
@@ -34,11 +35,23 @@ public class TeaRateController implements Initializable {
 
     @FXML
     private void addRate(){
-        String month = monthCombo.getValue();
-        Integer year = yearCombo.getValue();
-        double teaRate = Double.parseDouble(txtTeaRate.getText());
+        try {
 
-        System.out.println(month+" - "+year+" - "+teaRate);
+            String month = monthCombo.getValue();
+            Integer year = yearCombo.getValue();
+            double teaRate = Double.parseDouble(txtTeaRate.getText());
+
+
+//        int rateId, String month, int year, double rate
+            TeaRateDTO teaRateDTO = new TeaRateDTO(month, year, teaRate);
+            boolean result = teaRateModel.addTeaRate(teaRateDTO);
+
+            if (result){
+                new Alert(Alert.AlertType.INFORMATION,"Tea Rate Added Successfully").show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void setMonthAndYears() {

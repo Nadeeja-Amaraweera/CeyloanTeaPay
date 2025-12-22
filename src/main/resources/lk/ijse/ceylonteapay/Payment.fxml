@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.PaymentController">
-   <stylesheets>
-      <URL value="@Payment.css" />
-   </stylesheets>
-   <children>
-      <Pane prefHeight="149.0" prefWidth="1250.0">
-         <padding>
-            <Insets bottom="30.0" top="30.0" />
-         </padding>
-         <children>
-            <ImageView fitHeight="158.0" fitWidth="1250.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
-               </image>
-            </ImageView>
-            <Label layoutX="558.0" layoutY="33.0" text="Payment" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane layoutX="125.0" layoutY="104.0" prefHeight="200.0" prefWidth="1000.0" styleClass="textField-pane" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0">
-         <children>
-            <Button layoutX="864.0" layoutY="31.0" mnemonicParsing="false" onAction="#openTeaRateWindow" prefHeight="42.0" prefWidth="100.0" text="Tea Rate" />
-         </children></Pane>
-   </children>
+<AnchorPane prefHeight="450" prefWidth="600" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.PaymentController">
+
+   <Label layoutX="200" layoutY="20" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Monthly Salary Payment" />
+
+   <Label layoutX="50" layoutY="80" text="Employee" />
+   <ComboBox fx:id="cmbEmployee" layoutX="200" layoutY="75" prefWidth="300" />
+
+   <Label layoutX="50" layoutY="130" text="Month" />
+
+   <Button layoutX="200" layoutY="180" onAction="#calculateSalary" text="Calculate Salary" />
+
+   <Label layoutX="50" layoutY="240" text="Tea Salary" />
+   <TextField fx:id="txtTeaSalary" editable="false" layoutX="200" layoutY="235" />
+
+   <Label layoutX="50" layoutY="290" text="Other Work Salary" />
+   <TextField fx:id="txtOtherSalary" editable="false" layoutX="200" layoutY="285" />
+
+   <Label layoutX="50" layoutY="340" text="Final Salary" />
+   <TextField fx:id="txtFinalSalary" editable="false" layoutX="200" layoutY="335" />
+
+   <Button layoutX="200" layoutY="380" onAction="#savePayment" text="Save Payment" />
+   <Button layoutX="456.0" layoutY="180.0" mnemonicParsing="false" onAction="#openTeaRateWindow" prefHeight="26.0" prefWidth="104.0" text="Tea Rate" />
+   <ComboBox fx:id="monthCombo" layoutX="200.0" layoutY="126.0" prefWidth="150.0" />
+
 </AnchorPane>

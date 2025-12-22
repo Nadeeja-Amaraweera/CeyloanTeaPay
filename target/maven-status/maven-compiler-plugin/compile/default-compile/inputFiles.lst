@@ -26,7 +26,9 @@
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/DeliveryTeaController.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/controller/MainLoginController.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/IncomeDTO.java
+/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/TeaRateDTO.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/DeliveryTeaModel.java
+/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/TeaRateModel.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/FactoryModel.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/model/DailyTeaModel.java
 /home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/java/lk/ijse/ceylonteapay/dto/DeliveryTeaDTO.java
