@@ -19,17 +19,22 @@ public class DailyTeaModel {
         DBConnection dbc = DBConnection.getInstance();
         Connection conn = dbc.getConnection();
 
-        String sql = "INSERT INTO Tea (Emp_ID, Lnd_ID, Date_Collected, Full_Weight, Bag_Weight, Water_Weight,Total_Weight, Quality) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Tea (Emp_ID,EmpName, Lnd_ID,LandName, Date_Collected, Full_Weight, Bag_Weight, Water_Weight,Total_Weight, Quality) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1,teaDTO.getEmpID());
-        pstm.setInt(2,teaDTO.getLndID());
-        pstm.setDate(3, Date.valueOf(teaDTO.getDateCollected()));
-        pstm.setDouble(4,teaDTO.getFullWeight());
-        pstm.setDouble(5,teaDTO.getBagWeight());
-        pstm.setDouble(6,teaDTO.getWaterWeight());
-        pstm.setDouble(7,teaDTO.getTotalWeight());
-        pstm.setString(8,teaDTO.getQuality());
+        pstm.setString(2, teaDTO.getEmpName());
+
+        pstm.setInt(3,teaDTO.getLndID());
+        pstm.setString(4, teaDTO.getLndName());
+
+
+        pstm.setDate(5, Date.valueOf(teaDTO.getDateCollected()));
+        pstm.setDouble(6,teaDTO.getFullWeight());
+        pstm.setDouble(7,teaDTO.getBagWeight());
+        pstm.setDouble(8,teaDTO.getWaterWeight());
+        pstm.setDouble(9,teaDTO.getTotalWeight());
+        pstm.setString(10,teaDTO.getQuality());
 
         int result = pstm.executeUpdate();
 

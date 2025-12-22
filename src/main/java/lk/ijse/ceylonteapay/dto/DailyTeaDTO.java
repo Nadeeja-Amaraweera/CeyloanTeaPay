@@ -18,6 +18,8 @@ public class DailyTeaDTO {
     public DailyTeaDTO() {
     }
 
+
+
     public DailyTeaDTO(int teaID, int empID, String empName, int lndID, String lndName, LocalDate dateCollected, double fullWeight, double bagWeight, double waterWeight, double totalWeight, String quality) {
         this.teaID = teaID;
         this.empID = empID;
@@ -44,9 +46,11 @@ public class DailyTeaDTO {
         Quality = quality;
     }
 
-    public DailyTeaDTO(int empID, int lndID, LocalDate dateCollected, double fullWeight, double bagWeight, double waterWeight, double totalWeight, String quality) {
+    public DailyTeaDTO(int empID, int lndID,String empName,String lndName, LocalDate dateCollected, double fullWeight, double bagWeight, double waterWeight, double totalWeight, String quality) {
         this.empID = empID;
         this.lndID = lndID;
+        this.empName = empName;
+        this.lndName = lndName;
         this.dateCollected = dateCollected;
         this.fullWeight = fullWeight;
         this.bagWeight = bagWeight;

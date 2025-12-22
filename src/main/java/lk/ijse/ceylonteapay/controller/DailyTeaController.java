@@ -81,9 +81,9 @@ public class DailyTeaController implements Initializable {
     ObservableList<DailyTeaDTO> teaDTOObservableList = FXCollections.observableArrayList();
 
     private int selectedEmpId = -1;
-    private String selectedEmpName = null;
+    private String selectedEmpName = "";
     private int selectedLandId = -1;
-    private String selectedAreaName = null;
+    private String selectedAreaName = "";
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,7 +94,7 @@ public class DailyTeaController implements Initializable {
         cmbEmployeeIds.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal!=null){
                 selectedEmpId = newVal.getId();
-                selectedEmpName = newVal.getName()+" - "+newVal.getId();
+                selectedEmpName = newVal.getName();
                 System.out.println(newVal.getName()+" - "+newVal.getId());
             }
         });
@@ -102,7 +102,7 @@ public class DailyTeaController implements Initializable {
         cmbLandIds.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal!=null){
                 selectedLandId = newVal.getLndID();
-                selectedAreaName = newVal.getLndName()+" - "+newVal.getLndNo();
+                selectedAreaName = newVal.getLndName();
                 System.out.println(newVal.getLndName()+" - "+newVal.getLndNo());
             }
         });
@@ -181,7 +181,7 @@ try{
         double totalWeight = fullWeight-(bagWeight+waterWeight);
         LocalDate date = txtDate.getValue();
 
-            DailyTeaDTO teaDTO = new DailyTeaDTO(selectedEmpId,selectedLandId,date,fullWeight,bagWeight,waterWeight,totalWeight,quality);
+            DailyTeaDTO teaDTO = new DailyTeaDTO(selectedEmpId,selectedLandId,selectedEmpName,selectedAreaName,date,fullWeight,bagWeight,waterWeight,totalWeight,quality);
             boolean result = dailyTeaModel.addTeaField(teaDTO);
 
             if (result){
