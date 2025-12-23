@@ -137,49 +137,64 @@ public class PaymentController implements Initializable {
     @FXML
     private void calculateSalary() {
 
-//        loadTeaDataByMonth(selectedMonthNumber, LocalDate.now());
-
-        loadTeaDataByMonth(selectedMonthNumber);
+//        must need to get this year
+        loadTeaDataByMonth(selectedMonthNumber,selectEmpid);
 
 
     }
 
-    private List<DailyTeaDTO> loadTeaDataByMonth(int selectedMonthNumber) {
+    private List<DailyTeaDTO> loadTeaDataByMonth(int selectedMonthNumber,int selectedEmpId) {
         List<DailyTeaDTO> list = new ArrayList<>();
         try {
             DBConnection dbc = DBConnection.getInstance();
             Connection conn = dbc.getConnection();
 
-//           String sql = "SELECT * FROM Tea WHERE MONTH(Date_Collected) = ? AND YEAR(Date_Collected) = ?";
+//           String sql = "SELECT * FROM Tea WHERE MONTH(Date_Collected) = ? AND YEAR(Date_Collected) = ? AND Emp_ID = ?"";
 
-            String sql = "SELECT * FROM Tea WHERE MONTH(Date_Collected) = ?";
+            String sql = "SELECT SUM(Total_Weight) AS totalWeight FROM Tea WHERE MONTH(Date_Collected) = ? AND Emp_ID = ?";
 
 
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setInt(1, selectedMonthNumber);
+            pstm.setInt(2,selectedEmpId);
 
-//           pstm.setInt(2,nowDate);
 
             ResultSet rs = pstm.executeQuery();
 
+            boolean hasData = false ;
+
+//                while (rs.next()) {
+//
+//                    hasData = true;
+//
+//                    int id = rs.getInt("Tea_ID");
+//                    int teaID = rs.getInt("Emp_ID");
+//                    LocalDate date = rs.getDate("Date_Collected").toLocalDate();
+//                    double tweight = rs.getDouble("Total_Weight");
+//                    String quality = rs.getString("Quality");
+//
+//                    System.out.println(
+//                            "Tea_ID: " + id +
+//                                    ", Emp_ID: " + teaID +
+//                                    ", Date_Collected: " + date +
+//                                    ", Total_Weight: " + tweight +
+//                                    ", Quality: " + quality
+//                    );
+//                }
+
+            double totalWeight = 0;
+
+            if (rs.next()) {
+                hasData = true;
+                totalWeight = rs.getDouble("totalWeight");
+            }
+            txtTeaSalary.setText(String.valueOf(totalWeight));
 
 
-                while (rs.next()) {
+            if (!hasData){
+                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
+            }
 
-                    int id = rs.getInt("Tea_ID");
-                    int teaID = rs.getInt("Emp_ID");
-                    LocalDate date = rs.getDate("Date_Collected").toLocalDate();
-                    double tweight = rs.getDouble("Total_Weight");
-                    String quality = rs.getString("Quality");
-
-                    System.out.println(
-                            "Tea_ID: " + id +
-                                    ", Emp_ID: " + teaID +
-                                    ", Date_Collected: " + date +
-                                    ", Total_Weight: " + tweight +
-                                    ", Quality: " + quality
-                    );
-                }
 
         } catch (Exception e) {
             e.printStackTrace();
