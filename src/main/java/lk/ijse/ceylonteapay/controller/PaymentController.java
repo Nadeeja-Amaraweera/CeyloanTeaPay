@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.dto.DailyTeaDTO;
 import lk.ijse.ceylonteapay.dto.EmployeeDTO;
+import lk.ijse.ceylonteapay.dto.OtherWorkDTO;
 import lk.ijse.ceylonteapay.model.EmployeeModel;
 import lk.ijse.ceylonteapay.model.PaymentModel;
 
@@ -139,12 +140,53 @@ public class PaymentController implements Initializable {
 
 //        must need to get this year
         loadTeaDataByMonth(selectedMonthNumber,selectEmpid);
+        loadOtherWorkByMonth(selectedMonthNumber,selectEmpid);
 
 
     }
 
-    private List<DailyTeaDTO> loadTeaDataByMonth(int selectedMonthNumber,int selectedEmpId) {
-        List<DailyTeaDTO> list = new ArrayList<>();
+    private void loadOtherWorkByMonth(int selectedMonthNumber, int selectedEmpId) {
+//        List<OtherWorkDTO> list = new ArrayList<>();
+
+        try {
+
+            DBConnection dbc = DBConnection.getInstance();
+            Connection conn = dbc.getConnection();
+
+            String sql = " SELECT Salary AS DbotherWorkSalary FROM OtherWork WHERE MONTH(Date) = ? AND Emp_ID = ?";
+
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, selectedMonthNumber);
+            pstm.setInt(2, selectedEmpId);
+
+            ResultSet rs = pstm.executeQuery();
+
+            boolean hasData = false ;
+
+            double otherWorkSalary = 0;
+
+            if (rs.next()) {
+                hasData = true;
+                otherWorkSalary = rs.getDouble("DbotherWorkSalary");
+
+                System.out.printf(String.valueOf(otherWorkSalary));
+            }
+            txtOtherSalary.setText(String.valueOf(otherWorkSalary));
+
+            if (!hasData){
+                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+//        return list;
+    }
+
+    private void loadTeaDataByMonth(int selectedMonthNumber,int selectedEmpId) {
+//        List<DailyTeaDTO> list = new ArrayList<>();
         try {
             DBConnection dbc = DBConnection.getInstance();
             Connection conn = dbc.getConnection();
@@ -163,32 +205,13 @@ public class PaymentController implements Initializable {
 
             boolean hasData = false ;
 
-//                while (rs.next()) {
-//
-//                    hasData = true;
-//
-//                    int id = rs.getInt("Tea_ID");
-//                    int teaID = rs.getInt("Emp_ID");
-//                    LocalDate date = rs.getDate("Date_Collected").toLocalDate();
-//                    double tweight = rs.getDouble("Total_Weight");
-//                    String quality = rs.getString("Quality");
-//
-//                    System.out.println(
-//                            "Tea_ID: " + id +
-//                                    ", Emp_ID: " + teaID +
-//                                    ", Date_Collected: " + date +
-//                                    ", Total_Weight: " + tweight +
-//                                    ", Quality: " + quality
-//                    );
-//                }
-
-            double totalWeight = 0;
+            double totalSalary = 0;
 
             if (rs.next()) {
                 hasData = true;
-                totalWeight = rs.getDouble("totalWeight");
+                totalSalary = rs.getDouble("totalWeight");
             }
-            txtTeaSalary.setText(String.valueOf(totalWeight));
+            txtTeaSalary.setText(String.valueOf(totalSalary));
 
 
             if (!hasData){
@@ -199,7 +222,7 @@ public class PaymentController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
+//        return list;
     }
 
 
