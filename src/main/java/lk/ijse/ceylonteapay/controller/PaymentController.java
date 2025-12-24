@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.dto.*;
@@ -24,8 +25,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -73,6 +74,8 @@ public class PaymentController implements Initializable {
     private static PaymentModel paymentModel = new PaymentModel();
     private static TeaRateModel teaRateModel = new TeaRateModel();
 
+    ObservableList<PaymentDTO> paymentDTOS = FXCollections.observableArrayList();
+
     private int selectEmpid;
     private int selectRateid;
     private String selecetEmpName;
@@ -81,31 +84,222 @@ public class PaymentController implements Initializable {
     private int selectedYear;
     private double selectedTeaRate;
 
-    @FXML
-    private void openTeaRateWindow() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/ceylonteapay/TeaRate.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.setTitle("Tea Rate");
-            stage.show();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-
-//   Change with plucking date
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployees();
         loadMonths();
         loadTeaRateCombo();
+        setTableColumn();
 
+        tableView.getSelectionModel().selectedItemProperty().addListener(
+                ((observableValue, oldValue, newValue) -> {
+                    if (newValue != null){
+                        tableSelection(newValue);
+                    }
+                })
+        );
+
+    }
+
+    @FXML
+    private void calculateSalary() {
+
+//        must need to get this year
+        loadTeaDataByMonth(selectedMonthNumber,selectEmpid);
+        loadOtherWorkByMonth(selectedMonthNumber,selectEmpid);
+
+        // Read values from text fields
+        double teaSalary = txtTeaSalary.getText().isEmpty()
+                ? 0
+                : Double.parseDouble(txtTeaSalary.getText());
+
+        double otherWorkSalary = txtOtherSalary.getText().isEmpty()
+                ? 0
+                : Double.parseDouble(txtOtherSalary.getText());
+
+        // Calculate final salary
+        double finalSalary = teaSalary + otherWorkSalary;
+
+        // Set final salary
+        txtFinalSalary.setText(String.valueOf(finalSalary));
+    }
+
+    @FXML
+    private void savePayment() {
+        try {
+            double teaSalary = Double.parseDouble(txtTeaSalary.getText());
+            double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
+            double finalSalary = teaSalary+expenseSalary;
+
+//            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
+            PaymentDTO paymentDTO = new PaymentDTO(selectRateid,selectEmpid,selecetEmpName,teaSalary,expenseSalary,finalSalary,LocalDate.now());
+            boolean result = paymentModel.savePayment(paymentDTO);
+
+            if (result) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Payment Successfully.");
+                alert.show();
+                refreshTable();
+//                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Payment Successfully.");
+                alert.show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void tableSelection(PaymentDTO newValue){
+//        Set Employee ComboBox
+        for (EmployeeDTO empDTO : cmbEmployee.getItems()){
+            if (empDTO.getId() == newValue.getEmployeeId()){
+                cmbEmployee.setValue(empDTO);
+            }
+        }
+
+//        Set Month ComboBox
+        LocalDate date = newValue.getDate();
+        String monthName = date.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        monthCombo.setValue(monthName);
+
+//        Set Tea Rate Date and Rate
+        for (TeaRateDTO rateDTO : cmbTeaRate.getItems()){
+            if (rateDTO.getRateId() == newValue.getRateId()){
+                cmbTeaRate.setValue(rateDTO);
+            }
+        }
+
+        txtTeaSalary.setText(String.valueOf(newValue.getTeaSalary()));
+        txtOtherSalary.setText(String.valueOf(newValue.getExpenseSalary()));
+        txtFinalSalary.setText(String.valueOf(newValue.getFinalSalary()));
+
+    }
+
+
+
+    @FXML
+    private void updatePayment(){
+
+    }
+
+    @FXML
+    private void deletePayment(){
+
+    }
+
+    private void refreshTable() {
+        paymentDTOS.clear();
+        paymentDTOS.addAll(loadPaymentTable());
+        tableView.setItems(paymentDTOS);
+    }
+
+    private ObservableList<PaymentDTO> loadPaymentTable(){
+        try {
+            ObservableList<PaymentDTO> list = paymentModel.loadPaymentTable();
+            return list;
+        }catch (Exception e){
+            return FXCollections.observableArrayList();
+        }
+    }
+
+    private void loadOtherWorkByMonth(int selectedMonthNumber, int selectedEmpId) {
+//        List<OtherWorkDTO> list = new ArrayList<>();
+
+        try {
+
+            DBConnection dbc = DBConnection.getInstance();
+            Connection conn = dbc.getConnection();
+
+            String sql = " SELECT Salary AS DbotherWorkSalary FROM OtherWork WHERE MONTH(Date) = ? AND Emp_ID = ?";
+
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, selectedMonthNumber);
+            pstm.setInt(2, selectedEmpId);
+
+            ResultSet rs = pstm.executeQuery();
+
+            boolean hasData = false ;
+
+            double otherWorkSalary = 0;
+
+            if (rs.next()) {
+                hasData = true;
+                otherWorkSalary = rs.getDouble("DbotherWorkSalary");
+
+                System.out.printf(String.valueOf(otherWorkSalary));
+            }
+            txtOtherSalary.setText(String.valueOf(otherWorkSalary));
+
+            if (!hasData){
+                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+//        return list;
+    }
+
+    private void loadTeaDataByMonth(int selectedMonthNumber,int selectedEmpId) {
+//        List<DailyTeaDTO> list = new ArrayList<>();
+        try {
+            DBConnection dbc = DBConnection.getInstance();
+            Connection conn = dbc.getConnection();
+
+//           String sql = "SELECT * FROM Tea WHERE MONTH(Date_Collected) = ? AND YEAR(Date_Collected) = ? AND Emp_ID = ?"";
+
+            String sql = "SELECT SUM(Total_Weight) AS totalWeight FROM Tea WHERE MONTH(Date_Collected) = ? AND Emp_ID = ?";
+
+
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, selectedMonthNumber);
+            pstm.setInt(2,selectedEmpId);
+
+
+            ResultSet rs = pstm.executeQuery();
+
+            boolean hasData = false ;
+
+            double totalSalary = 0;
+
+            if (rs.next()) {
+                hasData = true;
+                totalSalary = rs.getDouble("totalWeight");
+            }
+            txtTeaSalary.setText(String.valueOf(totalSalary));
+
+
+            if (!hasData){
+                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        return list;
+    }
+
+    private void setTableColumn() {
+
+//        int paymentId, int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
+
+        col_id.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Integer>("paymentId"));
+        col_rateId.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Integer>("rateId"));
+        col_empId.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Integer>("employeeId"));
+        col_empName.setCellValueFactory(new PropertyValueFactory<PaymentDTO,String>("employeeName"));
+        col_teaSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Double>("teaSalary"));
+        col_otherSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Double>("expenseSalary"));
+        col_finalSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Double>("finalSalary"));
+        col_paymentDate.setCellValueFactory(new PropertyValueFactory<PaymentDTO,LocalDate>("date"));
+
+        tableView.setItems(loadPaymentTable());
     }
 
     private void loadTeaRateCombo() {
@@ -197,122 +391,18 @@ public class PaymentController implements Initializable {
     }
 
     @FXML
-    private void calculateSalary() {
-
-//        must need to get this year
-        loadTeaDataByMonth(selectedMonthNumber,selectEmpid);
-        loadOtherWorkByMonth(selectedMonthNumber,selectEmpid);
-
-
-    }
-
-    private void loadOtherWorkByMonth(int selectedMonthNumber, int selectedEmpId) {
-//        List<OtherWorkDTO> list = new ArrayList<>();
-
+    private void openTeaRateWindow() {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/ceylonteapay/TeaRate.fxml"));
+            Parent root = loader.load();
 
-            DBConnection dbc = DBConnection.getInstance();
-            Connection conn = dbc.getConnection();
-
-            String sql = " SELECT Salary AS DbotherWorkSalary FROM OtherWork WHERE MONTH(Date) = ? AND Emp_ID = ?";
-
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, selectedMonthNumber);
-            pstm.setInt(2, selectedEmpId);
-
-            ResultSet rs = pstm.executeQuery();
-
-            boolean hasData = false ;
-
-            double otherWorkSalary = 0;
-
-            if (rs.next()) {
-                hasData = true;
-                otherWorkSalary = rs.getDouble("DbotherWorkSalary");
-
-                System.out.printf(String.valueOf(otherWorkSalary));
-            }
-            txtOtherSalary.setText(String.valueOf(otherWorkSalary));
-
-            if (!hasData){
-                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,e);
-        }
-
-//        return list;
-    }
-
-    private void loadTeaDataByMonth(int selectedMonthNumber,int selectedEmpId) {
-//        List<DailyTeaDTO> list = new ArrayList<>();
-        try {
-            DBConnection dbc = DBConnection.getInstance();
-            Connection conn = dbc.getConnection();
-
-//           String sql = "SELECT * FROM Tea WHERE MONTH(Date_Collected) = ? AND YEAR(Date_Collected) = ? AND Emp_ID = ?"";
-
-            String sql = "SELECT SUM(Total_Weight) AS totalWeight FROM Tea WHERE MONTH(Date_Collected) = ? AND Emp_ID = ?";
-
-
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, selectedMonthNumber);
-            pstm.setInt(2,selectedEmpId);
-
-
-            ResultSet rs = pstm.executeQuery();
-
-            boolean hasData = false ;
-
-            double totalSalary = 0;
-
-            if (rs.next()) {
-                hasData = true;
-                totalSalary = rs.getDouble("totalWeight");
-            }
-            txtTeaSalary.setText(String.valueOf(totalSalary));
-
-
-            if (!hasData){
-                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-//        return list;
-    }
-
-
-    @FXML
-    private void savePayment() {
-        try {
-            double teaSalary = Double.parseDouble(txtTeaSalary.getText());
-            double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
-            double finalSalary = Double.parseDouble(txtFinalSalary.getText());
-
-//            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
-            PaymentDTO paymentDTO = new PaymentDTO(selectRateid,selectEmpid,selecetEmpName,teaSalary,expenseSalary,finalSalary,LocalDate.now());
-            boolean result = paymentModel.savePayment(paymentDTO);
-
-            if (result) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Payment Successfully.");
-                alert.show();
-//                refreshTable();
-//                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Payment Successfully.");
-                alert.show();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+            stage.setTitle("Tea Rate");
+            stage.show();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 

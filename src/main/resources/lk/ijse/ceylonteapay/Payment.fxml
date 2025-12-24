@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.PaymentController">
 
    <Label layoutX="502.0" layoutY="28.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Monthly Salary Payment" />
 
    <Label layoutX="370.0" layoutY="119.0" text="Employee" />
-   <ComboBox fx:id="cmbEmployee" layoutX="520.0" layoutY="114.0" prefWidth="300" />
+   <ComboBox fx:id="cmbEmployee" layoutX="520.0" layoutY="114.0" prefHeight="26.0" prefWidth="204.0" />
 
    <Label layoutX="370.0" layoutY="169.0" text="Month" />
 
@@ -27,10 +28,8 @@
 
    <Label layoutX="370.0" layoutY="379.0" text="Final Salary" />
    <TextField fx:id="txtFinalSalary" editable="true" layoutX="520.0" layoutY="374.0" />
-
-   <Button layoutX="520.0" layoutY="427.0" onAction="#savePayment" text="Save Payment" />
    <Button layoutX="776.0" layoutY="200.0" mnemonicParsing="false" onAction="#openTeaRateWindow" prefHeight="38.0" prefWidth="138.0" text="Manage Tea Rate" />
-   <ComboBox fx:id="monthCombo" layoutX="520.0" layoutY="165.0" prefWidth="150.0" />
+   <ComboBox fx:id="monthCombo" layoutX="520.0" layoutY="165.0" prefHeight="26.0" prefWidth="204.0" />
    <ComboBox fx:id="cmbTeaRate" layoutX="776.0" layoutY="253.0" prefWidth="150.0" />
    <Label layoutX="952.0" layoutY="200.0" prefHeight="38.0" prefWidth="70.0" text="Tea Rate :" />
    <Label fx:id="lblTeaRate" layoutX="1022.0" layoutY="201.0" prefHeight="38.0" prefWidth="70.0" text="0" />
@@ -46,5 +45,13 @@
          <TableColumn fx:id="col_paymentDate" prefWidth="153.0" text="Payment Date" />
      </columns>
    </TableView>
+   <Pane layoutX="708.0" layoutY="342.0" prefHeight="116.0" prefWidth="523.0">
+      <children>
+      
+         <Button layoutX="28.0" layoutY="27.0" onAction="#savePayment" prefHeight="44.0" prefWidth="104.0" text="Save Payment" />
+         <Button layoutX="149.0" layoutY="27.0" onAction="#updatePayment" prefHeight="44.0" prefWidth="127.0" text="Update Payment" />
+         <Button layoutX="300.0" layoutY="26.0" onAction="#deletePayment" prefHeight="44.0" prefWidth="127.0" text="Delete Payment" />
+      </children>
+   </Pane>
 
 </AnchorPane>
