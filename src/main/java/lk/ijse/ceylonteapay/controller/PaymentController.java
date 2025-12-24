@@ -8,17 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import lk.ijse.ceylonteapay.db.DBConnection;
-import lk.ijse.ceylonteapay.dto.DailyTeaDTO;
-import lk.ijse.ceylonteapay.dto.EmployeeDTO;
-import lk.ijse.ceylonteapay.dto.OtherWorkDTO;
+import lk.ijse.ceylonteapay.dto.*;
 import lk.ijse.ceylonteapay.model.EmployeeModel;
 import lk.ijse.ceylonteapay.model.PaymentModel;
+import lk.ijse.ceylonteapay.model.TeaRateModel;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -37,26 +33,53 @@ public class PaymentController implements Initializable {
 
     @FXML
     private ComboBox<EmployeeDTO> cmbEmployee;
-
     @FXML
     private ComboBox<String> monthCombo;
+    @FXML
+    private ComboBox<TeaRateDTO> cmbTeaRate;
 
     @FXML
     private TextField txtTeaSalary;
-
     @FXML
     private TextField txtOtherSalary;
-
     @FXML
     private TextField txtFinalSalary;
 
+
+    @FXML
+    private TableView<PaymentDTO> tableView;
+
+    @FXML
+    private TableColumn<PaymentDTO, Integer> col_empId;
+    @FXML
+    private TableColumn<PaymentDTO, String> col_empName;
+    @FXML
+    private TableColumn<PaymentDTO, Double> col_finalSalary;
+    @FXML
+    private TableColumn<PaymentDTO, Integer> col_id;
+    @FXML
+    private TableColumn<PaymentDTO, Double> col_otherSalary;
+    @FXML
+    private TableColumn<PaymentDTO, LocalDate> col_paymentDate;
+    @FXML
+    private TableColumn<PaymentDTO, Integer> col_rateId;
+    @FXML
+    private TableColumn<PaymentDTO, Double> col_teaSalary;
+
+    @FXML
+    private Label lblTeaRate;
+
     private static EmployeeModel employeeModel = new EmployeeModel();
     private static PaymentModel paymentModel = new PaymentModel();
+    private static TeaRateModel teaRateModel = new TeaRateModel();
 
     private int selectEmpid;
+    private int selectRateid;
+    private String selecetEmpName;
     private Month selectedMonth;
     private int selectedMonthNumber;
     private int selectedYear;
+    private double selectedTeaRate;
 
     @FXML
     private void openTeaRateWindow() {
@@ -81,8 +104,45 @@ public class PaymentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployees();
         loadMonths();
+        loadTeaRateCombo();
+
+    }
+
+    private void loadTeaRateCombo() {
+
+        try {
+            ObservableList<TeaRateDTO> list = teaRateModel.loadTeaRate();
+            cmbTeaRate.setItems(list);
+
+            cmbTeaRate.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(TeaRateDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty || item == null ? null : item.getMonth()+" - "+item.getYear());
+                }
+            });
+
+            cmbTeaRate.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(TeaRateDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty || item == null ? null : item.getMonth()+" - "+item.getYear());
+                }
+            });
+
+            cmbTeaRate.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal != null) {
+                    selectedTeaRate = newVal.getRate();
+                    selectRateid = newVal.getRateId();
+                    lblTeaRate.setText(String.valueOf(selectedTeaRate));
+                }
+            });
 
 
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void loadMonths() {
@@ -111,6 +171,7 @@ public class PaymentController implements Initializable {
             cmbEmployee.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
                 if (newVal != null) {
                     selectEmpid = newVal.getId();
+                    selecetEmpName = newVal.getName();
                     System.out.println(newVal.getName() + " - " + newVal.getId());
                 }
             });
@@ -228,7 +289,31 @@ public class PaymentController implements Initializable {
 
     @FXML
     private void savePayment() {
-        // save to Payment table
+        try {
+            double teaSalary = Double.parseDouble(txtTeaSalary.getText());
+            double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
+            double finalSalary = Double.parseDouble(txtFinalSalary.getText());
+
+//            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
+            PaymentDTO paymentDTO = new PaymentDTO(selectRateid,selectEmpid,selecetEmpName,teaSalary,expenseSalary,finalSalary,LocalDate.now());
+            boolean result = paymentModel.savePayment(paymentDTO);
+
+            if (result) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Payment Successfully.");
+                alert.show();
+//                refreshTable();
+//                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Payment Successfully.");
+                alert.show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

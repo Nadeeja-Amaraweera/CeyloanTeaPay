@@ -1,5 +1,7 @@
 package lk.ijse.ceylonteapay.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.dto.TeaRateDTO;
 
@@ -25,5 +27,28 @@ public class TeaRateModel {
         int rs = pstm.executeUpdate();
 
         return rs>0;
+    }
+
+    public ObservableList<TeaRateDTO> loadTeaRate()throws Exception{
+        DBConnection dbc = DBConnection.getInstance();
+        Connection conn = dbc.getConnection();
+
+        String sql = "SELECT * FROM TeaRate ORDER BY Year DESC";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+
+        ObservableList<TeaRateDTO> list = FXCollections.observableArrayList();
+
+        while (rs.next()){
+            int rateId = rs.getInt("rateId");
+            String month = rs.getString("Month");
+            int year = rs.getInt("Year");
+            double ratePerKg = rs.getDouble("ratePerKg");
+
+            TeaRateDTO teaRateDTO = new TeaRateDTO(rateId,month,year,ratePerKg);
+            list.add(teaRateDTO);
+        }
+        return list;
     }
 }

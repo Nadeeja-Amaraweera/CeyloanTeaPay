@@ -3,6 +3,7 @@ package lk.ijse.ceylonteapay.dto;
 public class TeaRateDTO {
     private int rateId;
     private String month;
+
     private int year;
     private double rate;
 
@@ -14,6 +15,8 @@ public class TeaRateDTO {
         this.year = year;
         this.rate = rate;
     }
+
+
 
     public TeaRateDTO(int rateId, String month, int year, double rate) {
         this.rateId = rateId;

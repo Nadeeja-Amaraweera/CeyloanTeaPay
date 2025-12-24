@@ -1,31 +1,39 @@
 package lk.ijse.ceylonteapay.dto;
 
+import java.time.LocalDate;
+
 public class PaymentDTO {
     private int paymentId;
-    private int empId;
-    private String empName;
+    private int rateId;
+    private int EmployeeId;
+    private String EmployeeName;
     private double teaSalary;
     private double expenseSalary;
     private double finalSalary;
+    private LocalDate date;
 
     public PaymentDTO() {
     }
 
-    public PaymentDTO(int empId, String empName, double teaSalary, double expenseSalary, double finalSalary) {
-        this.empId = empId;
-        this.empName = empName;
+    public PaymentDTO(int paymentId, int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date) {
+        this.paymentId = paymentId;
+        this.rateId = rateId;
+        EmployeeId = employeeId;
+        EmployeeName = employeeName;
         this.teaSalary = teaSalary;
         this.expenseSalary = expenseSalary;
         this.finalSalary = finalSalary;
+        this.date = date;
     }
 
-    public PaymentDTO(int paymentId, int empId, String empName, double teaSalary, double expenseSalary, double finalSalary) {
-        this.paymentId = paymentId;
-        this.empId = empId;
-        this.empName = empName;
+    public PaymentDTO(int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date) {
+        this.rateId = rateId;
+        EmployeeId = employeeId;
+        EmployeeName = employeeName;
         this.teaSalary = teaSalary;
         this.expenseSalary = expenseSalary;
         this.finalSalary = finalSalary;
+        this.date = date;
     }
 
     public int getPaymentId() {
@@ -36,20 +44,28 @@ public class PaymentDTO {
         this.paymentId = paymentId;
     }
 
-    public int getEmpId() {
-        return empId;
+    public int getRateId() {
+        return rateId;
     }
 
-    public void setEmpId(int empId) {
-        this.empId = empId;
+    public void setRateId(int rateId) {
+        this.rateId = rateId;
     }
 
-    public String getEmpName() {
-        return empName;
+    public int getEmployeeId() {
+        return EmployeeId;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setEmployeeId(int employeeId) {
+        EmployeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return EmployeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        EmployeeName = employeeName;
     }
 
     public double getTeaSalary() {
@@ -76,15 +92,25 @@ public class PaymentDTO {
         this.finalSalary = finalSalary;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "PaymentDTO{" +
                 "paymentId=" + paymentId +
-                ", empId=" + empId +
-                ", empName='" + empName + '\'' +
+                ", rateId=" + rateId +
+                ", EmployeeId=" + EmployeeId +
+                ", EmployeeName='" + EmployeeName + '\'' +
                 ", teaSalary=" + teaSalary +
                 ", expenseSalary=" + expenseSalary +
                 ", finalSalary=" + finalSalary +
+                ", date=" + date +
                 '}';
     }
 }
