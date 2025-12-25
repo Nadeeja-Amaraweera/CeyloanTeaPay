@@ -33,7 +33,7 @@
    <ComboBox fx:id="cmbTeaRate" layoutX="776.0" layoutY="253.0" prefWidth="150.0" />
    <Label layoutX="952.0" layoutY="200.0" prefHeight="38.0" prefWidth="70.0" text="Tea Rate :" />
    <Label fx:id="lblTeaRate" layoutX="1022.0" layoutY="201.0" prefHeight="38.0" prefWidth="70.0" text="0" />
-   <TableView fx:id="tableView" layoutX="19.0" layoutY="480.0" prefHeight="306.0" prefWidth="1219.0">
+   <TableView fx:id="tableView" layoutX="5.0" layoutY="480.0" prefHeight="317.0" prefWidth="1233.0">
      <columns>
        <TableColumn fx:id="col_id" prefWidth="102.0" text="Paymnet ID" />
        <TableColumn fx:id="col_rateId" prefWidth="86.0" text="Rate ID" />
