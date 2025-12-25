@@ -153,6 +153,47 @@ public class PaymentController implements Initializable {
         }
     }
 
+    @FXML
+    private void updatePayment(){
+
+    }
+
+    @FXML
+    private void deletePayment(){
+        int selectTableItem = tableView.getSelectionModel().getSelectedItem().getPaymentId();
+        try {
+            DBConnection dbc = DBConnection.getInstance();
+            Connection conn = dbc.getConnection();
+
+            String sql = "DELETE FROM Payment WHERE paymentId = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+
+            System.out.println(selectTableItem);
+
+            pstm.setInt(1,selectTableItem);
+
+            int result = pstm.executeUpdate();
+
+            if (result>0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Delete Successfully.");
+                alert.show();
+                refreshTable();
+//                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Delete Successfully.");
+                alert.show();
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     private void tableSelection(PaymentDTO newValue){
 //        Set Employee ComboBox
         for (EmployeeDTO empDTO : cmbEmployee.getItems()){
@@ -176,18 +217,6 @@ public class PaymentController implements Initializable {
         txtTeaSalary.setText(String.valueOf(newValue.getTeaSalary()));
         txtOtherSalary.setText(String.valueOf(newValue.getExpenseSalary()));
         txtFinalSalary.setText(String.valueOf(newValue.getFinalSalary()));
-
-    }
-
-
-
-    @FXML
-    private void updatePayment(){
-
-    }
-
-    @FXML
-    private void deletePayment(){
 
     }
 
