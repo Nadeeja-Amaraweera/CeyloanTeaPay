@@ -22,12 +22,12 @@
          </ImageView>
       
           <!-- ================= TITLE ================= -->
-          <Label layoutX="490.0" layoutY="37.0" styleClass="page-title" text="Monthly Salary Payment" />
+          <Label layoutX="441.0" layoutY="25.0" styleClass="page-title" text="Monthly Salary Payment" />
       </children>
    </Pane>
 
     <!-- ================= FORM SECTION ================= -->
-    <Pane layoutX="358.0" layoutY="113.0" prefHeight="299.0" prefWidth="535.0" styleClass="form-pane">
+    <Pane layoutX="358.0" layoutY="93.0" prefHeight="299.0" prefWidth="535.0" styleClass="form-pane">
         <padding>
             <Insets left="30" right="30" top="20" />
         </padding>
@@ -66,7 +66,7 @@
     </Pane>
 
     <!-- ================= ACTION BUTTONS ================= -->
-    <Pane layoutX="300" layoutY="430" prefHeight="78.0" prefWidth="650" styleClass="button-pane">
+    <Pane layoutX="300.0" layoutY="413.0" prefHeight="78.0" prefWidth="650" styleClass="button-pane">
         <children>
 
             <Button layoutX="14.0" layoutY="20.0" onAction="#savePayment" prefHeight="35.0" prefWidth="130.0" styleClass="action-button" text="Save Payment" />
@@ -81,7 +81,7 @@
     </Pane>
 
     <!-- ================= TABLE ================= -->
-    <TableView fx:id="tableView" layoutX="-1.0" layoutY="540" prefHeight="259.0" prefWidth="1250.0" styleClass="app-table">
+    <TableView fx:id="tableView" layoutX="-1.0" layoutY="512.0" prefHeight="287.0" prefWidth="1250.0" styleClass="app-table">
 
         <columns>
             <TableColumn fx:id="col_id" prefWidth="100" text="Payment ID" />
