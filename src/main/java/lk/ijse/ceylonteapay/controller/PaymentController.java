@@ -131,8 +131,8 @@ public class PaymentController implements Initializable {
             double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
             double finalSalary = teaSalary+expenseSalary;
 
-//            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
-            PaymentDTO paymentDTO = new PaymentDTO(selectRateid,selectEmpid,selecetEmpName,teaSalary,expenseSalary,finalSalary,LocalDate.now());
+//            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date
+            PaymentDTO paymentDTO = new PaymentDTO(selectRateid,selectEmpid,selecetEmpName,teaSalary,expenseSalary,finalSalary,selectedMonth,LocalDate.now());
             boolean result = paymentModel.savePayment(paymentDTO);
 
             if (result) {
@@ -203,8 +203,8 @@ public class PaymentController implements Initializable {
         }
 
 //        Set Month ComboBox
-        LocalDate date = newValue.getDate();
-        String monthName = date.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        Month valueMonth = newValue.getMonth();
+        String monthName = valueMonth.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         monthCombo.setValue(monthName);
 
 //        Set Tea Rate Date and Rate

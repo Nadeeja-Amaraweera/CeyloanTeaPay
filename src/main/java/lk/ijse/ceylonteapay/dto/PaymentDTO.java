@@ -1,6 +1,7 @@
 package lk.ijse.ceylonteapay.dto;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 public class PaymentDTO {
     private int paymentId;
@@ -10,12 +11,13 @@ public class PaymentDTO {
     private double teaSalary;
     private double expenseSalary;
     private double finalSalary;
+    private Month month;
     private LocalDate date;
 
     public PaymentDTO() {
     }
 
-    public PaymentDTO(int paymentId, int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date) {
+    public PaymentDTO(int paymentId, int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date) {
         this.paymentId = paymentId;
         this.rateId = rateId;
         EmployeeId = employeeId;
@@ -23,16 +25,18 @@ public class PaymentDTO {
         this.teaSalary = teaSalary;
         this.expenseSalary = expenseSalary;
         this.finalSalary = finalSalary;
+        this.month = month;
         this.date = date;
     }
 
-    public PaymentDTO(int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date) {
+    public PaymentDTO(int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date) {
         this.rateId = rateId;
         EmployeeId = employeeId;
         EmployeeName = employeeName;
         this.teaSalary = teaSalary;
         this.expenseSalary = expenseSalary;
         this.finalSalary = finalSalary;
+        this.month = month;
         this.date = date;
     }
 
@@ -92,6 +96,14 @@ public class PaymentDTO {
         this.finalSalary = finalSalary;
     }
 
+    public Month getMonth() {
+        return month;
+    }
+
+    public void setMonth(Month month) {
+        this.month = month;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -110,6 +122,7 @@ public class PaymentDTO {
                 ", teaSalary=" + teaSalary +
                 ", expenseSalary=" + expenseSalary +
                 ", finalSalary=" + finalSalary +
+                ", month=" + month +
                 ", date=" + date +
                 '}';
     }
