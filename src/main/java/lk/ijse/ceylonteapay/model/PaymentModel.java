@@ -67,4 +67,27 @@ public class PaymentModel {
     }
 
 
+    public boolean updatePayment(PaymentDTO paymentDTO) throws Exception {
+        DBConnection dbc = DBConnection.getInstance();
+        Connection conn = dbc.getConnection();
+
+        String sql = "UPDATE Payment SET rateId = ?, empId = ?, empName = ?, teaSalary = ?, expenseSalary = ?, finalSalary = ?, SalaryMonth = ?, Payment_Date = ? WHERE paymentId = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+
+//        int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
+        pstm.setInt(1,paymentDTO.getRateId());
+        pstm.setInt(2,paymentDTO.getEmployeeId());
+        pstm.setString(3,paymentDTO.getEmployeeName());
+        pstm.setDouble(4,paymentDTO.getTeaSalary());
+        pstm.setDouble(5,paymentDTO.getExpenseSalary());
+        pstm.setDouble(6,paymentDTO.getFinalSalary());
+        pstm.setString(7, String.valueOf(paymentDTO.getMonth()));
+        pstm.setDate(8, Date.valueOf(paymentDTO.getDate()));
+        pstm.setInt(9,paymentDTO.getPaymentId());
+
+        int result = pstm.executeUpdate();
+
+        return result>0;
+    }
 }

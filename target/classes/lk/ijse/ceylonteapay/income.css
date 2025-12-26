@@ -1,11 +1,95 @@
+/* =================================================
+   ROOT
+   ================================================= */
+.root {
+    -fx-font-family: "Segoe UI", "System";
+    -fx-background-color: #F6F5EE;
+}
+
+/* =================================================
+   HEADER
+   ================================================= */
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+/* =================================================
+   PANES
+   ================================================= */
+.form-pane {
+    -fx-background-color: #E8E7D9;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 4);
+}
+
 .chart-pane {
     -fx-background-color: #CFD6AA;
     -fx-background-radius: 25;
     -fx-text-fill: #143403;
     -fx-font-size: 14px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6,0.3, 4, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 4, 4);
 }
+
+.table-pane {
+    -fx-background-color: #E8E7D9;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 8, 0.3, 0, 4);
+}
+
+/* =================================================
+   LABELS
+   ================================================= */
+.label {
+    -fx-text-fill: #2E3B2F;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 10 10 10;
+}
+
+/* =================================================
+   TEXTFIELDS
+   ================================================= */
+.text-field {
+    -fx-background-color: #FAFAF5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #B7BF9E;
+    -fx-border-width: 1.2;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused {
+    -fx-border-color: #8A946E;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0.3, 0, 3);
+}
+
+/* =================================================
+   COMBOBOX
+   ================================================= */
+.combo-box {
+    -fx-background-color: #FAFAF5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #B7BF9E;
+    -fx-border-width: 1.2;
+    -fx-font-size: 13px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #8A946E;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #2E3B2F;
+}
+
+/* =================================================
+   BUTTONS
+   ================================================= */
 .action-button {
     -fx-text-fill: #5c4a02;
     -fx-background-color: #fff0a6;
@@ -13,14 +97,14 @@
     -fx-font-weight: bold;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
+    -fx-padding: 6 16;
 
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 4);
 }
 
 /* Hover */
 .action-button:hover {
-    -fx-text-fill: #5c4a02;
-    -fx-background-color: #fff0a6;
+    -fx-background-color: #ffef9a;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0.4, 0, 6);
 }
 
@@ -31,10 +115,14 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
 }
 
-
 /* =================================================
-   HEADER BORDERS (ALL HEADERS)
+   TABLEVIEW
    ================================================= */
+.app-table {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #B7BF9E;
+}
 
 /* Header background */
 .app-table .column-header-background {
@@ -45,10 +133,8 @@
 .app-table .column-header {
     -fx-size: 42px;
     -fx-background-color: transparent;
-
-    /* Header borders */
     -fx-border-color: #8F9B78;
-    -fx-border-width: 1 1 1 1;
+    -fx-border-width: 1;
 }
 
 /* Header text */
@@ -59,25 +145,17 @@
     -fx-alignment: CENTER;
 }
 
-/* =================================================
-   CELL BORDERS (ALL ROWS & COLUMNS)
-   ================================================= */
-
+/* Table cells */
 .app-table .table-cell {
     -fx-padding: 0 10 0 10;
     -fx-font-size: 12px;
     -fx-text-fill: #2E3B2F;
     -fx-alignment: CENTER_LEFT;
-
-    /* Cell borders */
     -fx-border-color: #D0D6C0;
     -fx-border-width: 1;
 }
 
-/* =================================================
-   ROW BACKGROUND (KEEP CLEAN GRID)
-   ================================================= */
-
+/* Row background */
 .app-table .table-row-cell {
     -fx-background-color: #EFEBD8;
     -fx-cell-size: 38px;
@@ -87,6 +165,45 @@
     -fx-background-color: #EFEBD8;
 }
 
+/* Selected row */
 .app-table .table-row-cell:selected {
     -fx-background-color: #faf6ee;
+}
+
+.app-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #2E3B2F;
+    -fx-font-weight: bold;
+}
+
+/* =================================================
+   BARCHART
+   ================================================= */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: #EEF1DD;
+    -fx-background-radius: 15;
+}
+
+.chart-bar {
+    -fx-bar-fill: #7E8C55;
+}
+
+.axis-label {
+    -fx-text-fill: #2E3B2F;
+    -fx-font-size: 12px;
+}
+
+.axis {
+    -fx-tick-label-fill: #2E3B2F;
+}
+
+/* =================================================
+   SEPARATOR
+   ================================================= */
+.separator .line {
+    -fx-border-color: #B7BF9E;
+    -fx-border-width: 1;
 }

@@ -155,7 +155,49 @@ public class PaymentController implements Initializable {
 
     @FXML
     private void updatePayment(){
+        try {
 
+            double teaSalary = Double.parseDouble(txtTeaSalary.getText());
+            double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
+            double finalSalary = teaSalary + expenseSalary;
+            int paymentID  = tableView.getSelectionModel().getSelectedItem().getPaymentId();
+
+//           int paymentId int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date
+            PaymentDTO paymentDTO = new PaymentDTO(paymentID, selectRateid, selectEmpid, selecetEmpName, teaSalary, expenseSalary, finalSalary, selectedMonth, LocalDate.now());
+            boolean result = paymentModel.updatePayment(paymentDTO);
+
+            if (result) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Payment Update Successfully.");
+                alert.show();
+                refreshTable();
+                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Payment Update Successfully.");
+                alert.show();
+            }
+        }catch (Exception e){
+
+        }
+    }
+
+    @FXML
+    private void resetAll(){
+        clearFields();
+    }
+
+    private void clearFields() {
+        cmbTeaRate.setValue(null);
+        cmbEmployee.setValue(null);
+        monthCombo.setValue(null);
+        tableView.getSelectionModel().clearSelection();
+        txtOtherSalary.clear();
+        txtFinalSalary.clear();
+        txtTeaSalary.clear();
+        lblTeaRate.setText("0");
     }
 
     @FXML

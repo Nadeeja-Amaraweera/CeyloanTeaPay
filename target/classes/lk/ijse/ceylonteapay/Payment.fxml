@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,49 +10,79 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.PaymentController">
+<AnchorPane prefHeight="800.0" prefWidth="1250.0" stylesheets="@Payment.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.PaymentController">
 
-   <Label layoutX="502.0" layoutY="28.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Monthly Salary Payment" />
+    <!-- ================= TITLE ================= -->
+    <Label layoutX="480" layoutY="25" styleClass="page-title" text="Monthly Salary Payment" />
 
-   <Label layoutX="370.0" layoutY="119.0" text="Employee" />
-   <ComboBox fx:id="cmbEmployee" layoutX="520.0" layoutY="114.0" prefHeight="26.0" prefWidth="204.0" />
+    <!-- ================= FORM SECTION ================= -->
+    <Pane layoutX="300" layoutY="90" prefHeight="320" prefWidth="650" styleClass="form-pane">
+        <padding>
+            <Insets left="30" right="30" top="20" />
+        </padding>
 
-   <Label layoutX="370.0" layoutY="169.0" text="Month" />
+        <children>
+            <!-- Employee -->
+            <Label text="Employee" />
+            <ComboBox fx:id="cmbEmployee" layoutY="25" prefWidth="260" styleClass="combo-box" />
 
-   <Button layoutX="520.0" layoutY="219.0" onAction="#calculateSalary" text="Calculate Salary" />
+            <!-- Month -->
+            <Label layoutX="330" text="Month" />
+            <ComboBox fx:id="monthCombo" layoutX="330" layoutY="25" prefWidth="200" styleClass="combo-box" />
 
-   <Label layoutX="370.0" layoutY="279.0" text="Tea Salary" />
-   <TextField fx:id="txtTeaSalary" editable="true" layoutX="520.0" layoutY="274.0" />
+            <!-- Calculate -->
+            <Button layoutY="80" onAction="#calculateSalary" prefWidth="200" styleClass="action-button" text="Calculate Salary" />
 
-   <Label layoutX="370.0" layoutY="329.0" text="Other Work Salary" />
-   <TextField fx:id="txtOtherSalary" editable="true" layoutX="520.0" layoutY="324.0" />
+            <!-- Tea Rate -->
+            <Button layoutX="330" layoutY="80" onAction="#openTeaRateWindow" prefWidth="200" styleClass="action-button" text="Manage Tea Rate" />
 
-   <Label layoutX="370.0" layoutY="379.0" text="Final Salary" />
-   <TextField fx:id="txtFinalSalary" editable="true" layoutX="520.0" layoutY="374.0" />
-   <Button layoutX="776.0" layoutY="200.0" mnemonicParsing="false" onAction="#openTeaRateWindow" prefHeight="38.0" prefWidth="138.0" text="Manage Tea Rate" />
-   <ComboBox fx:id="monthCombo" layoutX="520.0" layoutY="165.0" prefHeight="26.0" prefWidth="204.0" />
-   <ComboBox fx:id="cmbTeaRate" layoutX="776.0" layoutY="253.0" prefWidth="150.0" />
-   <Label layoutX="952.0" layoutY="200.0" prefHeight="38.0" prefWidth="70.0" text="Tea Rate :" />
-   <Label fx:id="lblTeaRate" layoutX="1022.0" layoutY="201.0" prefHeight="38.0" prefWidth="70.0" text="0" />
-   <TableView fx:id="tableView" layoutX="5.0" layoutY="480.0" prefHeight="317.0" prefWidth="1233.0">
-     <columns>
-       <TableColumn fx:id="col_id" prefWidth="102.0" text="Paymnet ID" />
-       <TableColumn fx:id="col_rateId" prefWidth="86.0" text="Rate ID" />
-         <TableColumn fx:id="col_empId" prefWidth="118.0" text="Employee ID" />
-         <TableColumn fx:id="col_empName" prefWidth="249.0" text="Employee Name" />
-         <TableColumn fx:id="col_teaSalary" prefWidth="188.0" text="Tea plucking Salary" />
-         <TableColumn fx:id="col_otherSalary" prefWidth="184.0" text="Other Work Salary" />
-         <TableColumn fx:id="col_finalSalary" minWidth="0.0" prefWidth="138.0" text="Final Salary" />
-         <TableColumn fx:id="col_paymentDate" prefWidth="153.0" text="Payment Date" />
-     </columns>
-   </TableView>
-   <Pane layoutX="708.0" layoutY="342.0" prefHeight="116.0" prefWidth="523.0">
-      <children>
-      
-         <Button layoutX="28.0" layoutY="27.0" onAction="#savePayment" prefHeight="44.0" prefWidth="104.0" text="Save Payment" />
-         <Button layoutX="149.0" layoutY="27.0" onAction="#updatePayment" prefHeight="44.0" prefWidth="127.0" text="Update Payment" />
-         <Button layoutX="300.0" layoutY="26.0" onAction="#deletePayment" prefHeight="44.0" prefWidth="127.0" text="Delete Payment" />
-      </children>
-   </Pane>
+            <Label layoutX="330" layoutY="130" text="Tea Rate :" />
+            <Label fx:id="lblTeaRate" layoutX="400" layoutY="130" styleClass="salary-highlight" text="0" />
+
+            <ComboBox fx:id="cmbTeaRate" layoutX="330" layoutY="155" prefWidth="200" styleClass="combo-box" />
+
+            <!-- Salaries -->
+            <Label layoutY="150" text="Tea Salary" />
+            <TextField fx:id="txtTeaSalary" layoutY="175" prefWidth="200" styleClass="text-field" />
+
+            <Label layoutY="215" text="Other Work Salary" />
+            <TextField fx:id="txtOtherSalary" layoutY="240" prefWidth="200" styleClass="text-field" />
+
+            <Label layoutX="330" layoutY="215" text="Final Salary" />
+            <TextField fx:id="txtFinalSalary" layoutX="330" layoutY="240" prefWidth="200" styleClass="salary-highlight" />
+
+        </children>
+    </Pane>
+
+    <!-- ================= ACTION BUTTONS ================= -->
+    <Pane layoutX="300" layoutY="430" prefHeight="90" prefWidth="650" styleClass="button-pane">
+        <children>
+
+            <Button layoutX="20" layoutY="20" onAction="#savePayment" prefWidth="120" styleClass="action-button" text="Save Payment" />
+
+            <Button layoutX="160" layoutY="20" onAction="#updatePayment" prefWidth="130" styleClass="action-button" text="Update Payment" />
+
+            <Button layoutX="320" layoutY="20" onAction="#deletePayment" prefWidth="130" styleClass="action-button" text="Delete Payment" />
+
+            <Button layoutX="480" layoutY="20" onAction="#resetAll" prefWidth="120" styleClass="action-button" text="Reset All" />
+
+        </children>
+    </Pane>
+
+    <!-- ================= TABLE ================= -->
+    <TableView fx:id="tableView" layoutX="-1.0" layoutY="540" prefHeight="259.0" prefWidth="1250.0" styleClass="app-table">
+
+        <columns>
+            <TableColumn fx:id="col_id" prefWidth="100" text="Payment ID" />
+            <TableColumn fx:id="col_rateId" prefWidth="90" text="Rate ID" />
+            <TableColumn fx:id="col_empId" prefWidth="120" text="Employee ID" />
+            <TableColumn fx:id="col_empName" prefWidth="250" text="Employee Name" />
+            <TableColumn fx:id="col_teaSalary" prefWidth="180" text="Tea Salary" />
+            <TableColumn fx:id="col_otherSalary" prefWidth="180" text="Other Salary" />
+            <TableColumn fx:id="col_finalSalary" prefWidth="130" text="Final Salary" />
+            <TableColumn fx:id="col_paymentDate" prefWidth="192.0" text="Payment Date" />
+        </columns>
+
+    </TableView>
 
 </AnchorPane>
