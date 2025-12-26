@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -38,7 +39,7 @@
                   <Image url="@images/tea-plantation-in-the-highlands-of-sri-lanka-free-photo-crop.jpeg" />
                </image>
             </ImageView>
-            <Label layoutX="559.0" layoutY="43.0" styleClass="income-label" text="Income" textFill="WHITE">
+            <Label layoutX="559.0" layoutY="20.0" styleClass="income-label" text="Income" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -47,7 +48,7 @@
       </Pane>
 
       <!-- ================= STOCK BAR CHART ================= -->
-      <Pane layoutX="10.0" layoutY="160.0" prefHeight="330.0" prefWidth="420.0" styleClass="chart-pane">
+      <Pane layoutX="13.0" layoutY="88.0" prefHeight="285.0" prefWidth="420.0" styleClass="chart-pane">
          <children>
             <Label layoutX="155.0" layoutY="15.0" text="Stock Chart">
                <font>
@@ -55,7 +56,7 @@
                </font>
             </Label>
 
-            <BarChart fx:id="stockBarChart" layoutY="50.0" prefHeight="260.0" prefWidth="420.0" styleClass="chart">
+            <BarChart fx:id="stockBarChart" layoutY="50.0" prefHeight="231.0" prefWidth="414.0" styleClass="chart">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -67,53 +68,50 @@
       </Pane>
 
       <!-- ================= INCOME FORM ================= -->
-      <Pane layoutX="450.0" layoutY="160.0" prefHeight="330.0" prefWidth="780.0" styleClass="form-pane">
+      <Pane layoutX="453.0" layoutY="89.0" prefHeight="285.0" prefWidth="780.0" styleClass="form-pane">
          <padding>
             <Insets left="20" right="20" top="15" />
          </padding>
 
          <children>
 
-            <!-- Selection -->
-            <Label layoutX="4.0" text="Employee" />
-            <ComboBox fx:id="cmbEmployee" layoutX="12.0" layoutY="29.0" prefWidth="230" promptText="Select Employee" />
+            <Label layoutX="19.0" layoutY="11.0" text="Month" />
+            <ComboBox fx:id="cmbMonth" layoutX="25.0" layoutY="40.0" prefHeight="44.0" prefWidth="160" promptText="Month" />
 
-            <Label layoutX="260" text="Month" />
-            <ComboBox fx:id="cmbMonth" layoutX="266.0" layoutY="29.0" prefWidth="160" promptText="Month" />
-
-            <Label layoutX="464.0" text="Year" />
-            <ComboBox fx:id="cmbYear" layoutX="464.0" layoutY="29.0" prefWidth="120" promptText="Year" />
+            <Label layoutX="223.0" layoutY="11.0" text="Year" />
+            <ComboBox fx:id="cmbYear" layoutX="223.0" layoutY="40.0" prefHeight="44.0" prefWidth="160.0" promptText="Year" />
 
             <!-- Salary Breakdown -->
-            <Label layoutX="6.0" layoutY="80.0" text="Tea Salary" />
-            <TextField fx:id="txtTeaSalary" editable="false" layoutX="15.0" layoutY="105.0" prefWidth="200" />
+            <Label layoutX="15.0" layoutY="90.0" text="Tea Salary" />
+            <TextField fx:id="txtTeaSalary" editable="false" layoutX="24.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
-            <Label layoutX="231.0" layoutY="80.0" text="Other Work Salary" />
-            <TextField fx:id="txtOtherWorkSalary" editable="false" layoutX="240.0" layoutY="105.0" prefWidth="200" />
+            <Label layoutX="240.0" layoutY="90.0" text="Other Work Salary" />
+            <TextField fx:id="txtOtherWorkSalary" editable="false" layoutX="249.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
-            <Label layoutX="461.0" layoutY="80.0" text="Past Month Income" />
-            <TextField fx:id="txtPastMonthIncome" layoutX="470.0" layoutY="105.0" prefWidth="200" />
+            <Label layoutX="470.0" layoutY="90.0" text="This Month Income" />
+            <TextField fx:id="txtPastMonthIncome" layoutX="479.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
-            <Separator layoutY="157.0" prefHeight="14.0" prefWidth="780.0" />
+            <Separator layoutY="160.0" prefHeight="14.0" prefWidth="780.0" />
 
-            <Label layoutX="19.0" layoutY="188.0" text="Final Income" />
-            <TextField fx:id="txtFinalIncome" editable="false" layoutX="28.0" layoutY="213.0" prefWidth="250" style="-fx-font-size:16; -fx-font-weight:bold;" />
+            <Label layoutX="24.0" layoutY="191.0" text="Final Income" />
+            <TextField fx:id="txtFinalIncome" editable="false" layoutX="33.0" layoutY="218.0" prefHeight="44.0" prefWidth="250" style="-fx-font-size:16; -fx-font-weight:bold;" />
 
             <!-- Buttons -->
-            <Button layoutX="319.0" layoutY="213.0" styleClass="action-button" text="Calculate" />
+            <Button layoutX="324.0" layoutY="216.0" prefHeight="44.0" prefWidth="104.0" styleClass="action-button" text="Calculate" />
 <!--                    onAction="#calculateIncome"/>-->
 
-            <Button layoutX="429.0" layoutY="213.0" styleClass="action-button" text="Save Income" />
+            <Button layoutX="444.0" layoutY="216.0" prefHeight="44.0" prefWidth="140.0" styleClass="action-button" text="Save Income" />
 <!--                    onAction="#saveIncome"/> -->
 
-            <Button layoutX="559.0" layoutY="213.0" styleClass="action-button" text="Clear" />
-            <Separator layoutY="161.0" prefHeight="14.0" prefWidth="780.0" />
+            <Button layoutX="598.0" layoutY="216.0" prefHeight="44.0" prefWidth="87.0" styleClass="action-button" text="Clear" />
+            <Separator layoutY="164.0" prefHeight="14.0" prefWidth="780.0" />
+            <Button layoutX="424.0" layoutY="40.0" prefHeight="34.0" prefWidth="140.0" styleClass="action-button" text="Get Pay Salary" />
 <!--                    onAction="#clearForm"/>-->
          </children>
       </Pane>
 
       <!-- ================= INCOME TABLE ================= -->
-      <Pane layoutX="10.0" layoutY="510.0" prefHeight="270.0" prefWidth="1230.0" styleClass="table-pane">
+      <Pane layoutX="10.0" layoutY="384.0" prefHeight="410.0" prefWidth="735.0" styleClass="table-pane">
          <children>
             <Label layoutX="20" layoutY="10" text="Income History">
                <font>
@@ -121,17 +119,33 @@
                </font>
             </Label>
 
-            <TableView fx:id="tblIncome" layoutX="10" layoutY="40" prefHeight="220" prefWidth="1210">
+            <TableView fx:id="tblIncome" layoutX="10" layoutY="40" prefHeight="357.0" prefWidth="717.0">
 
                <columns>
-                  <TableColumn fx:id="colIncomeId" prefWidth="100" text="Income ID" />
-                  <TableColumn fx:id="colPaymentId" prefWidth="120" text="Payment ID" />
-                  <TableColumn fx:id="colEmployee" prefWidth="200" text="Employee" />
-                  <TableColumn fx:id="colMonth" prefWidth="120" text="Month" />
-                  <TableColumn fx:id="colYear" prefWidth="100" text="Year" />
-                  <TableColumn fx:id="colAmount" prefWidth="160" text="Final Amount" />
+                  <TableColumn fx:id="colIncomeId" prefWidth="91.0" text="Income ID" />
+                  <TableColumn fx:id="colPaymentId" prefWidth="127.0" text="Payment ID" />
+                  <TableColumn fx:id="colMonth" prefWidth="176.0" text="Month" />
+                  <TableColumn fx:id="colYear" prefWidth="125.0" text="Year" />
+                  <TableColumn fx:id="colAmount" prefWidth="198.0" text="Final Amount" />
                </columns>
             </TableView>
+         </children>
+      </Pane>
+      <Pane layoutX="753.0" layoutY="384.0" prefHeight="410.0" prefWidth="493.0" styleClass="chart-pane">
+         <children>
+            <Label layoutX="192.0" layoutY="7.0" text="Income Chart">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <LineChart layoutX="-1.0" layoutY="44.0" prefHeight="357.0" prefWidth="493.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
          </children>
       </Pane>
 

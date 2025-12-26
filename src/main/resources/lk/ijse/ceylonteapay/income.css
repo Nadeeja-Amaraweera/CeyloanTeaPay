@@ -25,7 +25,7 @@
 }
 
 .chart-pane {
-    -fx-background-color: #CFD6AA;
+    -fx-background-color: #E8E7D9;
     -fx-background-radius: 25;
     -fx-text-fill: #143403;
     -fx-font-size: 14px;
@@ -188,7 +188,7 @@
 }
 
 .chart-bar {
-    -fx-bar-fill: #7E8C55;
+    -fx-bar-fill: #96d829;
 }
 
 .axis-label {
