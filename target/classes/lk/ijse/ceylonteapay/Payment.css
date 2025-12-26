@@ -17,9 +17,9 @@
 
 /* Main page title */
 .page-title {
-    -fx-font-size: 22px;
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
-    -fx-text-fill: #143403;
+    -fx-text-fill: #ffffff;
 }
 
 /* =================================================
@@ -173,4 +173,10 @@
     -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-text-fill: #143403;
+}
+
+.form-pane{
+    -fx-background-color:  #C9E2AB;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6,0.3, 4, 4);
 }

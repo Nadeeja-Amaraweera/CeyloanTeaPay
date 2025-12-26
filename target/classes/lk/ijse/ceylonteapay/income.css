@@ -207,3 +207,8 @@
     -fx-border-color: #B7BF9E;
     -fx-border-width: 1;
 }
+
+.income-label{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 30px;
+}
