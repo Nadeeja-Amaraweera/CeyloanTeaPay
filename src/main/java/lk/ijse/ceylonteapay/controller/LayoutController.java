@@ -22,7 +22,6 @@ public class LayoutController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-
     @FXML
     private void clickTeaPlucking()throws IOException {
         Parent teaFXML = App.loadFXML("DailyTea");
@@ -35,7 +34,6 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickOtherWork()throws IOException{
         Parent teaFXML = App.loadFXML("OtherWork");
@@ -48,7 +46,6 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickEmployee()throws IOException{
         Parent teaFXML = App.loadFXML("Employee");
@@ -61,7 +58,6 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickAreas()throws IOException{
         Parent teaFXML = App.loadFXML("Land");
@@ -74,7 +70,6 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickFactories()throws IOException{
         Parent teaFXML = App.loadFXML("Factory");
@@ -87,7 +82,6 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickStock()throws IOException{
         Parent teaFXML = App.loadFXML("Stock");
@@ -100,7 +94,6 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickDelivery()throws IOException{
         Parent teaFXML = App.loadFXML("DeliveryTea");
@@ -113,21 +106,15 @@ public class LayoutController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
-
     @FXML
     private void clickIncome()throws IOException{
         Parent teaFXML = App.loadFXML("Icome");
         mainContent.getChildren().setAll(teaFXML);
 
     }
-
     @FXML
     private void clickPayment()throws IOException{
         Parent teaFXML = App.loadFXML("Payment");
         mainContent.getChildren().setAll(teaFXML);
     }
-
-
-
-    
 }
