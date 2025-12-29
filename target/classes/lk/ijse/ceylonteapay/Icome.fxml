@@ -89,15 +89,15 @@
             <TextField fx:id="txtOtherWorkSalary" editable="false" layoutX="249.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
             <Label layoutX="470.0" layoutY="90.0" text="This Month Income" />
-            <TextField layoutX="479.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
+            <TextField fx:id="txtThisMonthIncome" layoutX="479.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
             <Separator layoutY="160.0" prefHeight="14.0" prefWidth="780.0" />
 
             <Label layoutX="24.0" layoutY="191.0" text="Final Income" />
-            <TextField editable="false" layoutX="33.0" layoutY="218.0" prefHeight="44.0" prefWidth="250" style="-fx-font-size:16; -fx-font-weight:bold;" />
+            <TextField fx:id="txtFinalIncome" editable="false" layoutX="33.0" layoutY="218.0" prefHeight="44.0" prefWidth="250" style="-fx-font-size:16; -fx-font-weight:bold;" />
 
             <!-- Buttons -->
-            <Button layoutX="324.0" layoutY="216.0" prefHeight="44.0" prefWidth="104.0" styleClass="action-button" text="Calculate" />
+            <Button layoutX="324.0" layoutY="216.0" onAction="#calculateFinalIncome" prefHeight="44.0" prefWidth="104.0" styleClass="action-button" text="Calculate" />
 <!--                    onAction="#calculateIncome"/>-->
 
             <Button layoutX="444.0" layoutY="216.0" onAction="#savePayment" prefHeight="44.0" prefWidth="140.0" styleClass="action-button" text="Save Income" />

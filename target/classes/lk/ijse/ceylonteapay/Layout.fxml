@@ -39,6 +39,10 @@
 
                         <Button onAction="#clickOtherWork" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Other Works" />
 
+                        <Button onAction="#clickDelivery" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Tea Delivery" />
+                  <Button onAction="#clickPayment" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Payment" />
+                  <Button onAction="#clickIncome" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Income" />
+
                         <Button onAction="#clickStock" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Stock Manage" />
 
                         <Button onAction="#clickEmployee" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Employee Manage" />
@@ -46,10 +50,6 @@
                         <Button onAction="#clickAreas" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Areas Manage" />
 
                         <Button onAction="#clickFactories" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Factory Manage" />
-
-                        <Button onAction="#clickDelivery" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Tea Delivery" />
-                  <Button onAction="#clickIncome" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Income" />
-                  <Button onAction="#clickPayment" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Payment" />
                     </children>
                 </VBox>
             </left>
