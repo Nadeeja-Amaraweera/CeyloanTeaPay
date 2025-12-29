@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.dto.IncomeDTO;
+import lk.ijse.ceylonteapay.dto.PaymentDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 
 import java.sql.Connection;
@@ -36,6 +37,27 @@ public class IncomeModel {
             return new IncomeDTO(allTeaSalary,allOtherWorkSalary);
         }
         return new IncomeDTO(0,0);
+    }
+
+    public boolean savePayment(IncomeDTO incomeDTO)throws Exception{
+        DBConnection dbc = DBConnection.getInstance();
+        Connection conn = dbc.getConnection();
+
+        String sql = "INSERT INTO Income (paymentId, month, year, teaSalary, otherWorkSalary, thisMonthIncome, finalIncome) VALUES (?, ?, ?, ?, ?, ?, ?) ";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1,incomeDTO.getPaymentId());
+        pstm.setString(2,incomeDTO.getMonth());
+        pstm.setInt(3,incomeDTO.getYear());
+        pstm.setDouble(4,incomeDTO.getTeaSalary());
+        pstm.setDouble(5,incomeDTO.getOtherWorkSalary());
+        pstm.setDouble(6,incomeDTO.getThisMonthIncome());
+        pstm.setDouble(7,incomeDTO.getFinalIncome());
+
+        int result = pstm.executeUpdate();
+
+        return result>0 ;
+
     }
 
 }
