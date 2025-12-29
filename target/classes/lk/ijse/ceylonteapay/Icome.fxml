@@ -83,10 +83,10 @@
 
             <!-- Salary Breakdown -->
             <Label layoutX="15.0" layoutY="90.0" text="Tea Salary" />
-            <TextField editable="false" layoutX="24.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
+            <TextField fx:id="txtTeaSalaryField" editable="false" layoutX="24.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
             <Label layoutX="240.0" layoutY="90.0" text="Other Work Salary" />
-            <TextField editable="false" layoutX="249.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
+            <TextField fx:id="txtOtherWorkSalary" editable="false" layoutX="249.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
 
             <Label layoutX="470.0" layoutY="90.0" text="This Month Income" />
             <TextField layoutX="479.0" layoutY="115.0" prefHeight="34.0" prefWidth="200" />
@@ -100,12 +100,12 @@
             <Button layoutX="324.0" layoutY="216.0" prefHeight="44.0" prefWidth="104.0" styleClass="action-button" text="Calculate" />
 <!--                    onAction="#calculateIncome"/>-->
 
-            <Button layoutX="444.0" layoutY="216.0" prefHeight="44.0" prefWidth="140.0" styleClass="action-button" text="Save Income" />
+            <Button layoutX="444.0" layoutY="216.0" onAction="#savePayment" prefHeight="44.0" prefWidth="140.0" styleClass="action-button" text="Save Income" />
 <!--                    onAction="#saveIncome"/> -->
 
             <Button layoutX="598.0" layoutY="216.0" prefHeight="44.0" prefWidth="87.0" styleClass="action-button" text="Clear" />
             <Separator layoutY="164.0" prefHeight="14.0" prefWidth="780.0" />
-            <Button layoutX="424.0" layoutY="40.0" prefHeight="34.0" prefWidth="140.0" styleClass="action-button" text="Get Pay Salary" />
+            <Button layoutX="424.0" layoutY="40.0" onAction="#getAllSalary" prefHeight="34.0" prefWidth="140.0" styleClass="action-button" text="Get Pay Salary" />
 <!--                    onAction="#clearForm"/>-->
          </children>
       </Pane>

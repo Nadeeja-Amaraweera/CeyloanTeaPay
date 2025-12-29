@@ -1,28 +1,30 @@
 
 package lk.ijse.ceylonteapay.controller;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import lk.ijse.ceylonteapay.dto.IncomeDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
+import lk.ijse.ceylonteapay.model.IncomeModel;
 import lk.ijse.ceylonteapay.model.StockModel;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ResourceBundle;
 
 
 public class IcomeController implements Initializable {
 
     private static StockModel stockModel = new StockModel();
+    private static IncomeModel incomeModel = new IncomeModel();
 
     private String selectedMonth;
     private int selectedYear;
@@ -36,23 +38,41 @@ public class IcomeController implements Initializable {
     @FXML
     private BarChart<String, Number> stockBarChart;
 
+    @FXML
+    private TextField txtTeaSalaryField;
+
+    @FXML
+    private TextField txtOtherWorkSalary;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadMonthAndYears();
         loadStockChart();
-        comboSelections();
-    }
 
-    private void comboSelections() {
-        cmdYears.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (newValue != null){
-//                selectedYear=newValue.
-            }
-        });
     }
 
     @FXML
-    private void getAllSalary(){
+    private void getAllSalary() {
+        try {
+
+
+            int year = cmdYears.getValue();
+            String month = cmdMonths.getValue();
+            int monthNumber = Month.valueOf(month.toUpperCase()).getValue();
+
+            IncomeDTO incomeDTO = incomeModel.getAllTeaSalary(monthNumber,year);
+
+            txtTeaSalaryField.setText(String.valueOf(incomeDTO.getTeaSalary()));
+            txtOtherWorkSalary.setText(String.valueOf(incomeDTO.getOtherWorkSalary()));
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    @FXML
+    private void savePayment() {
+
     }
 
     private void loadMonthAndYears() {
