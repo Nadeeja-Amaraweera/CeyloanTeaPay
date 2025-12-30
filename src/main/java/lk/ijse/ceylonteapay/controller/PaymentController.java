@@ -87,6 +87,8 @@ public class PaymentController implements Initializable {
     private int selectedYear;
     private double selectedTeaRate;
 
+    private final String NUMBER_REGEX = "^[0-9]+(\\.[0-9]+)?$";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployees();
@@ -121,7 +123,7 @@ public class PaymentController implements Initializable {
                 : Double.parseDouble(txtOtherSalary.getText());
 
         // Calculate final salary
-        double finalSalary = teaSalary + otherWorkSalary;
+        double finalSalary = (teaSalary*50) + otherWorkSalary;
 
         // Set final salary
         txtFinalSalary.setText(String.valueOf(finalSalary));
@@ -129,41 +131,88 @@ public class PaymentController implements Initializable {
 
     @FXML
     private void savePayment() {
-        try {
-            double teaSalary = Double.parseDouble(txtTeaSalary.getText());
-            double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
-            double finalSalary = teaSalary + expenseSalary;
+
+        if (cmbEmployee.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Employee").show();
+
+        } else if (monthCombo.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Month").show();
+
+        } else if (cmbTeaRate.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Tea Rate").show();
+
+        } else if (!txtTeaSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Tea Salary").show();
+
+        } else if (!txtFinalSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Final Salary").show();
+
+        } else if (!txtOtherSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Other Work Salary").show();
+
+        } else {
+            try {
+                double teaSalary = Double.parseDouble(txtTeaSalary.getText());
+                double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
+                double finalSalary = teaSalary + expenseSalary;
 
 //            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date
-            PaymentDTO paymentDTO = new PaymentDTO(selectRateid, selectEmpid, selecetEmpName, teaSalary, expenseSalary, finalSalary, selectedMonth, LocalDate.now());
-            boolean result = paymentModel.savePayment(paymentDTO);
+                PaymentDTO paymentDTO = new PaymentDTO(selectRateid, selectEmpid, selecetEmpName, teaSalary, expenseSalary, finalSalary, selectedMonth, LocalDate.now());
+                boolean result = paymentModel.savePayment(paymentDTO);
 
-            if (result) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Payment Successfully.");
-                alert.show();
-                refreshTable();
+                if (result) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Payment Successfully.");
+                    alert.show();
+                    refreshTable();
 //                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Payment Successfully.");
-                alert.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Payment Successfully.");
+                    alert.show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     @FXML
     private void updatePayment() {
+        PaymentDTO selectedID = tableView.getSelectionModel().getSelectedItem();
+
+        if (selectedID == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Row").show();
+
+        } else if (cmbEmployee.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Employee").show();
+
+        } else if (monthCombo.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Month").show();
+
+        } else if (cmbTeaRate.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Tea Rate").show();
+
+        } else if (!txtTeaSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Tea Salary").show();
+
+        } else if (!txtFinalSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Final Salary").show();
+
+        } else if (!txtOtherSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Other Work Salary").show();
+
+        } else {
+
+        }
         try {
 
             double teaSalary = Double.parseDouble(txtTeaSalary.getText());
             double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
             double finalSalary = teaSalary + expenseSalary;
-            PaymentDTO selectedID = tableView.getSelectionModel().getSelectedItem();
+
 
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm Update");
@@ -222,50 +271,54 @@ public class PaymentController implements Initializable {
     private void deletePayment() {
         PaymentDTO selectTableItem = tableView.getSelectionModel().getSelectedItem();
 
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Confirm Delete");
-        confirmAlert.setHeaderText("Delete Payment Record");
-        confirmAlert.setContentText(
-                "Are you sure you want to delete Employee Name: "
-                        + selectTableItem.getEmployeeName() + " ?");
+        if (selectTableItem == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Row").show();
 
-        Optional<ButtonType> confirm = confirmAlert.showAndWait();
+        } else {
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Delete");
+            confirmAlert.setHeaderText("Delete Payment Record");
+            confirmAlert.setContentText(
+                    "Are you sure you want to delete Employee Name: "
+                            + selectTableItem.getEmployeeName() + " ?");
 
-        if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
-            try {
-                int id = selectTableItem.getPaymentId();
-                DBConnection dbc = DBConnection.getInstance();
-                Connection conn = dbc.getConnection();
+            Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-                String sql = "DELETE FROM Payment WHERE paymentId = ?";
-                PreparedStatement pstm = conn.prepareStatement(sql);
+            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                try {
+                    int id = selectTableItem.getPaymentId();
+                    DBConnection dbc = DBConnection.getInstance();
+                    Connection conn = dbc.getConnection();
 
-                System.out.println(selectTableItem);
+                    String sql = "DELETE FROM Payment WHERE paymentId = ?";
+                    PreparedStatement pstm = conn.prepareStatement(sql);
 
-                pstm.setInt(1, id);
+                    System.out.println(selectTableItem);
 
-                int result = pstm.executeUpdate();
+                    pstm.setInt(1, id);
 
-                if (result > 0) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Delete Successfully.");
-                    alert.show();
-                    refreshTable();
+                    int result = pstm.executeUpdate();
+
+                    if (result > 0) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Delete Successfully.");
+                        alert.show();
+                        refreshTable();
 //                clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Delete Successfully.");
-                    alert.show();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Delete Successfully.");
+                        alert.show();
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
-
 
     }
 

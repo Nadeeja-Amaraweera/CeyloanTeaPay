@@ -31,7 +31,7 @@ public class IcomeController implements Initializable {
 
     ObservableList<IncomeDTO> incomeDTOObservableList = FXCollections.observableArrayList();
 
-    private final String THIS_MONTH_SALARY = "^-?\\d+$";
+
 
     @FXML
     private ComboBox<Integer> cmdYears;
@@ -75,6 +75,8 @@ public class IcomeController implements Initializable {
 
     @FXML
     private TableColumn<IncomeDTO,Double> colAmount;
+
+    private final String NUMBER_REGEX = "^[0-9]+(\\.[0-9]+)?$";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -127,8 +129,14 @@ public class IcomeController implements Initializable {
 
         String thisMonthSalary = txtThisMonthIncome.getText();
 
-        if (!thisMonthSalary.matches(THIS_MONTH_SALARY)){
-            new Alert(Alert.AlertType.ERROR,"Monthly Income is Empty !").show();
+        if (!thisMonthSalary.matches(NUMBER_REGEX)){
+            new Alert(Alert.AlertType.ERROR,"Monthly Income is Invalid !").show();
+        } else if (txtTeaSalaryField.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR,"Tea Salary is Invalid !").show();
+
+        } else if (txtOtherWorkSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR,"Other Work Salary is Invalid !").show();
+
         } else {
 
             double totalTeaSalary = Double.parseDouble(txtTeaSalaryField.getText());
@@ -146,85 +154,113 @@ public class IcomeController implements Initializable {
 
     @FXML
     private void savePayment() {
-        try {
 
-            String month = cmdMonths.getValue();
-            int year = cmdYears.getValue();
-            double teaSalary = Double.parseDouble(txtTeaSalaryField.getText());
-            double otherWorkSalary = Double.parseDouble(txtOtherWorkSalary.getText());
-            double monthlyIncome = Double.parseDouble(txtThisMonthIncome.getText());
-            double finalIncome = Double.parseDouble(txtFinalIncome.getText());
+        if (cmdMonths.getValue()==null){
+            new Alert(Alert.AlertType.ERROR, "Select Months").show();
 
-            IncomeDTO incomeDTO = new IncomeDTO(month, year, teaSalary, otherWorkSalary, monthlyIncome, finalIncome);
-            boolean result = incomeModel.savePayment(incomeDTO);
+        } else if (cmdYears.getValue()==null) {
+            new Alert(Alert.AlertType.ERROR, "Select Years").show();
 
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Field Added Successfully.");
-                alert.show();
-                refreshTable();
+        } else if (!txtTeaSalaryField.getText().trim().matches(NUMBER_REGEX)){
+            new Alert(Alert.AlertType.ERROR, "Invalid Tea Salary").show();
+
+        } else if (!txtOtherWorkSalary.getText().trim().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Other Work Salary").show();
+
+        } else if (!txtThisMonthIncome.getText().trim().matches(NUMBER_REGEX)){
+            new Alert(Alert.AlertType.ERROR, "Invalid Monthly Income").show();
+
+        } else if (!txtThisMonthIncome.getText().trim().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Final Income").show();
+
+        } else {
+            try {
+
+                String month = cmdMonths.getValue();
+                int year = cmdYears.getValue();
+                double teaSalary = Double.parseDouble(txtTeaSalaryField.getText());
+                double otherWorkSalary = Double.parseDouble(txtOtherWorkSalary.getText());
+                double monthlyIncome = Double.parseDouble(txtThisMonthIncome.getText());
+                double finalIncome = Double.parseDouble(txtFinalIncome.getText());
+
+                IncomeDTO incomeDTO = new IncomeDTO(month, year, teaSalary, otherWorkSalary, monthlyIncome, finalIncome);
+                boolean result = incomeModel.savePayment(incomeDTO);
+
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Field Added Successfully.");
+                    alert.show();
+                    refreshTable();
 
 //                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Field Added Not Successfully.");
-                alert.show();
-            }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Field Added Not Successfully.");
+                    alert.show();
+                }
 
-        }catch (Exception e){
-            e.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
     }
 
     @FXML
     private void deleteIncome(){
-        try {
-            IncomeDTO selectedIncome = tableView.getSelectionModel().getSelectedItem();
+        IncomeDTO selectedIncome = tableView.getSelectionModel().getSelectedItem();
 
-            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmAlert.setTitle("Confirm Delete");
-            confirmAlert.setHeaderText("Delete Income Record");
-            confirmAlert.setContentText(
-                    "Are you sure you want to delete Income ID: "
-                            + selectedIncome.getIncomeId() + " ?");
+        if (selectedIncome==null){
+            new Alert(Alert.AlertType.ERROR, "Select Row").show();
 
-            Optional<ButtonType> confirm = confirmAlert.showAndWait();
+        } else {
+            try {
+                Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmAlert.setTitle("Confirm Delete");
+                confirmAlert.setHeaderText("Delete Income Record");
+                confirmAlert.setContentText(
+                        "Are you sure you want to delete Income ID: "
+                                + selectedIncome.getIncomeId() + " ?");
 
-            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
-                if (selectedIncome == null) {
-                    new Alert(Alert.AlertType.WARNING,
-                            "Please select an income record first!").show();
-                } else {
-                    int id = selectedIncome.getIncomeId();
-                    boolean result = incomeModel.deleteIncome(id);
+                Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-                    if (result){
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Success !");
-                        alert.setHeaderText("Field Deleted Successfully.");
-                        alert.show();
-                        refreshTable();
+                if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                    if (selectedIncome == null) {
+                        new Alert(Alert.AlertType.WARNING,
+                                "Please select an income record first!").show();
+                    } else {
+                        int id = selectedIncome.getIncomeId();
+                        boolean result = incomeModel.deleteIncome(id);
+
+                        if (result){
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Success !");
+                            alert.setHeaderText("Field Deleted Successfully.");
+                            alert.show();
+                            refreshTable();
 
 //                clearFields();
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error !");
-                        alert.setHeaderText("Field Deleted Not Successfully.");
-                        alert.show();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Error !");
+                            alert.setHeaderText("Field Deleted Not Successfully.");
+                            alert.show();
+                        }
                     }
                 }
+
+
+            }catch (Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Field Deleted Not Successfully.");
+                alert.show();
+                e.printStackTrace();
             }
-
-
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error !");
-            alert.setHeaderText("Field Deleted Not Successfully.");
-            alert.show();
-            e.printStackTrace();
         }
+
     }
 
     private void refreshTable() {
