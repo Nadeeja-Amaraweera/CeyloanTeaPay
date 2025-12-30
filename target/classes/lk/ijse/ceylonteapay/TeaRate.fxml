@@ -45,19 +45,20 @@
 
       <!-- Buttons -->
       <Button layoutX="121.0" layoutY="260.0" mnemonicParsing="false" onAction="#addRate" prefHeight="40.0" prefWidth="180.0" text="Add Rate" />
-      <Button layoutX="500.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Clear Fields" />
+      <Button layoutX="500.0" layoutY="260.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="40.0" prefWidth="180.0" text="Clear Fields" />
 
       <!-- TableView for displaying rates -->
       <TableView fx:id="teaRateTable" layoutX="50.0" layoutY="320.0" prefHeight="250.0" prefWidth="700.0">
          <columns>
-            <TableColumn fx:id="colMonth" prefWidth="150.0" text="Month" />
-            <TableColumn fx:id="colYear" prefWidth="150.0" text="Year" />
-            <TableColumn fx:id="colRate" prefWidth="150.0" text="Rate" />
+            <TableColumn fx:id="colId" prefWidth="130.0" text="ID" />
+            <TableColumn fx:id="colMonth" prefWidth="152.0" text="Month" />
+            <TableColumn fx:id="colYear" prefWidth="209.0" text="Year" />
+            <TableColumn fx:id="colRate" prefWidth="208.0" text="Rate" />
          </columns>
       </TableView>
 
       <!-- Optional summary label -->
       <Label fx:id="lblSummary" layoutX="50.0" layoutY="580.0" prefHeight="20.0" prefWidth="700.0" style="-fx-font-size: 16px; -fx-text-fill: #333333;" text="" />
-      <Button layoutX="310.0" layoutY="260.0" mnemonicParsing="false" onAction="#addRate" prefHeight="40.0" prefWidth="180.0" text="Delete Rate" />
+      <Button layoutX="310.0" layoutY="260.0" mnemonicParsing="false" onAction="#deleteRate" prefHeight="40.0" prefWidth="180.0" text="Delete Rate" />
    </children>
 </AnchorPane>
