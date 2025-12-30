@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="delivery" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4b690e6e-7ee8-430e-a95f-4c5c4a8ed922">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MYSQL-CEYLONTEAPAY"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM DeliveryTea]]>
+	</queryString>
+	<field name="deliveryId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="deliveryId"/>
+		<property name="com.jaspersoft.studio.field.label" value="deliveryId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="DeliveryTea"/>
+	</field>
+	<field name="deliveryFactoryId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="deliveryFactoryId"/>
+		<property name="com.jaspersoft.studio.field.label" value="deliveryFactoryId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="DeliveryTea"/>
+	</field>
+	<field name="deliveryFactoryName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="deliveryFactoryName"/>
+		<property name="com.jaspersoft.studio.field.label" value="deliveryFactoryName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="DeliveryTea"/>
+	</field>
+	<field name="StockId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="StockId"/>
+		<property name="com.jaspersoft.studio.field.label" value="StockId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="DeliveryTea"/>
+	</field>
+	<field name="deliveryQty" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="deliveryQty"/>
+		<property name="com.jaspersoft.studio.field.label" value="deliveryQty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="DeliveryTea"/>
+	</field>
+	<field name="deliveryDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="deliveryDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="deliveryDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="DeliveryTea"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="227" y="4" width="100" height="25" forecolor="#027018" uuid="76b3132f-dfa7-4b4d-9afc-e7e801acd7ba">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delivery Tea]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="213" y="2" width="128" height="18" uuid="5b57c088-e0c5-4f22-b571-e5d12808d73b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ceylon Tea Pay PLC]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="46" y="10" width="74" height="20" uuid="eacf4a4a-11c5-4a7c-ac58-3e5ceafbbacd"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="10" width="92" height="20" uuid="3ee72cbb-f111-4086-8c45-11c73b6e7cd5"/>
+				<text><![CDATA[Factory Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="212" y="10" width="92" height="20" uuid="29d0e5c2-2dfc-4a97-ae40-c4e2fc76c2be"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[StockId]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="10" width="92" height="20" uuid="685d5fa1-1a61-4d17-90c8-30b1aa825e29"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Delivery QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="10" width="92" height="20" uuid="50916c11-bf75-4164-a8c6-007da281d800"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Delivery Date]]></text>
+			</staticText>
+			<line>
+				<reportElement x="46" y="32" width="442" height="1" uuid="0cf4c5d4-52fa-4d4f-aef1-27f168945600">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="47" y="2" width="72" height="18" uuid="cc57989d-a2f9-4a1c-853d-009884eac27b"/>
+				<textFieldExpression><![CDATA[$F{deliveryId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="2" width="92" height="18" uuid="55c3ef32-4aaf-4ec4-bc0c-2bf06ff7e9c7"/>
+				<textFieldExpression><![CDATA[$F{deliveryFactoryName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="2" width="92" height="18" uuid="03ae8393-6925-4159-b3c3-a4b033cdb07e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StockId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="2" width="92" height="18" uuid="6b980729-13b5-42aa-88f1-7d57d7afacce"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{deliveryQty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="2" width="92" height="18" uuid="5cbc7de4-a2c6-475d-9d69-bd92ac6d1e34"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{deliveryDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -178,6 +178,21 @@ public class DeliveryTeaController implements Initializable {
         }
     }
 
+    @FXML
+    private void handlePrint(){
+        try {
+            deliveryTeaModel.printDeliveryTea();
+        } catch (Exception e) {
+            e.printStackTrace(); // keep this
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Report Error");
+            alert.setHeaderText("Unable to generate Customer Report");
+            alert.setContentText(e.getMessage()); // 👈 shows real cause
+            alert.show();
+        }
+    }
+
     private void refreshStockTable() {
         stockDTOObservableList.clear();
         stockDTOObservableList.addAll(loadStockTable());

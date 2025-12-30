@@ -6,10 +6,18 @@ import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.dto.DeliveryCartTM;
 import lk.ijse.ceylonteapay.dto.FactoryDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DeliveryTeaModel {
 
@@ -113,5 +121,29 @@ public class DeliveryTeaModel {
             } finally {
                 con.setAutoCommit(true);
             }
+    }
+
+    public void printDeliveryTea(){
+        try {
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            InputStream reportObject = getClass().getResourceAsStream("/lk/ijse/ceylonteapay/reports/delivery.jrxml");
+
+            if (reportObject == null) {
+                throw new RuntimeException("❌ customer.jrxml NOT FOUND");
+            }
+
+            JasperReport jr  = JasperCompileManager.compileReport(reportObject); // this is method throws JRException
+
+            Map<String,Object> params = new HashMap<>();
+//            params.put("ORDER_ID",orderId);
+
+            JasperPrint jp = JasperFillManager.fillReport(jr , null , conn); // fill report (jasperreport, params ,connection)
+
+            JasperViewer.viewReport(jp,false);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -215,6 +215,11 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#handlePrint" prefHeight="34.0" prefWidth="78.0" styleClass="action-button" text="Print" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button onAction="#placeOrder" prefHeight="47.0" prefWidth="201.0" styleClass="app-btn-primary" text="Place Order">
                      <font>
                         <Font size="16.0" />

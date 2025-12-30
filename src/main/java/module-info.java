@@ -7,6 +7,7 @@ module lk.ijse.ceylonteapay {
     requires javafx.base;
     requires javafx.graphics;
     requires jakarta.mail;
+    requires jasperreports;
 //    requires lk.ijse.ceylonteapay;
 //    requires lk.ijse.ceylonteapay;
 //    requires lk.ijse.ceylonteapay;
