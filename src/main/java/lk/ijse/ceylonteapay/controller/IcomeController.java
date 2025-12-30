@@ -131,10 +131,10 @@ public class IcomeController implements Initializable {
 
         if (!thisMonthSalary.matches(NUMBER_REGEX)){
             new Alert(Alert.AlertType.ERROR,"Monthly Income is Invalid !").show();
-        } else if (txtTeaSalaryField.getText().matches(NUMBER_REGEX)) {
+        } else if (!txtTeaSalaryField.getText().matches(NUMBER_REGEX)) {
             new Alert(Alert.AlertType.ERROR,"Tea Salary is Invalid !").show();
 
-        } else if (txtOtherWorkSalary.getText().matches(NUMBER_REGEX)) {
+        } else if (!txtOtherWorkSalary.getText().matches(NUMBER_REGEX)) {
             new Alert(Alert.AlertType.ERROR,"Other Work Salary is Invalid !").show();
 
         } else {
