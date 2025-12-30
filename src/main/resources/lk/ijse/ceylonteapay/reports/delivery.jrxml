@@ -125,12 +125,25 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="1" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="41" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="186" y="24" width="182" height="20" uuid="10f89243-58a0-4bac-b8b5-a1ad49e0a353"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Developed By Nadeeja Amaraweera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="1" width="100" height="20" uuid="7280b7d3-9fcd-4729-a714-0bfef1afef10"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Thank You !]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>
