@@ -67,6 +67,12 @@ public class OtherWorkController implements Initializable {
     private int selectedLandId = -1;
     private String selectedAreaName = "";
 
+    private final String STRING_ONLY_REGEX = "^[A-Za-z ]+$";
+    private final String NUMBER_REGEX = "^[0-9]+(\\.[0-9]+)?$";
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployeeIds();
@@ -128,11 +134,22 @@ public class OtherWorkController implements Initializable {
     @FXML
     private void addFields() {
 
-        try {
-            if (validation()) {
-                LocalDate date = txtDate.getValue();
-                String details = txtDetails.getText();
-                double salary = Double.parseDouble(txtSalary.getText());
+        LocalDate date = txtDate.getValue();
+        String details = txtDetails.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+
+        if (cmbEmployeeIds.getValue()==null){
+            new Alert(Alert.AlertType.ERROR,"Select Employee").show();
+        } else if (cmbLandIds.getValue()==null) {
+            new Alert(Alert.AlertType.ERROR,"Enter Area").show();
+        } else if (details.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Enter Details").show();
+        } else if (!txtSalary.getText().matches(NUMBER_REGEX)) {
+            new Alert(Alert.AlertType.ERROR,"Invalid Salary").show();
+        } else if (txtDate.getValue()==null) {
+            new Alert(Alert.AlertType.ERROR,"Invalid Date").show();
+        } else {
+            try {
 
                 OtherWorkDTO otherWorkDTO = new OtherWorkDTO(selectedEmpId, selectedLandId, date, details, salary);
                 boolean result = otherWorkModel.addWorkField(otherWorkDTO);
@@ -150,35 +167,50 @@ public class OtherWorkController implements Initializable {
                     alert.setHeaderText("Employee Added Not Successfully.");
                     alert.show();
                 }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
     }
 
     @FXML
     private void updateField() {
-        try {
-            int workId = Integer.parseInt(txtWorkID.getText());
-            LocalDate date = txtDate.getValue();
-            String details = txtDetails.getText();
-            double salary = Double.parseDouble(txtSalary.getText());
+        OtherWorkDTO selectedItem = tableView.getSelectionModel().getSelectedItem();
 
-            if (!txtWorkID.getText().isEmpty()) {
+        if (selectedItem==null){
+            new Alert(Alert.AlertType.ERROR,"Select Row").show();
+        } else {
 
-                if (validation()) {
+            try {
+                int id = selectedItem.getWorkID();
+                LocalDate date = txtDate.getValue();
+                String details = txtDetails.getText();
+                double salary = Double.parseDouble(txtSalary.getText());
 
+                if (cmbEmployeeIds.getValue() == null) {
+                    new Alert(Alert.AlertType.ERROR, "Select Employee").show();
+                } else if (cmbLandIds.getValue() == null) {
+                    new Alert(Alert.AlertType.ERROR, "Enter Area").show();
+                } else if (details.isEmpty()) {
+                    new Alert(Alert.AlertType.ERROR, "Enter Details").show();
+                } else if (!txtSalary.getText().matches(NUMBER_REGEX)) {
+                    new Alert(Alert.AlertType.ERROR, "Invalid Salary").show();
+                } else if (txtDate.getValue() == null) {
+                    new Alert(Alert.AlertType.ERROR, "Invalid Date").show();
+                } else {
                     Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     confirmAlert.setTitle("Confirm Update");
                     confirmAlert.setHeaderText("Update Other Work Record");
                     confirmAlert.setContentText(
                             "Are you sure you want to Update Other Work ID: "
-                                    + workId + " ?");
+                                    + id + " ?");
 
                     Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
                     if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
-                        OtherWorkDTO otherWorkDTO = new OtherWorkDTO(workId, selectedEmpId, selectedLandId, date, details, salary);
+                        OtherWorkDTO otherWorkDTO = new OtherWorkDTO(id, selectedEmpId, selectedLandId, date, details, salary);
                         boolean result = otherWorkModel.updateWorkField(otherWorkDTO);
 
                         if (result) {
@@ -196,73 +228,17 @@ public class OtherWorkController implements Initializable {
                         }
                     }
                 }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Empty");
-                alert.setHeaderText("Work id is empty");
-                alert.show();
-                txtWorkID.requestFocus();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
         }
-    }
-
-    private boolean validation() {
-        LocalDate date = txtDate.getValue();
-        String details = txtDetails.getText();
-        String salary = txtSalary.getText();
-
-
-        if (cmbEmployeeIds.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Empty");
-            alert.setHeaderText("Employee is empty");
-            alert.show();
-            cmbEmployeeIds.requestFocus();
-            return false;
-        }
-        if (cmbLandIds.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Empty");
-            alert.setHeaderText("Area is empty");
-            alert.show();
-            cmbLandIds.requestFocus();
-            return false;
-        }
-        if (date == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Empty");
-            alert.setHeaderText("Date is empty");
-            alert.show();
-            txtDate.requestFocus();
-            return false;
-        }
-        if (details.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Empty");
-            alert.setHeaderText("Details is empty");
-            alert.show();
-            txtDetails.requestFocus();
-            return false;
-        }
-        if (salary.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Empty");
-            alert.setHeaderText("Salary is empty");
-            alert.show();
-            txtSalary.requestFocus();
-            return false;
-        }
-        return true;
     }
 
     @FXML
     private void deleteField() {
         try {
-            if (!txtWorkID.getText().isEmpty()) {
-                OtherWorkDTO selected = tableView.getSelectionModel().getSelectedItem();
-
+            OtherWorkDTO selected = tableView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
                 Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmAlert.setTitle("Confirm Delete");
                 confirmAlert.setHeaderText("Delete Other Work Record");

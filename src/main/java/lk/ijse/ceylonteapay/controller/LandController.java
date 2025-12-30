@@ -40,7 +40,7 @@ public class LandController implements Initializable {
     ObservableList<LandDTO> landDTOObservableList = FXCollections.observableArrayList();
 
     // Land Name – letters + spaces, minimum 3 characters
-    private final String LAND_NAME_REGEX = "^[A-Za-z ]{3,}$";
+    private final String LAND_NAME_REGEX = "^[A-Za-z0-9 ]{3,}$";
 
     // Land Number – letters, numbers, dash, slash, minimum 1 character
     private final String LAND_NO_REGEX = "^[A-Za-z0-9/-]{1,}$";
