@@ -12,7 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lk.ijse.ceylonteapay.db.DBConnection;
-import lk.ijse.ceylonteapay.dto.*;
+import lk.ijse.ceylonteapay.dto.EmployeeDTO;
+import lk.ijse.ceylonteapay.dto.PaymentDTO;
+import lk.ijse.ceylonteapay.dto.TeaRateDTO;
 import lk.ijse.ceylonteapay.model.EmployeeModel;
 import lk.ijse.ceylonteapay.model.PaymentModel;
 import lk.ijse.ceylonteapay.model.TeaRateModel;
@@ -27,6 +29,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -93,7 +96,7 @@ public class PaymentController implements Initializable {
 
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 ((observableValue, oldValue, newValue) -> {
-                    if (newValue != null){
+                    if (newValue != null) {
                         tableSelection(newValue);
                     }
                 })
@@ -105,8 +108,8 @@ public class PaymentController implements Initializable {
     private void calculateSalary() {
 
 //        must need to get this year
-        loadTeaDataByMonth(selectedMonthNumber,selectEmpid);
-        loadOtherWorkByMonth(selectedMonthNumber,selectEmpid);
+        loadTeaDataByMonth(selectedMonthNumber, selectEmpid);
+        loadOtherWorkByMonth(selectedMonthNumber, selectEmpid);
 
         // Read values from text fields
         double teaSalary = txtTeaSalary.getText().isEmpty()
@@ -129,10 +132,10 @@ public class PaymentController implements Initializable {
         try {
             double teaSalary = Double.parseDouble(txtTeaSalary.getText());
             double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
-            double finalSalary = teaSalary+expenseSalary;
+            double finalSalary = teaSalary + expenseSalary;
 
 //            int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date
-            PaymentDTO paymentDTO = new PaymentDTO(selectRateid,selectEmpid,selecetEmpName,teaSalary,expenseSalary,finalSalary,selectedMonth,LocalDate.now());
+            PaymentDTO paymentDTO = new PaymentDTO(selectRateid, selectEmpid, selecetEmpName, teaSalary, expenseSalary, finalSalary, selectedMonth, LocalDate.now());
             boolean result = paymentModel.savePayment(paymentDTO);
 
             if (result) {
@@ -148,44 +151,59 @@ public class PaymentController implements Initializable {
                 alert.setHeaderText("Payment Successfully.");
                 alert.show();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void updatePayment(){
+    private void updatePayment() {
         try {
 
             double teaSalary = Double.parseDouble(txtTeaSalary.getText());
             double expenseSalary = Double.parseDouble(txtOtherSalary.getText());
             double finalSalary = teaSalary + expenseSalary;
-            int paymentID  = tableView.getSelectionModel().getSelectedItem().getPaymentId();
+            PaymentDTO selectedID = tableView.getSelectionModel().getSelectedItem();
+
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Update");
+            confirmAlert.setHeaderText("Update Payment Record");
+            confirmAlert.setContentText(
+                    "Are you sure you want to Update Employee Name: "
+                            + selectedID.getEmployeeName() + " ?");
+
+            Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                int paymentID = selectedID.getPaymentId();
 
 //           int paymentId int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date
-            PaymentDTO paymentDTO = new PaymentDTO(paymentID, selectRateid, selectEmpid, selecetEmpName, teaSalary, expenseSalary, finalSalary, selectedMonth, LocalDate.now());
-            boolean result = paymentModel.updatePayment(paymentDTO);
+                PaymentDTO paymentDTO = new PaymentDTO(paymentID, selectRateid, selectEmpid, selecetEmpName, teaSalary, expenseSalary, finalSalary, selectedMonth, LocalDate.now());
+                boolean result = paymentModel.updatePayment(paymentDTO);
 
-            if (result) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Payment Update Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Payment Update Successfully.");
-                alert.show();
+                if (result) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Payment Update Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Payment Update Successfully.");
+                    alert.show();
+                }
             }
-        }catch (Exception e){
+
+
+        } catch (Exception e) {
 
         }
     }
 
     @FXML
-    private void resetAll(){
+    private void resetAll() {
         clearFields();
     }
 
@@ -201,45 +219,60 @@ public class PaymentController implements Initializable {
     }
 
     @FXML
-    private void deletePayment(){
-        int selectTableItem = tableView.getSelectionModel().getSelectedItem().getPaymentId();
-        try {
-            DBConnection dbc = DBConnection.getInstance();
-            Connection conn = dbc.getConnection();
+    private void deletePayment() {
+        PaymentDTO selectTableItem = tableView.getSelectionModel().getSelectedItem();
 
-            String sql = "DELETE FROM Payment WHERE paymentId = ?";
-            PreparedStatement pstm = conn.prepareStatement(sql);
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Delete");
+        confirmAlert.setHeaderText("Delete Payment Record");
+        confirmAlert.setContentText(
+                "Are you sure you want to delete Employee Name: "
+                        + selectTableItem.getEmployeeName() + " ?");
 
-            System.out.println(selectTableItem);
+        Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-            pstm.setInt(1,selectTableItem);
+        if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+            try {
+                int id = selectTableItem.getPaymentId();
+                DBConnection dbc = DBConnection.getInstance();
+                Connection conn = dbc.getConnection();
 
-            int result = pstm.executeUpdate();
+                String sql = "DELETE FROM Payment WHERE paymentId = ?";
+                PreparedStatement pstm = conn.prepareStatement(sql);
 
-            if (result>0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Delete Successfully.");
-                alert.show();
-                refreshTable();
+                System.out.println(selectTableItem);
+
+                pstm.setInt(1, id);
+
+                int result = pstm.executeUpdate();
+
+                if (result > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Delete Successfully.");
+                    alert.show();
+                    refreshTable();
 //                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Delete Successfully.");
-                alert.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Delete Successfully.");
+                    alert.show();
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-
-        }catch (Exception e){
-            e.printStackTrace();
         }
+
+
     }
 
-    private void tableSelection(PaymentDTO newValue){
+    private void tableSelection(PaymentDTO newValue) {
 //        Set Employee ComboBox
-        for (EmployeeDTO empDTO : cmbEmployee.getItems()){
-            if (empDTO.getId() == newValue.getEmployeeId()){
+        for (EmployeeDTO empDTO : cmbEmployee.getItems()) {
+            if (empDTO.getId() == newValue.getEmployeeId()) {
                 cmbEmployee.setValue(empDTO);
             }
         }
@@ -250,8 +283,8 @@ public class PaymentController implements Initializable {
         monthCombo.setValue(monthName);
 
 //        Set Tea Rate Date and Rate
-        for (TeaRateDTO rateDTO : cmbTeaRate.getItems()){
-            if (rateDTO.getRateId() == newValue.getRateId()){
+        for (TeaRateDTO rateDTO : cmbTeaRate.getItems()) {
+            if (rateDTO.getRateId() == newValue.getRateId()) {
                 cmbTeaRate.setValue(rateDTO);
             }
         }
@@ -268,11 +301,11 @@ public class PaymentController implements Initializable {
         tableView.setItems(paymentDTOS);
     }
 
-    private ObservableList<PaymentDTO> loadPaymentTable(){
+    private ObservableList<PaymentDTO> loadPaymentTable() {
         try {
             ObservableList<PaymentDTO> list = paymentModel.loadPaymentTable();
             return list;
-        }catch (Exception e){
+        } catch (Exception e) {
             return FXCollections.observableArrayList();
         }
     }
@@ -293,7 +326,7 @@ public class PaymentController implements Initializable {
 
             ResultSet rs = pstm.executeQuery();
 
-            boolean hasData = false ;
+            boolean hasData = false;
 
             double otherWorkSalary = 0;
 
@@ -305,19 +338,19 @@ public class PaymentController implements Initializable {
             }
             txtOtherSalary.setText(String.valueOf(otherWorkSalary));
 
-            if (!hasData){
-                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
+            if (!hasData) {
+                new Alert(Alert.AlertType.ERROR, "Has not Fields").show();
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, e);
         }
 
 //        return list;
     }
 
-    private void loadTeaDataByMonth(int selectedMonthNumber,int selectedEmpId) {
+    private void loadTeaDataByMonth(int selectedMonthNumber, int selectedEmpId) {
 //        List<DailyTeaDTO> list = new ArrayList<>();
         try {
             DBConnection dbc = DBConnection.getInstance();
@@ -330,12 +363,12 @@ public class PaymentController implements Initializable {
 
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setInt(1, selectedMonthNumber);
-            pstm.setInt(2,selectedEmpId);
+            pstm.setInt(2, selectedEmpId);
 
 
             ResultSet rs = pstm.executeQuery();
 
-            boolean hasData = false ;
+            boolean hasData = false;
 
             double totalSalary = 0;
 
@@ -346,8 +379,8 @@ public class PaymentController implements Initializable {
             txtTeaSalary.setText(String.valueOf(totalSalary));
 
 
-            if (!hasData){
-                new Alert(Alert.AlertType.ERROR,"Has not Fields").show();
+            if (!hasData) {
+                new Alert(Alert.AlertType.ERROR, "Has not Fields").show();
             }
 
 
@@ -361,14 +394,14 @@ public class PaymentController implements Initializable {
 
 //        int paymentId, int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
 
-        col_id.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Integer>("paymentId"));
-        col_rateId.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Integer>("rateId"));
-        col_empId.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Integer>("employeeId"));
-        col_empName.setCellValueFactory(new PropertyValueFactory<PaymentDTO,String>("employeeName"));
-        col_teaSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Double>("teaSalary"));
-        col_otherSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Double>("expenseSalary"));
-        col_finalSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO,Double>("finalSalary"));
-        col_paymentDate.setCellValueFactory(new PropertyValueFactory<PaymentDTO,LocalDate>("date"));
+        col_id.setCellValueFactory(new PropertyValueFactory<PaymentDTO, Integer>("paymentId"));
+        col_rateId.setCellValueFactory(new PropertyValueFactory<PaymentDTO, Integer>("rateId"));
+        col_empId.setCellValueFactory(new PropertyValueFactory<PaymentDTO, Integer>("employeeId"));
+        col_empName.setCellValueFactory(new PropertyValueFactory<PaymentDTO, String>("employeeName"));
+        col_teaSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO, Double>("teaSalary"));
+        col_otherSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO, Double>("expenseSalary"));
+        col_finalSalary.setCellValueFactory(new PropertyValueFactory<PaymentDTO, Double>("finalSalary"));
+        col_paymentDate.setCellValueFactory(new PropertyValueFactory<PaymentDTO, LocalDate>("date"));
 
         tableView.setItems(loadPaymentTable());
     }
@@ -383,7 +416,7 @@ public class PaymentController implements Initializable {
                 @Override
                 protected void updateItem(TeaRateDTO item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty || item == null ? null : item.getMonth()+" - "+item.getYear());
+                    setText(empty || item == null ? null : item.getMonth() + " - " + item.getYear());
                 }
             });
 
@@ -391,7 +424,7 @@ public class PaymentController implements Initializable {
                 @Override
                 protected void updateItem(TeaRateDTO item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty || item == null ? null : item.getMonth()+" - "+item.getYear());
+                    setText(empty || item == null ? null : item.getMonth() + " - " + item.getYear());
                 }
             });
 
@@ -404,8 +437,7 @@ public class PaymentController implements Initializable {
             });
 
 
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

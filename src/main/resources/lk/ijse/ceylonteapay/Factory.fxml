@@ -117,7 +117,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="85.0" styleClass="action-button" text="Delete" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#deleteField" prefHeight="34.0" prefWidth="85.0" styleClass="action-button" text="Delete" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -135,7 +135,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView styleClass="app-table" fx:id="tableView" prefHeight="479.0" prefWidth="1250.0">
+                  <TableView fx:id="tableView" prefHeight="479.0" prefWidth="1250.0" styleClass="app-table">
                     <columns>
                       <TableColumn fx:id="col_id" prefWidth="164.0" text="Factory ID" />
                       <TableColumn fx:id="col_Name" prefWidth="368.0" text="Factory Name" />

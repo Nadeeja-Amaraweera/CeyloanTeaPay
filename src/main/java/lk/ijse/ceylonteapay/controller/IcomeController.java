@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -182,28 +183,41 @@ public class IcomeController implements Initializable {
         try {
             IncomeDTO selectedIncome = tableView.getSelectionModel().getSelectedItem();
 
-            if (selectedIncome == null) {
-                new Alert(Alert.AlertType.WARNING,
-                        "Please select an income record first!").show();
-            } else {
-                int id = selectedIncome.getIncomeId();
-                boolean result = incomeModel.deleteIncome(id);
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Delete");
+            confirmAlert.setHeaderText("Delete Income Record");
+            confirmAlert.setContentText(
+                    "Are you sure you want to delete Income ID: "
+                            + selectedIncome.getIncomeId() + " ?");
 
-                if (result){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Field Deleted Successfully.");
-                    alert.show();
-                    refreshTable();
+            Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                if (selectedIncome == null) {
+                    new Alert(Alert.AlertType.WARNING,
+                            "Please select an income record first!").show();
+                } else {
+                    int id = selectedIncome.getIncomeId();
+                    boolean result = incomeModel.deleteIncome(id);
+
+                    if (result){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Field Deleted Successfully.");
+                        alert.show();
+                        refreshTable();
 
 //                clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Field Deleted Not Successfully.");
-                    alert.show();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Field Deleted Not Successfully.");
+                        alert.show();
+                    }
                 }
             }
+
+
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error !");

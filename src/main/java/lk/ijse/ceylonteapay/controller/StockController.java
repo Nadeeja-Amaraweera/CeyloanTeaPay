@@ -12,6 +12,7 @@ import lk.ijse.ceylonteapay.model.StockModel;
 import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -57,13 +58,11 @@ public class StockController implements Initializable {
         col_ava_qty.setCellValueFactory(new PropertyValueFactory<StockDTO, Integer>("availableQuantity"));
 
 
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldvalue, newvalue) -> {
-                    if (newvalue != null) {
-                        setStockDetails(newvalue);
-                    }
-                }
-        );
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldvalue, newvalue) -> {
+            if (newvalue != null) {
+                setStockDetails(newvalue);
+            }
+        });
         tableView.setItems(loadStock());
     }
 
@@ -149,77 +148,102 @@ public class StockController implements Initializable {
         String avaQtyText = txtAvailableQuantity.getText();
 
         StockDTO selected = tableView.getSelectionModel().getSelectedItem();
-        final String QUALITY_REGEX = "^[A-Za-z0-9 ]+$"; // letters, numbers, spaces
 
-        if (selected == null) {
-            new Alert(Alert.AlertType.ERROR, "Please select a stock item from the table!").show();
-        } else if (date == null) {
-            new Alert(Alert.AlertType.ERROR, "Please select a date.").show();
-        } else if (quality.isEmpty() || !quality.matches(QUALITY_REGEX)) {
-            new Alert(Alert.AlertType.ERROR, "Invalid Quality. Must contain letters, numbers, or spaces and cannot be empty.").show();
-        } else if (qtyText.isEmpty() || avaQtyText.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity cannot be empty.").show();
-        } else {
-            int qty, avaQty;
-            try {
-                qty = Integer.parseInt(qtyText);
-                avaQty = Integer.parseInt(avaQtyText);
-            } catch (NumberFormatException e) {
-                new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity must be valid integers.").show();
-                return;
-            }
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Update");
+        confirmAlert.setHeaderText("Update Stock Record");
+        confirmAlert.setContentText("Are you sure you want to Update Stock Quality: " + selected.getQuality() + " ?");
 
-            if (qty <= 0) {
-                new Alert(Alert.AlertType.ERROR, "Quantity must be a positive number.").show();
-            } else if (avaQty < 0) {
-                new Alert(Alert.AlertType.ERROR, "Available Quantity cannot be negative.").show();
+        Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+        if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+            final String QUALITY_REGEX = "^[A-Za-z0-9 ]+$"; // letters, numbers, spaces
+
+            if (selected == null) {
+                new Alert(Alert.AlertType.ERROR, "Please select a stock item from the table!").show();
+            } else if (date == null) {
+                new Alert(Alert.AlertType.ERROR, "Please select a date.").show();
+            } else if (quality.isEmpty() || !quality.matches(QUALITY_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Quality. Must contain letters, numbers, or spaces and cannot be empty.").show();
+            } else if (qtyText.isEmpty() || avaQtyText.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity cannot be empty.").show();
             } else {
+                int qty, avaQty;
                 try {
-                    int id = selected.getId();
-                    StockDTO stockDTO = new StockDTO(id, date, quality, qty, avaQty);
-                    boolean result = stockModel.updateStock(stockDTO);
+                    qty = Integer.parseInt(qtyText);
+                    avaQty = Integer.parseInt(avaQtyText);
+                } catch (NumberFormatException e) {
+                    new Alert(Alert.AlertType.ERROR, "Quantity and Available Quantity must be valid integers.").show();
+                    return;
+                }
 
-                    if (result) {
-                        new Alert(Alert.AlertType.INFORMATION, "Stock Updated Successfully.").show();
-                        refreshTable();
-                        clearFields();
-                    } else {
-                        new Alert(Alert.AlertType.ERROR, "Stock Updated Not Successfully.").show();
+                if (qty <= 0) {
+                    new Alert(Alert.AlertType.ERROR, "Quantity must be a positive number.").show();
+                } else if (avaQty < 0) {
+                    new Alert(Alert.AlertType.ERROR, "Available Quantity cannot be negative.").show();
+                } else {
+                    try {
+                        int id = selected.getId();
+                        StockDTO stockDTO = new StockDTO(id, date, quality, qty, avaQty);
+                        boolean result = stockModel.updateStock(stockDTO);
+
+                        if (result) {
+                            new Alert(Alert.AlertType.INFORMATION, "Stock Updated Successfully.").show();
+                            refreshTable();
+                            clearFields();
+                        } else {
+                            new Alert(Alert.AlertType.ERROR, "Stock Updated Not Successfully.").show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
+
+
         }
     }
 
 
     @FXML
-    private void delete() {
+    private void deleteRecord() {
         StockDTO selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            new Alert(Alert.AlertType.ERROR, "Please select a stock item from the table!").show();
-        }else {
-            try {
-                int id = selected.getId();
-                boolean result = stockModel.deleteStock(id);
-                if (result) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Stock Deleted Successfully.");
-                    alert.show();
-                    refreshTable();
-                    clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Stock Deleted Not Successfully.");
-                    alert.show();
+
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Delete");
+        confirmAlert.setHeaderText("Delete Stock Record");
+        confirmAlert.setContentText(
+                "Are you sure you want to delete Stock Quality Name: "
+                        + selected.getQuality() + " ?");
+
+        Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+        if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+            if (selected == null) {
+                new Alert(Alert.AlertType.ERROR, "Please select a stock item from the table!").show();
+            } else {
+                try {
+                    int id = selected.getId();
+                    boolean result = stockModel.deleteStock(id);
+                    if (result) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Stock Deleted Successfully.");
+                        alert.show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Stock Deleted Not Successfully.");
+                        alert.show();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
             }
         }
+
 
     }
 

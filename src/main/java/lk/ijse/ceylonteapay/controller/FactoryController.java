@@ -169,30 +169,44 @@ public class FactoryController implements Initializable {
     }
 
     @FXML
-    private void delete(){
+    private void deleteField(){
         FactoryDTO selected = tableView.getSelectionModel().getSelectedItem();
         if (selected==null){
             new Alert(Alert.AlertType.ERROR, "Please select a factory from the table!").show();
         }else {
-            try {
-                int id = selected.getFactoryId();
-                boolean result = factoryModel.deleteFactory(id);
-                if (result){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Factory Deleted Successfully.");
-                    alert.show();
-                    refreshTable();
-                    clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Factory Deleted Not Successfully.");
-                    alert.show();
+
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Delete");
+            confirmAlert.setHeaderText("Delete Factory Record");
+            confirmAlert.setContentText(
+                    "Are you sure you want to delete Factory Name: "
+                            + selected.getFactoryName() + " ?");
+
+            Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                try {
+                    int id = selected.getFactoryId();
+                    boolean result = factoryModel.deleteFactory(id);
+                    if (result){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Factory Deleted Successfully.");
+                        alert.show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Factory Deleted Not Successfully.");
+                        alert.show();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,e);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,e);
             }
+
+
         }
     }
 
