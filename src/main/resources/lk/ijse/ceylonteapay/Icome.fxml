@@ -119,14 +119,16 @@
                </font>
             </Label>
 
-            <TableView layoutX="10" layoutY="40" prefHeight="357.0" prefWidth="717.0">
+            <TableView fx:id="tableView" layoutX="10" layoutY="40" prefHeight="357.0" prefWidth="717.0">
 
                <columns>
                   <TableColumn fx:id="colIncomeId" prefWidth="91.0" text="Income ID" />
-                  <TableColumn fx:id="colPaymentId" prefWidth="127.0" text="Payment ID" />
-                  <TableColumn fx:id="colMonth" prefWidth="176.0" text="Month" />
-                  <TableColumn fx:id="colYear" prefWidth="125.0" text="Year" />
-                  <TableColumn fx:id="colAmount" prefWidth="198.0" text="Final Amount" />
+                  <TableColumn fx:id="colMonth" prefWidth="107.0" text="Month" />
+                  <TableColumn fx:id="colYear" prefWidth="71.0" text="Year" />
+                  <TableColumn fx:id="col_tea_salary" prefWidth="91.0" text="Tea Salary" />
+                  <TableColumn fx:id="col_otherWork_salary" prefWidth="104.0" text="Work Salary" />
+                  <TableColumn fx:id="col_thisMonthIncome" prefWidth="108.0" text="Income" />
+                  <TableColumn fx:id="colAmount" prefWidth="144.0" text="Final Amount" />
                </columns>
             </TableView>
          </children>
@@ -138,13 +140,16 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <LineChart layoutX="-1.0" layoutY="44.0" prefHeight="357.0" prefWidth="493.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
+            <LineChart fx:id="incomeLineChart" layoutX="-1.0" layoutY="44.0" prefHeight="357.0" prefWidth="493.0">
+
+               <xAxis>
+                  <CategoryAxis label="Month" side="BOTTOM" />
+               </xAxis>
+
+               <yAxis>
+                  <NumberAxis label="Final Income" side="LEFT" />
+               </yAxis>
+
             </LineChart>
          </children>
       </Pane>

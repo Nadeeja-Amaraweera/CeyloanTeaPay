@@ -216,19 +216,27 @@ public class DeliveryTeaController implements Initializable {
 
     @FXML
     private void handlePrint(){
-        try {
-            int selectedYear = cmdYear.getValue();
+        if (cmbMonth.getValue()==null){
+            new Alert(Alert.AlertType.ERROR,"Please Select Month").show();
+        } else if (cmdYear.getValue()==null){
+            new Alert(Alert.AlertType.ERROR,"Please Select Year").show();
 
-            deliveryTeaModel.printDeliveryTea(selectedMonthNo,selectedYear);
-        } catch (Exception e) {
-            e.printStackTrace(); // keep this
+        }else {
+            try {
+                int selectedYear = cmdYear.getValue();
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Report Error");
-            alert.setHeaderText("Unable to generate Customer Report");
-            alert.setContentText(e.getMessage()); // 👈 shows real cause
-            alert.show();
+                deliveryTeaModel.printDeliveryTea(selectedMonthNo,selectedYear);
+            } catch (Exception e) {
+                e.printStackTrace(); // keep this
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Report Error");
+                alert.setHeaderText("Unable to generate Customer Report");
+                alert.setContentText(e.getMessage()); // 👈 shows real cause
+                alert.show();
+            }
         }
+
     }
 
 

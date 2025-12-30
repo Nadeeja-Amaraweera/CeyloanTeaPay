@@ -2,7 +2,6 @@ package lk.ijse.ceylonteapay.dto;
 
 public class IncomeDTO {
     private int incomeId;
-    private int paymentId;
     private String month;
     private int year;
     private double teaSalary;
@@ -13,8 +12,8 @@ public class IncomeDTO {
     public IncomeDTO() {
     }
 
-    public IncomeDTO(int paymentId, String month, int year, double teaSalary, double otherWorkSalary, double thisMonthIncome, double finalIncome) {
-        this.paymentId = paymentId;
+    public IncomeDTO(String month, int year, double teaSalary, double otherWorkSalary, double thisMonthIncome, double finalIncome) {
+
         this.month = month;
         this.year = year;
         this.teaSalary = teaSalary;
@@ -23,9 +22,8 @@ public class IncomeDTO {
         this.finalIncome = finalIncome;
     }
 
-    public IncomeDTO(int incomeId, int paymentId, String month, int year, double teaSalary, double otherWorkSalary, double thisMonthIncome, double finalIncome) {
+    public IncomeDTO(int incomeId, String month, int year, double teaSalary, double otherWorkSalary, double thisMonthIncome, double finalIncome) {
         this.incomeId = incomeId;
-        this.paymentId = paymentId;
         this.month = month;
         this.year = year;
         this.teaSalary = teaSalary;
@@ -33,6 +31,7 @@ public class IncomeDTO {
         this.thisMonthIncome = thisMonthIncome;
         this.finalIncome = finalIncome;
     }
+
 
     public IncomeDTO(double teaSalary, double otherWorkSalary) {
         this.teaSalary = teaSalary;
@@ -45,14 +44,6 @@ public class IncomeDTO {
 
     public void setIncomeId(int incomeId) {
         this.incomeId = incomeId;
-    }
-
-    public int getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
     }
 
     public String getMonth() {
@@ -107,7 +98,6 @@ public class IncomeDTO {
     public String toString() {
         return "IncomeDTO{" +
                 "incomeId=" + incomeId +
-                ", paymentId=" + paymentId +
                 ", month='" + month + '\'' +
                 ", year=" + year +
                 ", teaSalary=" + teaSalary +

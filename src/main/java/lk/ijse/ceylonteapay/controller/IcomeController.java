@@ -6,10 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.ceylonteapay.dto.DailyTeaDTO;
 import lk.ijse.ceylonteapay.dto.IncomeDTO;
 import lk.ijse.ceylonteapay.dto.StockDTO;
 import lk.ijse.ceylonteapay.model.IncomeModel;
@@ -27,6 +28,8 @@ public class IcomeController implements Initializable {
     private static StockModel stockModel = new StockModel();
     private static IncomeModel incomeModel = new IncomeModel();
 
+    ObservableList<IncomeDTO> incomeDTOObservableList = FXCollections.observableArrayList();
+
     private final String THIS_MONTH_SALARY = "^-?\\d+$";
 
     @FXML
@@ -37,6 +40,9 @@ public class IcomeController implements Initializable {
 
     @FXML
     private BarChart<String, Number> stockBarChart;
+
+    @FXML
+    private LineChart<String, Number> incomeLineChart;
 
     @FXML
     private TextField txtTeaSalaryField;
@@ -50,11 +56,45 @@ public class IcomeController implements Initializable {
     @FXML
     private TextField txtFinalIncome;
 
+    @FXML
+    private TableView<IncomeDTO> tableView;
+
+    @FXML
+    private TableColumn<IncomeDTO,Integer> colIncomeId;
+    @FXML
+    private TableColumn<IncomeDTO,String> colMonth;
+    @FXML
+    private TableColumn<IncomeDTO,Integer> colYear;
+    @FXML
+    private TableColumn<IncomeDTO,Double> col_tea_salary;
+    @FXML
+    private TableColumn<IncomeDTO,Double> col_otherWork_salary;
+    @FXML
+    private TableColumn<IncomeDTO,Double> col_thisMonthIncome;
+
+    @FXML
+    private TableColumn<IncomeDTO,Double> colAmount;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadMonthAndYears();
         loadStockChart();
+        loadIncomeChartUsingModel();
+        setTableColumns();
+    }
 
+    private void setTableColumns() {
+//        int incomeId, int paymentId, String month, int year, double finalIncome
+        colIncomeId.setCellValueFactory(new PropertyValueFactory<IncomeDTO,Integer>("incomeId"));
+        colMonth.setCellValueFactory(new PropertyValueFactory<IncomeDTO,String>("month"));
+        colYear.setCellValueFactory(new PropertyValueFactory<IncomeDTO,Integer>("year"));
+        col_tea_salary.setCellValueFactory(new PropertyValueFactory<IncomeDTO,Double>("teaSalary"));
+        col_otherWork_salary.setCellValueFactory(new PropertyValueFactory<IncomeDTO,Double>("otherWorkSalary"));
+        col_thisMonthIncome.setCellValueFactory(new PropertyValueFactory<IncomeDTO,Double>("thisMonthIncome"));
+
+        colAmount.setCellValueFactory(new PropertyValueFactory<IncomeDTO,Double>("finalIncome"));
+
+        tableView.setItems(loadIncomeTable());
     }
 
     @FXML
@@ -105,7 +145,43 @@ public class IcomeController implements Initializable {
 
     @FXML
     private void savePayment() {
+        try {
 
+            String month = cmdMonths.getValue();
+            int year = cmdYears.getValue();
+            double teaSalary = Double.parseDouble(txtTeaSalaryField.getText());
+            double otherWorkSalary = Double.parseDouble(txtOtherWorkSalary.getText());
+            double monthlyIncome = Double.parseDouble(txtThisMonthIncome.getText());
+            double finalIncome = Double.parseDouble(txtFinalIncome.getText());
+
+            IncomeDTO incomeDTO = new IncomeDTO(month, year, teaSalary, otherWorkSalary, monthlyIncome, finalIncome);
+            boolean result = incomeModel.savePayment(incomeDTO);
+
+            if (result){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success !");
+                alert.setHeaderText("Field Added Successfully.");
+                alert.show();
+                refreshTable();
+
+//                clearFields();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error !");
+                alert.setHeaderText("Field Added Not Successfully.");
+                alert.show();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshTable() {
+        incomeDTOObservableList.clear();
+        incomeDTOObservableList.addAll(loadIncomeTable());
+        tableView.setItems(incomeDTOObservableList);
+        loadIncomeChartUsingModel();
     }
 
     private void loadMonthAndYears() {
@@ -144,6 +220,42 @@ public class IcomeController implements Initializable {
 
         stockBarChart.getData().clear();
         stockBarChart.getData().add(series);
+    }
+
+    private void loadIncomeChartUsingModel() {
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Final Income");
+
+        try {
+            ObservableList<IncomeDTO> incomeList =
+                    incomeModel.getAllIncomeFields(); // ✅ YOUR METHOD
+
+            for (IncomeDTO income : incomeList) {
+                series.getData().add(
+                        new XYChart.Data<>(
+                                income.getMonth(),
+                                income.getFinalIncome()
+                        )
+                );
+            }
+
+            incomeLineChart.getData().clear();
+            incomeLineChart.getData().add(series);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ObservableList<IncomeDTO> loadIncomeTable(){
+        try {
+            ObservableList<IncomeDTO> incomeDTOS = incomeModel.getAllIncomeFields();
+            return incomeDTOS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
 
 
