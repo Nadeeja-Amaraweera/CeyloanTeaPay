@@ -15,6 +15,7 @@ import lk.ijse.ceylonteapay.model.StockModel;
 import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ResourceBundle;
 
 //import static lk.ijse.ceylonteapay.controller.StockController.stockModel;
@@ -39,6 +40,11 @@ public class DeliveryTeaController implements Initializable {
     private ComboBox<FactoryDTO> cmdFactoryName;
     @FXML
     private ComboBox<StockDTO> cmdStockNo;
+    @FXML
+    private ComboBox<String> cmbMonth;
+    @FXML
+    private ComboBox<Integer> cmdYear;
+
     @FXML
     private DatePicker txtDate;
     @FXML
@@ -70,6 +76,9 @@ public class DeliveryTeaController implements Initializable {
     private int selectedFactoryId = -1;
     private String selectedFactoryName = "";
     private int selectedStockId = -1;
+    private Month selectedMonth;
+    private int selectedMonthNo;
+
 
 
     @Override
@@ -77,6 +86,7 @@ public class DeliveryTeaController implements Initializable {
         loadFactoryCombo();
         loadStockCombo();
         initializeCartTable();
+        setMonthAndYears();
 
         cmdFactoryName.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -98,6 +108,32 @@ public class DeliveryTeaController implements Initializable {
         col_stockTableStock.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("availableQuantity"));
 
         tblStock.setItems(loadStockTable());
+    }
+
+    private void setMonthAndYears() {
+
+            // Month names
+            cmbMonth.setItems(FXCollections.observableArrayList(
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+            ));
+
+            // Year range
+            ObservableList<Integer> years = FXCollections.observableArrayList();
+            int currentYear = LocalDate.now().getYear();
+            for (int i = currentYear - 1; i <= currentYear + 1; i++) {
+                years.add(i);
+            }
+            cmdYear.setItems(years);
+
+        cmbMonth.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                selectedMonth = Month.valueOf(newVal.toUpperCase());
+                selectedMonthNo = selectedMonth.getValue();
+                System.out.println(selectedMonthNo);
+            }
+        });
+
     }
 
     private void initializeCartTable() {
@@ -181,7 +217,9 @@ public class DeliveryTeaController implements Initializable {
     @FXML
     private void handlePrint(){
         try {
-            deliveryTeaModel.printDeliveryTea();
+            int selectedYear = cmdYear.getValue();
+
+            deliveryTeaModel.printDeliveryTea(selectedMonthNo,selectedYear);
         } catch (Exception e) {
             e.printStackTrace(); // keep this
 
@@ -192,6 +230,8 @@ public class DeliveryTeaController implements Initializable {
             alert.show();
         }
     }
+
+
 
     private void refreshStockTable() {
         stockDTOObservableList.clear();

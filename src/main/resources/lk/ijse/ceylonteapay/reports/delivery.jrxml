@@ -3,8 +3,10 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="delivery" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4b690e6e-7ee8-430e-a95f-4c5c4a8ed922">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MYSQL-CEYLONTEAPAY"/>
+	<parameter name="DELIVERY_MONTH" class="java.lang.Integer"/>
+	<parameter name="DELIVERY_YEAR" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM DeliveryTea]]>
+		<![CDATA[SELECT * FROM DeliveryTea WHERE MONTH(deliveryDate) = $P{DELIVERY_MONTH} AND YEAR(deliveryDate) = $P{DELIVERY_YEAR}]]>
 	</queryString>
 	<field name="deliveryId" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="deliveryId"/>

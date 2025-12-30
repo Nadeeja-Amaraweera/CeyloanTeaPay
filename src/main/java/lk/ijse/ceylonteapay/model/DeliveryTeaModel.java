@@ -123,7 +123,7 @@ public class DeliveryTeaModel {
             }
     }
 
-    public void printDeliveryTea(){
+    public void printDeliveryTea(int selectedMonthNo, int selectedYear){
         try {
             Connection conn = DBConnection.getInstance().getConnection();
 
@@ -136,9 +136,10 @@ public class DeliveryTeaModel {
             JasperReport jr  = JasperCompileManager.compileReport(reportObject); // this is method throws JRException
 
             Map<String,Object> params = new HashMap<>();
-//            params.put("ORDER_ID",orderId);
+            params.put("DELIVERY_MONTH",selectedMonthNo);
+            params.put("DELIVERY_YEAR",selectedYear);
 
-            JasperPrint jp = JasperFillManager.fillReport(jr , null , conn); // fill report (jasperreport, params ,connection)
+            JasperPrint jp = JasperFillManager.fillReport(jr , params , conn); // fill report (jasperreport, params ,connection)
 
             JasperViewer.viewReport(jp,false);
 

@@ -215,11 +215,13 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handlePrint" prefHeight="34.0" prefWidth="78.0" styleClass="action-button" text="Print" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Button>
+                  <Pane prefHeight="84.0" prefWidth="1031.0">
+                     <children>
+                        <Button layoutX="878.0" layoutY="25.0" mnemonicParsing="false" onAction="#handlePrint" prefHeight="34.0" prefWidth="78.0" styleClass="action-button" text="Print" textFill="WHITE" />
+                        <ComboBox fx:id="cmdYear" layoutX="672.0" layoutY="33.0" prefWidth="150.0" promptText="Select Year" />
+                        <ComboBox fx:id="cmbMonth" layoutX="502.0" layoutY="33.0" prefWidth="150.0" promptText="Select Month" />
+                     </children>
+                  </Pane>
                   <Button onAction="#placeOrder" prefHeight="47.0" prefWidth="201.0" styleClass="app-btn-primary" text="Place Order">
                      <font>
                         <Font size="16.0" />
