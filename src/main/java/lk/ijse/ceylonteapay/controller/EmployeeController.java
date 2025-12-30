@@ -19,6 +19,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
@@ -189,23 +190,37 @@ public class EmployeeController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Please select an employee from the table!").show();
         } else {
             try {
-                int id = selected.getId();
 
-                boolean result = employeeModel.deleteEmployee(id);
+                Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmAlert.setTitle("Confirm Delete");
+                confirmAlert.setHeaderText("Delete Employee Record");
+                confirmAlert.setContentText(
+                        "Are you sure you want to delete Employee Name: "
+                                + selected.getName() + " ?");
 
-                if (result) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Employee Deleted Successfully.");
-                    alert.show();
-                    refreshTable();
-                    clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Employee Deleted Not Successfully.");
-                    alert.show();
+                Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+                if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                    int id = selected.getId();
+
+                    boolean result = employeeModel.deleteEmployee(id);
+
+                    if (result) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Employee Deleted Successfully.");
+                        alert.show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Employee Deleted Not Successfully.");
+                        alert.show();
+                    }
                 }
+
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -240,29 +255,43 @@ public class EmployeeController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Telephone. Must be 10 digits starting with 0 or in the format +94XXXXXXXXX.").show();
 
         } else {
-            try {
 
-                int id = selected.getId();
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Update");
+            confirmAlert.setHeaderText("Update Employee Record");
+            confirmAlert.setContentText(
+                    "Are you sure you want to Update Employee Name: "
+                            + selected.getName() + " ?");
 
-                EmployeeDTO employeeDTO = new EmployeeDTO(id, name, date, nic, address, gender, telNo);
-                boolean result = employeeModel.updateEmployee(employeeDTO);
+            Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-                if (result) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Employee Updated Successfully.");
-                    alert.show();
-                    refreshTable();
-                    clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Employee Updated Not Successfully.");
-                    alert.show();
+            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                try {
+
+                    int id = selected.getId();
+
+                    EmployeeDTO employeeDTO = new EmployeeDTO(id, name, date, nic, address, gender, telNo);
+                    boolean result = employeeModel.updateEmployee(employeeDTO);
+
+                    if (result) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Employee Updated Successfully.");
+                        alert.show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Employee Updated Not Successfully.");
+                        alert.show();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
             }
+
+
         }
 
 

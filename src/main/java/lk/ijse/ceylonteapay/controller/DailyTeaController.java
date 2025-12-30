@@ -1,14 +1,6 @@
 
 package lk.ijse.ceylonteapay.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,12 +12,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.ceylonteapay.db.DBConnection;
+import lk.ijse.ceylonteapay.dto.DailyTeaDTO;
 import lk.ijse.ceylonteapay.dto.EmployeeDTO;
 import lk.ijse.ceylonteapay.dto.LandDTO;
-import lk.ijse.ceylonteapay.dto.DailyTeaDTO;
 import lk.ijse.ceylonteapay.model.DailyTeaModel;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 
 public class DailyTeaController implements Initializable {
@@ -54,27 +54,27 @@ public class DailyTeaController implements Initializable {
     @FXML
     private TableView<DailyTeaDTO> tableView;
     @FXML
-    private TableColumn<DailyTeaDTO,Integer> col_TeaID;
+    private TableColumn<DailyTeaDTO, Integer> col_TeaID;
     @FXML
-    private TableColumn<DailyTeaDTO,Integer> col_EmployeeID;
+    private TableColumn<DailyTeaDTO, Integer> col_EmployeeID;
     @FXML
-    private TableColumn<DailyTeaDTO,String> col_EmployeeName;
+    private TableColumn<DailyTeaDTO, String> col_EmployeeName;
     @FXML
-    private TableColumn<DailyTeaDTO,Integer> col_AreaID;
+    private TableColumn<DailyTeaDTO, Integer> col_AreaID;
     @FXML
-    private TableColumn<DailyTeaDTO,String> col_AreaName;
+    private TableColumn<DailyTeaDTO, String> col_AreaName;
     @FXML
-    private TableColumn<DailyTeaDTO,LocalDate> col_Date;
+    private TableColumn<DailyTeaDTO, LocalDate> col_Date;
     @FXML
-    private TableColumn<DailyTeaDTO,Double> col_FullWeight;
+    private TableColumn<DailyTeaDTO, Double> col_FullWeight;
     @FXML
-    private TableColumn<DailyTeaDTO,Double> col_BagWeight;
+    private TableColumn<DailyTeaDTO, Double> col_BagWeight;
     @FXML
-    private TableColumn<DailyTeaDTO,Double> col_WaterWeight;
+    private TableColumn<DailyTeaDTO, Double> col_WaterWeight;
     @FXML
-    private TableColumn<DailyTeaDTO,Double> col_TotalWeight;
+    private TableColumn<DailyTeaDTO, Double> col_TotalWeight;
     @FXML
-    private TableColumn<DailyTeaDTO,String> col_Quality;
+    private TableColumn<DailyTeaDTO, String> col_Quality;
 
     private final DailyTeaModel dailyTeaModel = new DailyTeaModel();
 
@@ -84,7 +84,7 @@ public class DailyTeaController implements Initializable {
     private String selectedEmpName = "";
     private int selectedLandId = -1;
     private String selectedAreaName = "";
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployeeIds();
@@ -92,18 +92,18 @@ public class DailyTeaController implements Initializable {
         selectionLandCombo();
         selectionEmpCombo();
         cmbEmployeeIds.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal!=null){
+            if (newVal != null) {
                 selectedEmpId = newVal.getId();
                 selectedEmpName = newVal.getName();
-                System.out.println(newVal.getName()+" - "+newVal.getId());
+                System.out.println(newVal.getName() + " - " + newVal.getId());
             }
         });
 
         cmbLandIds.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal!=null){
+            if (newVal != null) {
                 selectedLandId = newVal.getLndID();
                 selectedAreaName = newVal.getLndName();
-                System.out.println(newVal.getLndName()+" - "+newVal.getLndNo());
+                System.out.println(newVal.getLndName() + " - " + newVal.getLndNo());
             }
         });
 
@@ -148,17 +148,17 @@ public class DailyTeaController implements Initializable {
     }
 
     private void setTableColumns() {
-        col_TeaID.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Integer>("teaID"));
-        col_EmployeeID.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Integer>("empID"));
-        col_EmployeeName.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,String>("empName"));
-        col_AreaID.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Integer>("lndID"));
-        col_AreaName.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,String>("lndName"));
-        col_Date.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,LocalDate>("dateCollected"));
-        col_FullWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Double>("fullWeight"));
-        col_BagWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Double>("bagWeight"));
-        col_WaterWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Double>("waterWeight"));
-        col_TotalWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,Double>("totalWeight"));
-        col_Quality.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO,String>("Quality"));
+        col_TeaID.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Integer>("teaID"));
+        col_EmployeeID.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Integer>("empID"));
+        col_EmployeeName.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, String>("empName"));
+        col_AreaID.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Integer>("lndID"));
+        col_AreaName.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, String>("lndName"));
+        col_Date.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, LocalDate>("dateCollected"));
+        col_FullWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Double>("fullWeight"));
+        col_BagWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Double>("bagWeight"));
+        col_WaterWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Double>("waterWeight"));
+        col_TotalWeight.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, Double>("totalWeight"));
+        col_Quality.setCellValueFactory(new PropertyValueFactory<DailyTeaDTO, String>("Quality"));
 
         tableView.setItems(loadTeaFields());
     }
@@ -170,41 +170,42 @@ public class DailyTeaController implements Initializable {
                 FXMLLoader.load(getClass().getResource("/lk/ijse/ceylonteapay/Home.fxml"))
         ));
     }
+
     @FXML
-    private void addFields (){
-try{
-    if (validation()){
-        String quality = txtQuality.getText();
-        double fullWeight = Double.parseDouble(txtFullWeight.getText());
-        double bagWeight = Double.parseDouble(txtBagWeight.getText());
-        double waterWeight = Double.parseDouble(txtWaterWeight.getText());
-        double totalWeight = fullWeight-(bagWeight+waterWeight);
-        LocalDate date = txtDate.getValue();
+    private void addFields() {
+        try {
+            if (validation()) {
+                String quality = txtQuality.getText();
+                double fullWeight = Double.parseDouble(txtFullWeight.getText());
+                double bagWeight = Double.parseDouble(txtBagWeight.getText());
+                double waterWeight = Double.parseDouble(txtWaterWeight.getText());
+                double totalWeight = fullWeight - (bagWeight + waterWeight);
+                LocalDate date = txtDate.getValue();
 
-            DailyTeaDTO teaDTO = new DailyTeaDTO(selectedEmpId,selectedLandId,selectedEmpName,selectedAreaName,date,fullWeight,bagWeight,waterWeight,totalWeight,quality);
-            boolean result = dailyTeaModel.addTeaField(teaDTO);
+                DailyTeaDTO teaDTO = new DailyTeaDTO(selectedEmpId, selectedLandId, selectedEmpName, selectedAreaName, date, fullWeight, bagWeight, waterWeight, totalWeight, quality);
+                boolean result = dailyTeaModel.addTeaField(teaDTO);
 
-            if (result){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText("Employee Added Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText("Employee Added Not Successfully.");
-                alert.show();
+                if (result) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Employee Added Successfully.");
+                    alert.show();
+                    refreshTable();
+                    clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Employee Added Not Successfully.");
+                    alert.show();
+                }
             }
-        }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void getName(){
+    private void getName() {
         try {
             DBConnection dbc = DBConnection.getInstance();
             Connection conn = dbc.getConnection();
@@ -227,8 +228,8 @@ try{
             }
 
 
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
@@ -245,85 +246,112 @@ try{
         cmbEmployeeIds.getSelectionModel().clearSelection();  // ComboBox clear
         cmbLandIds.getSelectionModel().clearSelection();      // ComboBox clear
     }
+
     @FXML
-    private void reset(){
+    private void reset() {
         clearFields();
     }
 
     @FXML
-    private void updateFields(){
-        if (validation()){
+    private void updateFields() {
+        if (validation()) {
             int teaId = Integer.parseInt(txtTeaID.getText());
             String quality = txtQuality.getText();
             double fullWeight = Double.parseDouble(txtFullWeight.getText());
             double bagWeight = Double.parseDouble(txtBagWeight.getText());
             double waterWeight = Double.parseDouble(txtWaterWeight.getText());
-            double totalWeight = fullWeight-(bagWeight+waterWeight);
+            double totalWeight = fullWeight - (bagWeight + waterWeight);
             LocalDate date = txtDate.getValue();
-        try {
+            try {
 
-            if (checkTeaID(teaId).next()) {
+                Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmAlert.setTitle("Confirm Update");
+                confirmAlert.setHeaderText("Update Tea Plucking Record");
+                confirmAlert.setContentText(
+                        "Are you sure you want to Update income ID: "
+                                + teaId + " ?");
 
-            DailyTeaDTO teaDTO = new DailyTeaDTO(teaId, selectedEmpId, selectedLandId, date, fullWeight, bagWeight, waterWeight,totalWeight, quality);
-            boolean result = dailyTeaModel.updateTeaField(teaDTO);
+                Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-            if (result) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success !");
-                alert.setHeaderText(selectedEmpId+" : Employee Updated Successfully.");
-                alert.show();
-                refreshTable();
-                clearFields();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText(selectedEmpId+" : Employee Updated Not Successfully.");
-                alert.show();
+                if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                    if (checkTeaID(teaId).next()) {
+
+                        DailyTeaDTO teaDTO = new DailyTeaDTO(teaId, selectedEmpId, selectedLandId, date, fullWeight, bagWeight, waterWeight, totalWeight, quality);
+                        boolean result = dailyTeaModel.updateTeaField(teaDTO);
+
+                        if (result) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Success !");
+                            alert.setHeaderText(selectedEmpId + " : Employee Updated Successfully.");
+                            alert.show();
+                            refreshTable();
+                            clearFields();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Error !");
+                            alert.setHeaderText(selectedEmpId + " : Employee Updated Not Successfully.");
+                            alert.show();
+                        }
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText(teaId + " : TeaID Is Not Found.");
+                        alert.show();
+                    }
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }
-            else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error !");
-                alert.setHeaderText(teaId+" : TeaID Is Not Found.");
-                alert.show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         }
     }
+
     @FXML
-    public void delete(){
+    public void delete() {
         DailyTeaDTO selectedItem = tableView.getSelectionModel().getSelectedItem();
-        if (selectedItem==null){
+        if (selectedItem == null) {
             new Alert(Alert.AlertType.ERROR, "Please select an employee from the table!").show();
         } else {
             try {
 
-                int teaID = selectedItem.getTeaID();
-                if (checkTeaID(teaID).next()) {
-                    boolean result = dailyTeaModel.deleteTeaField(teaID);
+                Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmAlert.setTitle("Confirm Delete");
+                confirmAlert.setHeaderText("Delete Tea Plucking Record");
+                confirmAlert.setContentText(
+                        "Are you sure you want to delete Tea ID: "
+                                + selectedItem.getTeaID() + " ?");
 
-                    if (result){
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Success !");
-                        alert.setHeaderText(teaID +": Tea Field Deleted Successfully.");
-                        alert.show();
-                        refreshTable();
-                        clearFields();
+                Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+                if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                    int teaID = selectedItem.getTeaID();
+                    if (checkTeaID(teaID).next()) {
+                        boolean result = dailyTeaModel.deleteTeaField(teaID);
+
+                        if (result) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Success !");
+                            alert.setHeaderText(teaID + ": Tea Field Deleted Successfully.");
+                            alert.show();
+                            refreshTable();
+                            clearFields();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Error !");
+                            alert.setHeaderText(teaID + ": Tea Field Deleted Not Successfully.");
+                            alert.show();
+                        }
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Error !");
-                        alert.setHeaderText(teaID +": Tea Field Deleted Not Successfully.");
+                        alert.setHeaderText(teaID + " : TeaID Is Not Found.");
                         alert.show();
                     }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText(teaID+" : TeaID Is Not Found.");
-                    alert.show();
                 }
-            } catch (Exception e){
+
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -331,7 +359,7 @@ try{
 
     }
 
-    private ResultSet checkTeaID(int teaId) throws Exception{
+    private ResultSet checkTeaID(int teaId) throws Exception {
 
         ResultSet result = dailyTeaModel.checkTeaId(teaId);
 
@@ -345,7 +373,7 @@ try{
     }
 
     private boolean validation() {
-        if (cmbEmployeeIds.getValue()==null){
+        if (cmbEmployeeIds.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Employee is empty");
@@ -353,7 +381,7 @@ try{
             cmbEmployeeIds.requestFocus();
             return false;
         }
-        if (cmbLandIds.getValue()==null){
+        if (cmbLandIds.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Area is empty");
@@ -361,7 +389,7 @@ try{
             cmbLandIds.requestFocus();
             return false;
         }
-        if (txtDate.getValue()==null){
+        if (txtDate.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Date is empty");
@@ -379,7 +407,7 @@ try{
             txtDate.requestFocus();
             return false;
         }
-        if (txtFullWeight.getText().isEmpty()){
+        if (txtFullWeight.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Full Weight is empty");
@@ -395,7 +423,7 @@ try{
             txtFullWeight.requestFocus();
             return false;
         }
-        if (txtBagWeight.getText().isEmpty()){
+        if (txtBagWeight.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Bag Weight is empty");
@@ -411,7 +439,7 @@ try{
             txtBagWeight.requestFocus();
             return false;
         }
-        if (txtWaterWeight.getText().isEmpty()){
+        if (txtWaterWeight.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Water Weight is empty");
@@ -427,7 +455,7 @@ try{
             txtWaterWeight.requestFocus();
             return false;
         }
-        if (txtQuality.getText().isEmpty()){
+        if (txtQuality.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
             alert.setHeaderText("Quality is empty");
@@ -458,14 +486,14 @@ try{
                     try {
                         ResultSet result = dailyTeaModel.getEmployeeNameCombo(id);
 
-                        if (result.next()){
-                            System.out.println("Selection Successfully"+id);
+                        if (result.next()) {
+                            System.out.println("Selection Successfully" + id);
                         }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
 
@@ -482,14 +510,14 @@ try{
                     try {
                         ResultSet result = dailyTeaModel.getLandNameCombo(id);
 
-                        if (result.next()){
-                            System.out.println("Selection Successfully"+id);
+                        if (result.next()) {
+                            System.out.println("Selection Successfully" + id);
                         }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
         });
@@ -526,12 +554,12 @@ try{
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    private void loadLands(){
+    private void loadLands() {
         try {
             ObservableList<LandDTO> landDTOObservableList = dailyTeaModel.getLandId();
             cmbLandIds.setItems(landDTOObservableList);
@@ -561,7 +589,7 @@ try{
                     }
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 

@@ -3,6 +3,7 @@ package lk.ijse.ceylonteapay.controller;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -124,31 +125,44 @@ public class FactoryController implements Initializable {
         } else if (!factoryAddressText.matches(FACTORY_ADDRESS_REGEX)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Factory Address. Must be at least 5 characters and can include letters, numbers, spaces, comma, dot, slash, dash.").show();
         } else {
-            try {
 
-                int id = selected.getFactoryId();
-                System.out.println(id);
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Update");
+            confirmAlert.setHeaderText("Update Tea Factory Record");
+            confirmAlert.setContentText(
+                    "Are you sure you want to Update Factory Name: "
+                            + selected.getFactoryName() + " ?");
 
-                FactoryDTO factoryDTO = new FactoryDTO(id,factoryNameText,factoryAddressText);
-                boolean result = factoryModel.update(factoryDTO);
+            Optional<ButtonType> confirm = confirmAlert.showAndWait();
 
-                if (result){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success !");
-                    alert.setHeaderText("Factory Updated Successfully.");
-                    alert.show();
-                    refreshTable();
-                    clearFields();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error !");
-                    alert.setHeaderText("Factory Updated Not Successfully.");
-                    alert.show();
+            if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+                try {
+                    int id = selected.getFactoryId();
+                    System.out.println(id);
+
+                    FactoryDTO factoryDTO = new FactoryDTO(id,factoryNameText,factoryAddressText);
+                    boolean result = factoryModel.update(factoryDTO);
+
+                    if (result){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success !");
+                        alert.setHeaderText("Factory Updated Successfully.");
+                        alert.show();
+                        refreshTable();
+                        clearFields();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error !");
+                        alert.setHeaderText("Factory Updated Not Successfully.");
+                        alert.show();
+                    }
+
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null,e);
                 }
-
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(null,e);
             }
+
+
         }
 
 

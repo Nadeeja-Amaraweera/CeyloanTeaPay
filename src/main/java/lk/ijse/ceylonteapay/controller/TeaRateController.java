@@ -3,6 +3,7 @@ package lk.ijse.ceylonteapay.controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -86,12 +87,27 @@ public class TeaRateController implements Initializable {
             if (teaRateDTO == null) {
                 new Alert(Alert.AlertType.INFORMATION, "Please Select Table Column").show();
             } else {
-                int id = teaRateDTO.getRateId();
-                boolean result = teaRateModel.deleteRate(id);
-                if (result){
-                    new Alert(Alert.AlertType.ERROR,"Tea Rate Deleted Successfully").show();
+
+                Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmAlert.setTitle("Confirm Delete");
+                confirmAlert.setHeaderText("Delete Income Record");
+                confirmAlert.setContentText(
+                        "Are you sure you want to delete income ID: "
+                                + teaRateDTO.getRateId() + " ?");
+
+                Optional<ButtonType> result = confirmAlert.showAndWait();
+
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    int id = teaRateDTO.getRateId();
+                    boolean success = teaRateModel.deleteRate(id);
+                    refreshTable();
+                    if (success){
+                        new Alert(Alert.AlertType.ERROR,"Tea Rate Deleted Successfully").show();
+                    }
                 }
-                refreshTable();
+
+
+
             }
 
         }catch (Exception e){
