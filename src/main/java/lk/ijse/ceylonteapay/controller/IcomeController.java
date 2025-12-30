@@ -177,6 +177,42 @@ public class IcomeController implements Initializable {
         }
     }
 
+    @FXML
+    private void deleteIncome(){
+        try {
+            IncomeDTO selectedIncome = tableView.getSelectionModel().getSelectedItem();
+
+            if (selectedIncome == null) {
+                new Alert(Alert.AlertType.WARNING,
+                        "Please select an income record first!").show();
+            } else {
+                int id = selectedIncome.getIncomeId();
+                boolean result = incomeModel.deleteIncome(id);
+
+                if (result){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success !");
+                    alert.setHeaderText("Field Deleted Successfully.");
+                    alert.show();
+                    refreshTable();
+
+//                clearFields();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error !");
+                    alert.setHeaderText("Field Deleted Not Successfully.");
+                    alert.show();
+                }
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error !");
+            alert.setHeaderText("Field Deleted Not Successfully.");
+            alert.show();
+            e.printStackTrace();
+        }
+    }
+
     private void refreshTable() {
         incomeDTOObservableList.clear();
         incomeDTOObservableList.addAll(loadIncomeTable());

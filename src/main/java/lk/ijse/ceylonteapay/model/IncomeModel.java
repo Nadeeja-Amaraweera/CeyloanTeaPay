@@ -86,4 +86,18 @@ public class IncomeModel {
         }
         return list;
     }
+
+    public boolean deleteIncome(int id)throws Exception{
+        DBConnection dbc = DBConnection.getInstance();
+        Connection conn = dbc.getConnection();
+
+        String sql = "DELETE FROM Income WHERE incomeId = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1,id);
+
+        int result = pstm.executeUpdate();
+
+        return result>0;
+    }
 }

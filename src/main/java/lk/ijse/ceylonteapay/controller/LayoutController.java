@@ -27,84 +27,41 @@ public class LayoutController implements Initializable {
         Parent teaFXML = App.loadFXML("DailyTea");
         mainContent.getChildren().setAll(teaFXML);
 
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickOtherWork()throws IOException{
         Parent teaFXML = App.loadFXML("OtherWork");
         mainContent.getChildren().setAll(teaFXML);
 
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickEmployee()throws IOException{
         Parent teaFXML = App.loadFXML("Employee");
         mainContent.getChildren().setAll(teaFXML);
 
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickAreas()throws IOException{
         Parent teaFXML = App.loadFXML("Land");
         mainContent.getChildren().setAll(teaFXML);
-
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickFactories()throws IOException{
         Parent teaFXML = App.loadFXML("Factory");
         mainContent.getChildren().setAll(teaFXML);
 
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickStock()throws IOException{
         Parent teaFXML = App.loadFXML("Stock");
         mainContent.getChildren().setAll(teaFXML);
 
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickDelivery()throws IOException{
         Parent teaFXML = App.loadFXML("DeliveryTea");
         mainContent.getChildren().setAll(teaFXML);
 
-        // Fade-in transition
-        teaFXML.setOpacity(0); // start invisible
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.3), teaFXML);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
     }
     @FXML
     private void clickIncome()throws IOException{

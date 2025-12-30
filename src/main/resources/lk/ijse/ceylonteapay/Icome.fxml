@@ -97,15 +97,16 @@
             <TextField fx:id="txtFinalIncome" editable="false" layoutX="33.0" layoutY="218.0" prefHeight="44.0" prefWidth="250" style="-fx-font-size:16; -fx-font-weight:bold;" />
 
             <!-- Buttons -->
-            <Button layoutX="324.0" layoutY="216.0" onAction="#calculateFinalIncome" prefHeight="44.0" prefWidth="104.0" styleClass="action-button" text="Calculate" />
+            <Button layoutX="297.0" layoutY="216.0" onAction="#calculateFinalIncome" prefHeight="44.0" prefWidth="95.0" styleClass="action-button" text="Calculate" />
 <!--                    onAction="#calculateIncome"/>-->
 
-            <Button layoutX="444.0" layoutY="216.0" onAction="#savePayment" prefHeight="44.0" prefWidth="140.0" styleClass="action-button" text="Save Income" />
+            <Button layoutX="409.0" layoutY="216.0" onAction="#savePayment" prefHeight="44.0" prefWidth="120.0" styleClass="action-button" text="Save Income" />
 <!--                    onAction="#saveIncome"/> -->
 
-            <Button layoutX="598.0" layoutY="216.0" prefHeight="44.0" prefWidth="87.0" styleClass="action-button" text="Clear" />
+            <Button layoutX="679.0" layoutY="216.0" prefHeight="44.0" prefWidth="87.0" styleClass="action-button" text="Clear" />
             <Separator layoutY="164.0" prefHeight="14.0" prefWidth="780.0" />
             <Button layoutX="424.0" layoutY="40.0" onAction="#getAllSalary" prefHeight="34.0" prefWidth="140.0" styleClass="action-button" text="Get Pay Salary" />
+            <Button layoutX="543.0" layoutY="216.0" onAction="#deleteIncome" prefHeight="44.0" prefWidth="120.0" styleClass="action-button" text="Delete Row" />
 <!--                    onAction="#clearForm"/>-->
          </children>
       </Pane>
