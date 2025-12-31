@@ -124,6 +124,12 @@ public class IcomeController implements Initializable {
         }
     }
 
+
+    @FXML
+    private void clearAll(){
+        tableView.getSelectionModel().clearSelection();
+    }
+
     @FXML
     private void calculateFinalIncome(){
 
@@ -268,6 +274,7 @@ public class IcomeController implements Initializable {
         incomeDTOObservableList.addAll(loadIncomeTable());
         tableView.setItems(incomeDTOObservableList);
         loadIncomeChartUsingModel();
+
     }
 
     private void loadMonthAndYears() {

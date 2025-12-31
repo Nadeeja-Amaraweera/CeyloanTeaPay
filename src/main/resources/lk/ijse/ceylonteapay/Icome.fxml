@@ -103,7 +103,7 @@
             <Button layoutX="409.0" layoutY="216.0" onAction="#savePayment" prefHeight="44.0" prefWidth="120.0" styleClass="action-button" text="Save Income" />
 <!--                    onAction="#saveIncome"/> -->
 
-            <Button layoutX="679.0" layoutY="216.0" prefHeight="44.0" prefWidth="87.0" styleClass="action-button" text="Clear" />
+            <Button layoutX="679.0" layoutY="216.0" onAction="#clearAll" prefHeight="44.0" prefWidth="87.0" styleClass="action-button" text="Clear" />
             <Separator layoutY="164.0" prefHeight="14.0" prefWidth="780.0" />
             <Button layoutX="424.0" layoutY="40.0" onAction="#getAllSalary" prefHeight="34.0" prefWidth="140.0" styleClass="action-button" text="Get Pay Salary" />
             <Button layoutX="543.0" layoutY="216.0" onAction="#deleteIncome" prefHeight="44.0" prefWidth="120.0" styleClass="action-button" text="Delete Row" />
