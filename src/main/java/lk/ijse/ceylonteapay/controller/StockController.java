@@ -131,6 +131,7 @@ public class StockController implements Initializable {
         txtQuality.setText("");
         txtQuantity.setText("");
         txtAvailableQuantity.setText("");
+        tableView.getSelectionModel().clearSelection();
     }
 
     private void refreshTable() {

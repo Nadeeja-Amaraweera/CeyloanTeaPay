@@ -22,7 +22,7 @@ public class PaymentModel {
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
-//        int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, LocalDate date
+//        int rateId, int employeeId, String employeeName, double teaSalary, double expenseSalary, double finalSalary, Month month, LocalDate date
         pstm.setInt(1,paymentDTO.getRateId());
         pstm.setInt(2,paymentDTO.getEmployeeId());
         pstm.setString(3,paymentDTO.getEmployeeName());

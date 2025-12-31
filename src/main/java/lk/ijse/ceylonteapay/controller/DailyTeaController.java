@@ -239,7 +239,7 @@ public class DailyTeaController implements Initializable {
         txtFullWeight.clear();
         txtBagWeight.clear();
         txtWaterWeight.clear();
-
+        tableView.getSelectionModel().clearSelection();
 
         txtDate.setValue(null);       // DatePicker clear
 

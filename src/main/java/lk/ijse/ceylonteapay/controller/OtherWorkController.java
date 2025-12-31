@@ -284,6 +284,7 @@ public class OtherWorkController implements Initializable {
         txtSalary.clear();
         cmbEmployeeIds.getSelectionModel().clearSelection();
         cmbLandIds.getSelectionModel().clearSelection();
+        tableView.getSelectionModel().clearSelection();
     }
 
     @FXML

@@ -359,5 +359,6 @@ public class EmployeeController implements Initializable {
         radioButtonMale.setSelected(false);
         radioButtonFemale.setSelected(false);
         employeeTelField.clear();
+        tableView.getSelectionModel().clearSelection();
     }
 }

@@ -209,6 +209,7 @@ public class LandController implements Initializable {
     private void clearFields() {
         txtLandNameField.setText("");
         txtLandNoField.setText("");
+        tableView.getSelectionModel().clearSelection();
     }
 
     private void refreshTable() {

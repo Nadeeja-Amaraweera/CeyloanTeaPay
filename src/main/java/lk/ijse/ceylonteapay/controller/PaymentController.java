@@ -123,7 +123,7 @@ public class PaymentController implements Initializable {
                 : Double.parseDouble(txtOtherSalary.getText());
 
         // Calculate final salary
-        double finalSalary = (teaSalary*50) + otherWorkSalary;
+        double finalSalary = (teaSalary*50.0) + otherWorkSalary;
 
         // Set final salary
         txtFinalSalary.setText(String.valueOf(finalSalary));

@@ -219,6 +219,7 @@ public class FactoryController implements Initializable {
         txtFactoryId.setText("No id is here");
         txtFactoryName.setText("");
         txtFactoryAddress.setText("");
+        tableView.getSelectionModel().clearSelection();
     }
 
     private void refreshTable() {
