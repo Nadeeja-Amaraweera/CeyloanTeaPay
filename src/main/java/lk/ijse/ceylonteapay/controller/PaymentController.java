@@ -43,6 +43,11 @@ public class PaymentController implements Initializable {
     private ComboBox<TeaRateDTO> cmbTeaRate;
 
     @FXML
+    private ComboBox<String> monthReportCombo;
+    @FXML
+    private ComboBox<Integer> yearReportCombo;
+
+    @FXML
     private TextField txtTeaSalary;
     @FXML
     private TextField txtOtherSalary;
@@ -87,12 +92,16 @@ public class PaymentController implements Initializable {
     private int selectedYear;
     private double selectedTeaRate;
 
+    private Month selectedReportMonth;
+    private int selectedReportMonthNumber;
+    private int selectedReportYear;
+
     private final String NUMBER_REGEX = "^[0-9]+(\\.[0-9]+)?$";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployees();
-        loadMonths();
+        loadMonthsAndYears();
         loadTeaRateCombo();
         setTableColumn();
 
@@ -322,6 +331,31 @@ public class PaymentController implements Initializable {
 
     }
 
+    @FXML
+    private void viewReport(){
+
+        if (monthReportCombo.getValue()==null){
+            new Alert(Alert.AlertType.ERROR,"Please Select Month").show();
+        } else if (yearReportCombo.getValue()==null) {
+            new Alert(Alert.AlertType.ERROR,"Please Select Year").show();
+        } else {
+            try {
+                int selectedReportYear = yearReportCombo.getSelectionModel().getSelectedItem();
+                System.out.println(selectedReportMonthNumber + " - " + selectedReportYear);
+
+                paymentModel.printPaymentReport(selectedReportMonthNumber, selectedReportYear);
+            }catch (Exception e){
+                e.printStackTrace(); // keep this
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Report Error");
+                alert.setHeaderText("Unable to generate Payment Report");
+                alert.setContentText(e.getMessage()); // 👈 shows real cause
+                alert.show();
+            }
+        }
+    }
+
     private void tableSelection(PaymentDTO newValue) {
 //        Set Employee ComboBox
         for (EmployeeDTO empDTO : cmbEmployee.getItems()) {
@@ -495,18 +529,39 @@ public class PaymentController implements Initializable {
         }
     }
 
-    private void loadMonths() {
+    private void loadMonthsAndYears() {
         monthCombo.setItems(FXCollections.observableArrayList(
                 "January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
         ));
+
+        monthReportCombo.setItems(FXCollections.observableArrayList(
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        ));
+
+        // Year range
+        ObservableList<Integer> years = FXCollections.observableArrayList();
+        int currentYear = LocalDate.now().getYear();
+        for (int i = currentYear - 1; i <= currentYear + 1; i++) {
+            years.add(i);
+        }
+        yearReportCombo.setItems(years);
 
         monthCombo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 selectedMonth = Month.valueOf(newVal.toUpperCase());
                 selectedMonthNumber = selectedMonth.getValue();
                 selectedYear = LocalDate.now().getYear();
-                System.out.println(selectedYear + " - " + selectedMonthNumber + " - " + selectedMonth); // JANUARY
+                System.out.println(selectedYear + " - " + selectedMonthNumber + " - " + selectedMonth);
+            }
+        });
+
+        monthReportCombo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                selectedReportMonth = Month.valueOf(newVal.toUpperCase());
+                selectedReportMonthNumber = selectedReportMonth.getValue();
+                System.out.println( selectedReportMonthNumber + " - " + selectedReportMonth);
             }
         });
 

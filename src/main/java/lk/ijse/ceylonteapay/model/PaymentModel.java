@@ -4,13 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.dto.PaymentDTO;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PaymentModel {
 
@@ -89,5 +97,30 @@ public class PaymentModel {
         int result = pstm.executeUpdate();
 
         return result>0;
+    }
+
+    public void printPaymentReport(int selectedMonthNo, int selectedYear){
+        try {
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            InputStream reportObject = getClass().getResourceAsStream("/lk/ijse/ceylonteapay/reports/payment.jrxml");
+
+            if (reportObject == null) {
+                throw new RuntimeException("❌ customer.jrxml NOT FOUND");
+            }
+
+            JasperReport jr  = JasperCompileManager.compileReport(reportObject); // this is method throws JRException
+
+            Map<String,Object> params = new HashMap<>();
+            params.put("PAYMENT_MONTH",selectedMonthNo);
+            params.put("PAYMENT_YEAR",selectedYear);
+
+            JasperPrint jp = JasperFillManager.fillReport(jr , params , conn); // fill report (jasperreport, params ,connection)
+
+            JasperViewer.viewReport(jp,false);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

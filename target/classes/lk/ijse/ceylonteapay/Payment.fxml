@@ -11,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1250.0" stylesheets="@Payment.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.PaymentController">
    <Pane prefHeight="158.0" prefWidth="1250.0">
@@ -35,11 +36,11 @@
         <children>
             <!-- Employee -->
             <Label layoutX="14.0" layoutY="7.0" text="Employee" />
-            <ComboBox fx:id="cmbEmployee" layoutX="14.0" layoutY="32.0" prefWidth="260" styleClass="combo-box" />
+            <ComboBox fx:id="cmbEmployee" layoutX="14.0" layoutY="32.0" opacity="0.8" prefWidth="260" styleClass="combo-box" />
 
             <!-- Month -->
             <Label layoutX="317.0" layoutY="7.0" text="Month" />
-            <ComboBox fx:id="monthCombo" layoutX="317.0" layoutY="32.0" prefWidth="200" styleClass="combo-box" />
+            <ComboBox fx:id="monthCombo" layoutX="317.0" layoutY="32.0" opacity="0.8" prefWidth="200" styleClass="combo-box" />
 
             <!-- Calculate -->
             <Button layoutX="14.0" layoutY="87.0" onAction="#calculateSalary" prefWidth="200" styleClass="action-button" text="Calculate Salary" />
@@ -50,17 +51,17 @@
             <Label layoutX="317.0" layoutY="137.0" text="Tea Rate :" />
             <Label fx:id="lblTeaRate" layoutX="387.0" layoutY="137.0" styleClass="salary-highlight" text="0" />
 
-            <ComboBox fx:id="cmbTeaRate" layoutX="317.0" layoutY="162.0" prefWidth="200" styleClass="combo-box" />
+            <ComboBox fx:id="cmbTeaRate" layoutX="317.0" layoutY="162.0" opacity="0.8" prefWidth="200" styleClass="combo-box" />
 
             <!-- Salaries -->
             <Label layoutX="14.0" layoutY="157.0" text="Tea Salary" />
-            <TextField fx:id="txtTeaSalary" layoutX="14.0" layoutY="182.0" prefWidth="200" styleClass="text-field" />
+            <TextField fx:id="txtTeaSalary" layoutX="14.0" layoutY="182.0" opacity="0.8" prefWidth="200" styleClass="text-field" />
 
             <Label layoutX="14.0" layoutY="222.0" text="Other Work Salary" />
-            <TextField fx:id="txtOtherSalary" layoutX="14.0" layoutY="247.0" prefWidth="200" styleClass="text-field" />
+            <TextField fx:id="txtOtherSalary" layoutX="14.0" layoutY="247.0" opacity="0.8" prefWidth="200" styleClass="text-field" />
 
             <Label layoutX="317.0" layoutY="222.0" text="Final Salary" />
-            <TextField fx:id="txtFinalSalary" layoutX="317.0" layoutY="247.0" prefWidth="200" styleClass="salary-highlight" />
+            <TextField fx:id="txtFinalSalary" layoutX="317.0" layoutY="247.0" opacity="0.8" prefWidth="200" styleClass="salary-highlight" />
 
         </children>
     </Pane>
@@ -95,5 +96,17 @@
         </columns>
 
     </TableView>
+   <Pane layoutX="960.0" layoutY="170.0" prefHeight="233.0" prefWidth="242.0" styleClass="form-pane">
+      <children>
+         <ComboBox fx:id="monthReportCombo" layoutX="31.0" layoutY="51.0" opacity="0.8" prefHeight="42.0" prefWidth="181.0" promptText="Month" />
+         <ComboBox fx:id="yearReportCombo" layoutX="32.0" layoutY="99.0" opacity="0.8" prefHeight="42.0" prefWidth="181.0" promptText="Year" />
+         <Button layoutX="31.0" layoutY="159.0" mnemonicParsing="false" onAction="#viewReport" prefHeight="42.0" prefWidth="181.0" styleClass="action-button" text="View Report" />
+         <Label alignment="CENTER" layoutX="48.0" layoutY="10.0" prefHeight="28.0" prefWidth="148.0" text="View Report By Date">
+            <font>
+               <Font size="17.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
 
 </AnchorPane>

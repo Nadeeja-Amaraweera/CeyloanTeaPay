@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="payment" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="362e049d-ae8d-4127-b727-8a9a480868f5">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MYSQL-CEYLONTEAPAY"/>
+	<parameter name="PAYMENT_YEAR" class="java.lang.Integer"/>
+	<parameter name="PAYMENT_MONTH" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Payment WHERE MONTH(Payment_Date) = $P{PAYMENT_MONTH} AND YEAR(Payment_Date) = $P{PAYMENT_YEAR}]]>
+	</queryString>
+	<field name="paymentId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="paymentId"/>
+		<property name="com.jaspersoft.studio.field.label" value="paymentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="rateId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="rateId"/>
+		<property name="com.jaspersoft.studio.field.label" value="rateId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="empId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="empId"/>
+		<property name="com.jaspersoft.studio.field.label" value="empId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="empName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="empName"/>
+		<property name="com.jaspersoft.studio.field.label" value="empName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="teaSalary" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="teaSalary"/>
+		<property name="com.jaspersoft.studio.field.label" value="teaSalary"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="expenseSalary" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="expenseSalary"/>
+		<property name="com.jaspersoft.studio.field.label" value="expenseSalary"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="finalSalary" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="finalSalary"/>
+		<property name="com.jaspersoft.studio.field.label" value="finalSalary"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="SalaryMonth" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SalaryMonth"/>
+		<property name="com.jaspersoft.studio.field.label" value="SalaryMonth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<field name="Payment_Date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="Payment_Date"/>
+		<property name="com.jaspersoft.studio.field.label" value="Payment_Date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Payment"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="275" y="15" width="168" height="18" uuid="83cf0aee-ff76-484f-8507-30ad1ede24b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[" Ceylon Tea Pay (Pvt) Ltd "]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="46" width="168" height="50" uuid="93f8a4ae-8028-4c6e-b214-63b3d494fb63">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Welangahenawaththa,
+Kiriwaldola,
+Deniyaya.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="73" y="0" width="100" height="107" uuid="b555df47-7fdb-4b4f-8ec4-c728a4ab1b36"/>
+				<imageExpression><![CDATA["/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/resources/lk/ijse/ceylonteapay/images/Jasperlogo.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="56" y="110" width="442" height="1" uuid="1cbda668-ea46-41d9-9e19-752b01c919f3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="1" width="594" height="34" forecolor="#024F12" backcolor="#04C431" uuid="27c9b955-c699-4091-b5c1-8df7dd43ff01">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payments]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="40" height="20" uuid="fef4909e-2b8d-491e-abd7-48bdb2710e91"/>
+				<box topPadding="0" leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="2" width="102" height="20" uuid="706f7cb7-387f-4545-a751-9e5c9767a486"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Employee Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="2" width="80" height="20" uuid="934bb714-8396-418f-b2ec-d2eeeb384f7d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tea Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="2" width="92" height="20" uuid="55571bc1-716b-4ed3-9083-520f9777ef09"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Expence Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="2" width="80" height="20" uuid="75b9fcd0-9cd2-42df-9517-a5595a802ab7"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Final Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="2" width="76" height="20" uuid="b74041b2-1299-470a-aca9-57c0d9e500c8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="2" width="84" height="20" uuid="4e63d588-1a36-4b90-a522-2be3e4b3388f"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="40" height="18" uuid="10f5d573-db3e-4347-8ea6-c3b40f7d95a2"/>
+				<box topPadding="0" leftPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{paymentId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="102" height="18" uuid="f32ffc77-acf2-4b1e-86c4-8513d1ce2792"/>
+				<box topPadding="0" leftPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{empName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="80" height="18" uuid="05a93cd7-d1f2-407d-96cd-bda6cc5e2a7f"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{teaSalary}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="92" height="18" uuid="fa1f24af-a6ee-4c67-82ba-0a2d5e5ac9f5"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{expenseSalary}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="80" height="18" uuid="45df3900-8564-4fcb-a9db-870df3c113e8"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{finalSalary}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="0" width="76" height="18" uuid="143502fd-b2cf-4a13-929b-8f2db8247b89"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SalaryMonth}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="84" height="18" uuid="58b93a89-e267-4a1d-a7a0-d509dbb21453"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Payment_Date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="52" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="186" y="60" width="182" height="20" uuid="de9ba752-730d-4069-897a-96b02ca7f937"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Developed By Nadeeja Amaraweera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="37" width="100" height="20" uuid="5f3181d6-49d4-4947-bb48-49ab06a5000b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Thank You !]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
