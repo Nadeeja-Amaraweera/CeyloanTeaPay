@@ -105,9 +105,6 @@ public class TeaRateController implements Initializable {
                         new Alert(Alert.AlertType.ERROR,"Tea Rate Deleted Successfully").show();
                     }
                 }
-
-
-
             }
 
         }catch (Exception e){

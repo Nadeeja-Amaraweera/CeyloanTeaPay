@@ -16,6 +16,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 //import static lk.ijse.ceylonteapay.controller.StockController.stockModel;
@@ -27,11 +28,11 @@ public class DeliveryTeaController implements Initializable {
     private TableView<StockDTO> tblStock;
 
     @FXML
-    private TableColumn<StockDTO,Integer>col_stockTableId;
+    private TableColumn<StockDTO, Integer> col_stockTableId;
     @FXML
-    private TableColumn<StockDTO,Integer> col_stockTableStock;
+    private TableColumn<StockDTO, Integer> col_stockTableStock;
     @FXML
-    private TableColumn<StockDTO,String> col_stockTableQuality;
+    private TableColumn<StockDTO, String> col_stockTableQuality;
 
     @FXML
     private TableView<DeliveryCartTM> tblDelivery;
@@ -51,15 +52,15 @@ public class DeliveryTeaController implements Initializable {
     private TextField txtQuantity;
 
     @FXML
-    private TableColumn<DeliveryCartTM,Integer> colStockId;
+    private TableColumn<DeliveryCartTM, Integer> colStockId;
     @FXML
-    private TableColumn<DeliveryCartTM,Integer> colFactoryId;
+    private TableColumn<DeliveryCartTM, Integer> colFactoryId;
     @FXML
-    private TableColumn<DeliveryCartTM,String> colFactoryName;
+    private TableColumn<DeliveryCartTM, String> colFactoryName;
     @FXML
-    private TableColumn<DeliveryCartTM,Integer> colQty;
+    private TableColumn<DeliveryCartTM, Integer> colQty;
     @FXML
-    private TableColumn<DeliveryCartTM,LocalDate> colDate;
+    private TableColumn<DeliveryCartTM, LocalDate> colDate;
 
 
     ObservableList<DeliveryCartTM> cartList = FXCollections.observableArrayList();
@@ -67,7 +68,6 @@ public class DeliveryTeaController implements Initializable {
     private static DeliveryTeaModel deliveryTeaModel = new DeliveryTeaModel();
 
     ObservableList<StockDTO> stockDTOObservableList = FXCollections.observableArrayList();
-
 
 
     private static StockModel stockModel = new StockModel();
@@ -78,7 +78,6 @@ public class DeliveryTeaController implements Initializable {
     private int selectedStockId = -1;
     private Month selectedMonth;
     private int selectedMonthNo;
-
 
 
     @Override
@@ -103,28 +102,28 @@ public class DeliveryTeaController implements Initializable {
             }
         });
 
-        col_stockTableId.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("id"));
-        col_stockTableQuality.setCellValueFactory(new PropertyValueFactory<StockDTO,String>("quality"));
-        col_stockTableStock.setCellValueFactory(new PropertyValueFactory<StockDTO,Integer>("availableQuantity"));
+        col_stockTableId.setCellValueFactory(new PropertyValueFactory<StockDTO, Integer>("id"));
+        col_stockTableQuality.setCellValueFactory(new PropertyValueFactory<StockDTO, String>("quality"));
+        col_stockTableStock.setCellValueFactory(new PropertyValueFactory<StockDTO, Integer>("availableQuantity"));
 
         tblStock.setItems(loadStockTable());
     }
 
     private void setMonthAndYears() {
 
-            // Month names
-            cmbMonth.setItems(FXCollections.observableArrayList(
-                    "January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
-            ));
+        // Month names
+        cmbMonth.setItems(FXCollections.observableArrayList(
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        ));
 
-            // Year range
-            ObservableList<Integer> years = FXCollections.observableArrayList();
-            int currentYear = LocalDate.now().getYear();
-            for (int i = currentYear - 1; i <= currentYear + 1; i++) {
-                years.add(i);
-            }
-            cmdYear.setItems(years);
+        // Year range
+        ObservableList<Integer> years = FXCollections.observableArrayList();
+        int currentYear = LocalDate.now().getYear();
+        for (int i = currentYear - 1; i <= currentYear + 1; i++) {
+            years.add(i);
+        }
+        cmdYear.setItems(years);
 
         cmbMonth.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -157,9 +156,9 @@ public class DeliveryTeaController implements Initializable {
         String qtyText = txtQuantity.getText();
         LocalDate date = txtDate.getValue();
 
-        if (selectedStock==null){
+        if (selectedStock == null) {
             new Alert(Alert.AlertType.ERROR, "Please select a Stock.").show();
-        } else if(selectedFactory==null){
+        } else if (selectedFactory == null) {
             new Alert(Alert.AlertType.ERROR, "Please select a Factory.").show();
         } else if (qtyText.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Quantity cannot be empty.").show();
@@ -184,15 +183,55 @@ public class DeliveryTeaController implements Initializable {
                         qty,
                         date
                 );
-
                 cartList.add(cartTM);
                 tblDelivery.setItems(cartList);
+                cleaAll();
             }
         }
     }
 
     @FXML
-    private void placeOrder(){
+    private void deleteCart() {
+
+        DeliveryCartTM selectedItem = tblDelivery.getSelectionModel().getSelectedItem();
+
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Delete");
+        confirmAlert.setHeaderText("Delete Tea Delivery Record");
+        confirmAlert.setContentText(
+                "Are you sure you want to delete Factory Name: "
+                        + selectedItem.getFactoryName() + " ?");
+
+        Optional<ButtonType> confirm = confirmAlert.showAndWait();
+
+        if (confirm.isPresent() && confirm.get() == ButtonType.OK) {
+            if (selectedItem != null) {
+                // Remove it from the table
+                tblDelivery.getItems().remove(selectedItem);
+
+                cleaAll();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "No row selected!").show();
+            }
+        }
+    }
+
+    private void cleaAll() {
+        cmdFactoryName.setItems(null);
+        cmdStockNo.setItems(null);
+        txtDate.setValue(null);
+        txtQuantity.clear();
+        tblDelivery.getSelectionModel().clearSelection();
+        tblStock.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    private void resetAll() {
+        cleaAll();
+    }
+
+    @FXML
+    private void placeOrder() {
         if (cartList.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Cart is empty!").show();
             return;
@@ -215,17 +254,17 @@ public class DeliveryTeaController implements Initializable {
     }
 
     @FXML
-    private void handlePrint(){
-        if (cmbMonth.getValue()==null){
-            new Alert(Alert.AlertType.ERROR,"Please Select Month").show();
-        } else if (cmdYear.getValue()==null){
-            new Alert(Alert.AlertType.ERROR,"Please Select Year").show();
+    private void handlePrint() {
+        if (cmbMonth.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Please Select Month").show();
+        } else if (cmdYear.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Please Select Year").show();
 
-        }else {
+        } else {
             try {
                 int selectedYear = cmdYear.getValue();
 
-                deliveryTeaModel.printDeliveryTea(selectedMonthNo,selectedYear);
+                deliveryTeaModel.printDeliveryTea(selectedMonthNo, selectedYear);
             } catch (Exception e) {
                 e.printStackTrace(); // keep this
 
@@ -240,18 +279,17 @@ public class DeliveryTeaController implements Initializable {
     }
 
 
-
     private void refreshStockTable() {
         stockDTOObservableList.clear();
         stockDTOObservableList.addAll(loadStockTable());
         tblStock.setItems(stockDTOObservableList);
     }
 
-    private ObservableList<StockDTO> loadStockTable(){
+    private ObservableList<StockDTO> loadStockTable() {
         try {
             ObservableList<StockDTO> list = stockModel.getStock();
             return list;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return FXCollections.observableArrayList();
         }
