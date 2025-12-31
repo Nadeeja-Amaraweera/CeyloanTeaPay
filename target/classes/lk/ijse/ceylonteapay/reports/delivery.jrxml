@@ -42,92 +42,182 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="29" splitType="Stretch">
+		<band height="108" splitType="Stretch">
 			<staticText>
-				<reportElement x="227" y="4" width="100" height="25" forecolor="#027018" uuid="76b3132f-dfa7-4b4d-9afc-e7e801acd7ba">
+				<reportElement x="250" y="13" width="168" height="18" uuid="5b57c088-e0c5-4f22-b571-e5d12808d73b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[" Ceylon Tea Pay (Pvt) Ltd "]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="45" width="168" height="50" uuid="cc2c07da-4bf7-48a9-bd9d-c4fdeb428c8b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Welangahenawaththa,
+Kiriwaldola,
+Deniyaya.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="70" y="0" width="100" height="107" uuid="4995848a-9612-4d28-b1a1-cb6538212212"/>
+				<imageExpression><![CDATA["/home/nadeeja/ThisPC/IJSE/SEM 01/Semester 1 final project/CeylonTeaPay/src/main/resources/lk/ijse/ceylonteapay/images/Jasperlogo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="-1" width="594" height="34" forecolor="#024F12" backcolor="#04C431" uuid="76b3132f-dfa7-4b4d-9afc-e7e801acd7ba">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Delivery Tea]]></text>
 			</staticText>
 		</band>
-	</title>
-	<pageHeader>
-		<band height="30" splitType="Stretch">
-			<staticText>
-				<reportElement x="213" y="2" width="128" height="18" uuid="5b57c088-e0c5-4f22-b571-e5d12808d73b">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Ceylon Tea Pay PLC]]></text>
-			</staticText>
-		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="33" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<staticText>
-				<reportElement x="46" y="10" width="74" height="20" uuid="eacf4a4a-11c5-4a7c-ac58-3e5ceafbbacd"/>
+				<reportElement x="46" y="9" width="64" height="20" uuid="eacf4a4a-11c5-4a7c-ac58-3e5ceafbbacd"/>
+				<box topPadding="0" leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="120" y="10" width="92" height="20" uuid="3ee72cbb-f111-4086-8c45-11c73b6e7cd5"/>
+				<reportElement x="110" y="9" width="102" height="20" uuid="3ee72cbb-f111-4086-8c45-11c73b6e7cd5"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Factory Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="212" y="10" width="92" height="20" uuid="29d0e5c2-2dfc-4a97-ae40-c4e2fc76c2be"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="212" y="9" width="92" height="20" uuid="29d0e5c2-2dfc-4a97-ae40-c4e2fc76c2be"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[StockId]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="304" y="10" width="92" height="20" uuid="685d5fa1-1a61-4d17-90c8-30b1aa825e29"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="304" y="9" width="92" height="20" uuid="685d5fa1-1a61-4d17-90c8-30b1aa825e29"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Delivery QTY]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="396" y="10" width="92" height="20" uuid="50916c11-bf75-4164-a8c6-007da281d800"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="396" y="9" width="92" height="20" uuid="50916c11-bf75-4164-a8c6-007da281d800"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Delivery Date]]></text>
 			</staticText>
 			<line>
-				<reportElement x="46" y="32" width="442" height="1" uuid="0cf4c5d4-52fa-4d4f-aef1-27f168945600">
+				<reportElement x="46" y="29" width="442" height="1" uuid="0cf4c5d4-52fa-4d4f-aef1-27f168945600">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="45" y="-35" width="442" height="1" uuid="08cb02d1-ff5b-4bcc-942b-4a99e4d7c0e2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="46" y="-3" width="442" height="1" uuid="3265bc80-9607-4953-a614-b1d32f31b5a7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="18" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="47" y="2" width="72" height="18" uuid="cc57989d-a2f9-4a1c-853d-009884eac27b"/>
+				<reportElement x="46" y="0" width="64" height="18" uuid="cc57989d-a2f9-4a1c-853d-009884eac27b"/>
+				<box topPadding="0" leftPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{deliveryId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="119" y="2" width="92" height="18" uuid="55c3ef32-4aaf-4ec4-bc0c-2bf06ff7e9c7"/>
+				<reportElement x="110" y="0" width="102" height="18" uuid="55c3ef32-4aaf-4ec4-bc0c-2bf06ff7e9c7"/>
+				<box topPadding="0" leftPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{deliveryFactoryName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="211" y="2" width="92" height="18" uuid="03ae8393-6925-4159-b3c3-a4b033cdb07e"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="212" y="0" width="92" height="18" uuid="03ae8393-6925-4159-b3c3-a4b033cdb07e"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{StockId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="303" y="2" width="92" height="18" uuid="6b980729-13b5-42aa-88f1-7d57d7afacce"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="304" y="0" width="92" height="18" uuid="6b980729-13b5-42aa-88f1-7d57d7afacce"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{deliveryQty}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="395" y="2" width="92" height="18" uuid="5cbc7de4-a2c6-475d-9d69-bd92ac6d1e34"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="396" y="0" width="92" height="18" uuid="5cbc7de4-a2c6-475d-9d69-bd92ac6d1e34"/>
+				<box topPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{deliveryDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="1" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</band>
 	</columnFooter>
@@ -135,14 +225,14 @@
 		<band height="41" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="48" splitType="Stretch">
+		<band height="104" splitType="Stretch">
 			<staticText>
-				<reportElement x="186" y="24" width="182" height="20" uuid="10f89243-58a0-4bac-b8b5-a1ad49e0a353"/>
+				<reportElement x="186" y="60" width="182" height="20" uuid="10f89243-58a0-4bac-b8b5-a1ad49e0a353"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Developed By Nadeeja Amaraweera]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="227" y="1" width="100" height="20" uuid="7280b7d3-9fcd-4729-a714-0bfef1afef10"/>
+				<reportElement x="227" y="37" width="100" height="20" uuid="7280b7d3-9fcd-4729-a714-0bfef1afef10"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Thank You !]]></text>
 			</staticText>
