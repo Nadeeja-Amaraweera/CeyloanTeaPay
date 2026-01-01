@@ -30,6 +30,31 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
 }
 
+/* Sidebar Manage buttons */
+.sidebar-Manage-button {
+    -fx-background-color: #919000;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 4);
+}
+
+/* Hover */
+.sidebar-Manage-button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #b1b001;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0.4, 0, 6);
+}
+
+/* Pressed */
+.sidebar-Manage-button:pressed {
+    -fx-background-color: #595900;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
+}
+
 /* Main content */
 .main-content {
     -fx-background-color: #F5F2E3;

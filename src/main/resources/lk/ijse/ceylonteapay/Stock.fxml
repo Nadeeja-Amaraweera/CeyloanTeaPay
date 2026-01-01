@@ -109,7 +109,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtStockId" promptText="Enter Stock ID" style="-fx-background-color: #E4F0DA; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #869F75;">
+                        <TextField fx:id="txtStockId" editable="false" promptText="Can't type here" style="-fx-background-color: #E4F0DA; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #869F75;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

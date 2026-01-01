@@ -82,7 +82,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="214.0" prefWidth="180.0">
                      <children>
-                        <TextField fx:id="txtTeaID" prefHeight="26.0" prefWidth="156.0" promptText="Tea ID" style="-fx-border-color: #869F75; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #E4F0DA;">
+                        <TextField fx:id="txtTeaID" editable="false" prefHeight="26.0" prefWidth="156.0" promptText="Can't type" style="-fx-border-color: #869F75; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #E4F0DA;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -243,7 +243,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtTotalWeight" prefHeight="26.0" prefWidth="156.0" promptText="Total Weight" style="-fx-border-color: #869F75; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #E4F0DA;">
+                        <TextField fx:id="txtTotalWeight" editable="false" prefHeight="26.0" prefWidth="156.0" promptText="Can't type" style="-fx-border-color: #869F75; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #E4F0DA;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -261,7 +261,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-            <TableView styleClass="app-table" fx:id="tableView" layoutY="337.0" prefHeight="464.0" prefWidth="1250.0" style="-fx-background-color: #F6F3E4; -fx-border-color: #AEB79C;">
+            <TableView fx:id="tableView" layoutY="337.0" prefHeight="464.0" prefWidth="1250.0" style="-fx-background-color: #F6F3E4; -fx-border-color: #AEB79C;" styleClass="app-table">
               <columns>
                 <TableColumn fx:id="col_TeaID" prefWidth="57.59997636079788" text="Tea ID" />
                 <TableColumn fx:id="col_EmployeeID" prefWidth="95.19997787475586" text="Employee ID" />
