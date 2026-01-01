@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import java.net.URL?>
-<AnchorPane prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.LayoutController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.ceylonteapay.controller.LayoutController">
 
     <!-- Attach CSS -->
     <stylesheets>
-        <URL value="@layout.css"/>
+        <URL value="@layout.css" />
     </stylesheets>
 
     <children>
@@ -25,40 +27,31 @@
                         <!-- LOGO -->
                         <ImageView fitHeight="380.0" fitWidth="240.0" preserveRatio="true">
                             <VBox.margin>
-                                <Insets bottom="30"/>
+                                <Insets bottom="30" />
                             </VBox.margin>
                             <image>
-                                <Image url="@images/Gemini_Generated_Image_7z2ek87z2ek87z2e.png"/>
+                                <Image url="@images/Gemini_Generated_Image_7z2ek87z2ek87z2e.png" />
                             </image>
                         </ImageView>
 
                         <!-- BUTTONS -->
-                        <Button onAction="#clickTeaPlucking" prefHeight="40" prefWidth="150" styleClass="sidebar-button"
-                                text="Tea Plucking"/>
+                        <Button onAction="#clickTeaPlucking" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Tea Plucking" />
 
-                        <Button onAction="#clickOtherWork" prefHeight="40" prefWidth="150" styleClass="sidebar-button"
-                                text="Other Works"/>
+                        <Button onAction="#clickOtherWork" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Other Works" />
 
-                        <Button onAction="#clickDelivery" prefHeight="40" prefWidth="150" styleClass="sidebar-button"
-                                text="Tea Delivery"/>
+                        <Button onAction="#clickDelivery" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Tea Delivery" />
 
-                        <Button onAction="#clickStock" prefHeight="40" prefWidth="150" styleClass="sidebar-button"
-                                text="Stock Manage"/>
+                        <Button onAction="#clickStock" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Stock Manage" />
 
-                        <Button onAction="#clickPayment" prefHeight="40" prefWidth="150" styleClass="sidebar-button"
-                                text="Payment"/>
+                        <Button onAction="#clickPayment" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Payment" />
 
-                        <Button onAction="#clickIncome" prefHeight="40" prefWidth="150" styleClass="sidebar-button"
-                                text="Income"/>
+                        <Button onAction="#clickIncome" prefHeight="40" prefWidth="150" styleClass="sidebar-button" text="Income" />
 
-                        <Button onAction="#clickEmployee" prefHeight="40" prefWidth="150" styleClass="sidebar-Manage-button"
-                                text="Employee Manage"/>
+                        <Button onAction="#clickEmployee" prefHeight="40" prefWidth="150" styleClass="sidebar-Manage-button" text="Employee Manage" />
 
-                        <Button onAction="#clickAreas" prefHeight="40" prefWidth="150" styleClass="sidebar-Manage-button"
-                                text="Areas Manage"/>
+                        <Button onAction="#clickAreas" prefHeight="40" prefWidth="150" styleClass="sidebar-Manage-button" text="Areas Manage" />
 
-                        <Button onAction="#clickFactories" prefHeight="40" prefWidth="150" styleClass="sidebar-Manage-button"
-                                text="Factory Manage"/>
+                        <Button onAction="#clickFactories" prefHeight="40" prefWidth="150" styleClass="sidebar-Manage-button" text="Factory Manage" />
                     </children>
                 </VBox>
             </left>
@@ -68,10 +61,9 @@
                 <AnchorPane fx:id="mainContent" prefHeight="800.0" prefWidth="1250.0" styleClass="main-content">
 
                     <children>
-                        <ImageView fitHeight="520.0" fitWidth="720.0" layoutX="265.0" layoutY="140.0"
-                                   preserveRatio="true">
+                        <ImageView fitHeight="520.0" fitWidth="720.0" layoutX="265.0" layoutY="140.0" preserveRatio="true">
                             <image>
-                                <Image url="@images/welcome.png"/>
+                                <Image url="@images/welcome.png" />
                             </image>
                         </ImageView>
                     </children>

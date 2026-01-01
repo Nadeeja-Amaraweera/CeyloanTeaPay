@@ -18,11 +18,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lk.ijse.ceylonteapay.App;
 import lk.ijse.ceylonteapay.db.DBConnection;
 import lk.ijse.ceylonteapay.util.EmailUtil;
+
 
 /**
  * FXML Controller class
@@ -34,7 +36,8 @@ public class MainLoginController implements Initializable {
     @FXML
     private TextField txtName;
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
+
     @FXML
     private void login()throws IOException {
         String userName = txtName.getText();
