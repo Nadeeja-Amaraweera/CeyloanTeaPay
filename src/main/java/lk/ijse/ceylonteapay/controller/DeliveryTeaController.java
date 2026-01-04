@@ -19,8 +19,6 @@ import java.time.Month;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-//import static lk.ijse.ceylonteapay.controller.StockController.stockModel;
-
 
 public class DeliveryTeaController implements Initializable {
 
