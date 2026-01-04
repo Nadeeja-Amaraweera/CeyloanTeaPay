@@ -4,14 +4,12 @@ lk/ijse/ceylonteapay/controller/DailyTeaController$1.class
 lk/ijse/ceylonteapay/controller/DailyTeaController$4.class
 lk/ijse/ceylonteapay/model/OtherWorkModel.class
 lk/ijse/ceylonteapay/model/TeaRateModel.class
-lk/ijse/ceylonteapay/dto/DeliveryStockDTO.class
 lk/ijse/ceylonteapay/dto/LandDTO.class
 lk/ijse/ceylonteapay/controller/PaymentController$1.class
 lk/ijse/ceylonteapay/util/EmailUtil$1.class
 lk/ijse/ceylonteapay/util/EmailUtil.class
 lk/ijse/ceylonteapay/util/EmailUtil$2.class
 lk/ijse/ceylonteapay/controller/StockController.class
-lk/ijse/ceylonteapay/dto/DeliveryDTO.class
 lk/ijse/ceylonteapay/controller/OtherWorkController$2.class
 lk/ijse/ceylonteapay/model/DailyTeaModel.class
 lk/ijse/ceylonteapay/db/DBConnection.class
