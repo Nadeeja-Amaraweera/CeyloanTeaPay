@@ -217,8 +217,8 @@ public class DeliveryTeaController implements Initializable {
     }
 
     private void cleaAll() {
-        cmdFactoryName.setItems(null);
-        cmdStockNo.setItems(null);
+        cmdFactoryName.setValue(null);
+        cmdStockNo.setValue(null);
         txtDate.setValue(null);
         txtQuantity.clear();
         tblDelivery.getSelectionModel().clearSelection();

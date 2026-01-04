@@ -31,6 +31,7 @@ import lk.ijse.ceylonteapay.util.EmailUtil;
  *
  * @author nadeeja
  */
+
 public class MainLoginController implements Initializable {
 
     @FXML
@@ -44,8 +45,6 @@ public class MainLoginController implements Initializable {
         String password = txtPassword.getText();
 
         try {
-
-
             DBConnection dbc = DBConnection.getInstance();
             Connection connection = dbc.getConnection();
 
