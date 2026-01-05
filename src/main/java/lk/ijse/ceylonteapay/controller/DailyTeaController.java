@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
+// Using Inheritance
 public class DailyTeaController implements Initializable {
 
     @FXML
@@ -76,6 +76,7 @@ public class DailyTeaController implements Initializable {
     @FXML
     private TableColumn<DailyTeaDTO, String> col_Quality;
 
+//   Using Abstraction
     private final DailyTeaModel dailyTeaModel = new DailyTeaModel();
 
     ObservableList<DailyTeaDTO> teaDTOObservableList = FXCollections.observableArrayList();
@@ -85,6 +86,7 @@ public class DailyTeaController implements Initializable {
     private int selectedLandId = -1;
     private String selectedAreaName = "";
 
+//    Runtime Polymorphism
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadEmployeeIds();
@@ -183,6 +185,7 @@ public class DailyTeaController implements Initializable {
                 LocalDate date = txtDate.getValue();
 
                 DailyTeaDTO teaDTO = new DailyTeaDTO(selectedEmpId, selectedLandId, selectedEmpName, selectedAreaName, date, fullWeight, bagWeight, waterWeight, totalWeight, quality);
+//                Using Abstraction
                 boolean result = dailyTeaModel.addTeaField(teaDTO);
 
                 if (result) {
