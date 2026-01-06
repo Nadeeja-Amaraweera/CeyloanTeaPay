@@ -205,7 +205,7 @@ public class DeliveryTeaModel {
             InputStream reportObject = getClass().getResourceAsStream("/lk/ijse/ceylonteapay/reports/delivery.jrxml");
 
             if (reportObject == null) {
-                throw new RuntimeException("❌ customer.jrxml NOT FOUND");
+                throw new RuntimeException("customer.jrxml NOT FOUND");
             }
 
             JasperReport jr  = JasperCompileManager.compileReport(reportObject); // this is method throws JRException
